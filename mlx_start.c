@@ -1,4 +1,5 @@
 #include "minilibx_opengl_20191021/mlx.h"
+#include "libft.h"
 
 typedef struct  s_data {
     void        *img;
@@ -7,6 +8,22 @@ typedef struct  s_data {
     int         line_length;
     int         endian;
 }               t_data;
+
+// map = 100 * 100  
+//
+// x carre = x / 10
+//
+// y carre = y/10
+
+
+
+char	**mapper(char str)
+{
+	char **tab;
+
+	tab = ft_split("1111111111,100000000001,1001111001,1001001001,1001001001, 1001001001,1000000001,1000000001,1000000001,1111111111", ',');
+	return (tab);
+}
 
 void            my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
