@@ -1,6 +1,11 @@
 #include "minilibx_opengl_20191021/mlx.h"
 #include "libft.h"
 
+int res_vert = 1080;
+int res_hor = 1920;
+int map_len = 10;
+int *init_pos;
+
 typedef struct  s_data {
     void        *img;
     char        *addr;
@@ -8,14 +13,6 @@ typedef struct  s_data {
     int         line_length;
     int         endian;
 }               t_data;
-
-// map = 100 * 100  
-//
-// x carre = x / 10
-//
-// y carre = y/10
-
-
 
 char	**mapper(char str)
 {
@@ -67,9 +64,11 @@ int	main(void)
 	int		offset;
 	int		i;
 
+	init_pos[0] = 0;
+	init_pos[1] = 0;
 	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 1920, 1080, "test");
-	img.img = mlx_new_image(mlx_ptr, 1920, 1080);
+	win_ptr = mlx_new_window(mlx_ptr, res_hor, res_vert, "test");
+	img.img = mlx_new_image(mlx_ptr, res_hor, res_vert);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 //	offset = (y * line_length + x * (bits_per_pixel / 8));
 //
@@ -82,4 +81,3 @@ int	main(void)
     mlx_put_image_to_window(mlx_ptr, win_ptr, img.img, 0, 0);
 	mlx_loop(mlx_ptr);
 }
-
