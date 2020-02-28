@@ -18,15 +18,19 @@ int		get_pixls_per_sq(int res_hor, int map_len)
 	return (pxls);
 }
 
-int		get_next_x(int pos_x, 
+int		get_next_x(double camx, int pente, char **map)
 {
-	int	pxls;
+	double 	x_pos;
 
-	pxls = get_pixls_per_sq(res_hor, map_len);
-	return (pxls);
+
+
+	
+
+
+
 }
 
-int		*find_next_x_intersec(int *pos, int pente, char **map)
+int		*find_next_x_intersec(double camx, double camy, int pente, char **map)
 {
 	int *intersec;
 	int	temp1;
