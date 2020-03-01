@@ -18,6 +18,9 @@ void 	print_ray(t_ray *ray)
 	printf("ray->hit : %d\n", ray->hit);
 	printf("ray->side : %d\n", ray->side);
 	printf("ray->wallDist : %f\n", ray->wallDist);
+	printf("ray->lineheight : %d\n", ray->lineheight);
+	printf("ray->linebottom : %d\n", ray->linebottom);
+	printf("ray->linetop : %d\n", ray->linetop);
 	printf("---------------------------\n");
 }
 
@@ -35,4 +38,22 @@ void 	print_fov(t_fov *fov)
 	printf("---------------------------\n");
 }
 
+void	print_map(int map[24][24], int lenx, int leny)
+{
+	int i;
 
+	i = 0;
+	printf("\n\n-------- map : --------\n");
+	while (--leny >= 0)
+	{
+		printf(" y = %2d ", leny);
+		while (i < lenx)
+		{
+			printf("|%2d", map[i][leny]);
+			i++;
+		}
+		printf("|\n");
+		i = 0;
+	}
+	printf("---------------------------\n");
+}

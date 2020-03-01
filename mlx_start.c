@@ -1,10 +1,12 @@
 #include "minilibx_opengl_20191021/mlx.h"
 #include "libft.h"
+#include "lodev.h"
 
-int res_vert = 1080;
-int res_hor = 1920;
-int map_len = 10;
-int *init_pos;
+extern int	mapWidth;
+extern int 	mapHeight;
+extern int 	screenWidth;
+extern int 	screenHeight;
+extern int 	worldMap[24][24];
 
 typedef struct  s_data {
     void        *img;
@@ -14,13 +16,13 @@ typedef struct  s_data {
     int         endian;
 }               t_data;
 
-char	**mapper(char str)
+/*char	**mapper(char str)
 {
 	char **tab;
 
 	tab = ft_split("1111111111,100000000001,1001111001,1001001001,1001001001, 1001001001,1000000001,1000000001,1000000001,1111111111", ',');
 	return (tab);
-}
+}*/
 
 void            my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -30,7 +32,7 @@ void            my_mlx_pixel_put(t_data *data, int x, int y, int color)
     *(unsigned int*)dst = color;
 }
 
-void			put_column(t_data *data, int x,  int res_ver, int bas, int haut)
+void			put_column(t_data *data, int x, t_ray *ray)
 {
 	int green;
 	int blue;
@@ -39,45 +41,50 @@ void			put_column(t_data *data, int x,  int res_ver, int bas, int haut)
 	green = 0x0000FF00;
 	blue = 0x000000FF;
 	y = 0;
-	while (y < bas)
+	if (ray->side == 1)
+		blue = blue / 2;
+	while (y < ray->linebottom)
 	{
 		my_mlx_pixel_put(data, x, y, green);
 		y++;
 	}
-	while (y < haut)
+	while (y < ray->linetop)
 	{
 		my_mlx_pixel_put(data, x, y, blue);
 		y++;
 	}
-	while (y < res_ver)
+	while (y < screenHeight)
 	{
 		my_mlx_pixel_put(data, x, y, green);
 		y++;
 	}
 }
 
-int	main(void)
+
+
+int	main(int ac, char **av)
 {
 	void	*mlx_ptr;
 	t_data	img;
 	void	*win_ptr;
 	int		offset;
 	int		i;
+	t_ray	ray;
+	t_fov	fov;
 
-	init_pos[0] = 0;
-	init_pos[1] = 0;
 	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, res_hor, res_vert, "test");
-	img.img = mlx_new_image(mlx_ptr, res_hor, res_vert);
+	win_ptr = mlx_new_window(mlx_ptr, screenWidth, screenHeight, "test");
+	img.img = mlx_new_image(mlx_ptr, screenWidth, screenHeight);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-//	offset = (y * line_length + x * (bits_per_pixel / 8));
-//
-//	need to create temp images
-	while (i < 1920)
+	fov = initialize_fov(&fov, ft_atoi(av[1]), ft_atoi(av[2]));
+	i = 0;
+	while (i < screenWidth)
 	{
-		put_column(&img, i, 1080, 300, 600);
+		ray = initialize_ray(&ray);
+		get_ray_info(i, &fov, &ray);
+		put_column(&img, i, &ray);
 		i++;
 	}
-    mlx_put_image_to_window(mlx_ptr, win_ptr, img.img, 0, 0);
+    	mlx_put_image_to_window(mlx_ptr, win_ptr, img.img, 0, 0);
 	mlx_loop(mlx_ptr);
 }
