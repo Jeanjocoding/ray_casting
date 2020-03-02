@@ -8,14 +8,6 @@ extern int 	screenWidth;
 extern int 	screenHeight;
 extern int 	worldMap[24][24];
 
-typedef struct  s_data {
-    void        *img;
-    char        *addr;
-    int         bits_per_pixel;
-    int         line_length;
-    int         endian;
-}               t_data;
-
 /*char	**mapper(char str)
 {
 	char **tab;
@@ -60,23 +52,49 @@ void			put_column(t_data *data, int x, t_ray *ray)
 	}
 }
 
+int	close_window(int keycode, t_vars *vars)
+{
+	ft_putchar('X');
+//	mlx_destroy_window(vars->mlx, vars->win);
+	return (0);
+}
 
+t_data	generate_image(t_data *img, void **mlx_ptr, t_fov *fov)
+{
+	int 	i;
+	t_ray	ray;
+
+	i = 0;
+	img->img = mlx_new_image(*mlx_ptr, screenWidth, screenHeight);
+	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
+	while (i < screenWidth)
+	{
+		ray = initialize_ray(&ray);
+		get_ray_info(i, fov, &ray);
+		put_column(img, i, &ray);
+		i++;
+	}
+	return (*img);
+}
 
 int	main(int ac, char **av)
 {
 	void	*mlx_ptr;
 	t_data	img;
+	t_data	temp_img;
 	void	*win_ptr;
 	int		offset;
 	int		i;
+	t_vars	vars;
 	t_ray	ray;
-	t_fov	fov;
+//	t_fov	fov;
 
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, screenWidth, screenHeight, "test");
-	img.img = mlx_new_image(mlx_ptr, screenWidth, screenHeight);
+	vars.mlx = mlx_init();
+	vars.win = mlx_new_window(vars.mlx, screenWidth, screenHeight, "test");
+	vars.fov = initialize_fov(&vars.fov, ft_atoi(av[1]), ft_atoi(av[2]));
+	generate_image(&(vars.img), &vars.mlx, &vars.fov);
+/*	img.img = mlx_new_image(mlx_ptr, screenWidth, screenHeight);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-	fov = initialize_fov(&fov, ft_atoi(av[1]), ft_atoi(av[2]));
 	i = 0;
 	while (i < screenWidth)
 	{
@@ -84,7 +102,9 @@ int	main(int ac, char **av)
 		get_ray_info(i, &fov, &ray);
 		put_column(&img, i, &ray);
 		i++;
-	}
-    	mlx_put_image_to_window(mlx_ptr, win_ptr, img.img, 0, 0);
-	mlx_loop(mlx_ptr);
+	}*/
+    	mlx_put_image_to_window(vars.mlx, vars.win, vars.img.img, 0, 0);
+	mlx_hook(vars.win, 2, 1L<<0, get_command, &vars);
+//	mlx_key_hook(vars.win, close_window, &vars);
+	mlx_loop(vars.mlx);
 }
