@@ -25,7 +25,7 @@ int	get_command(int keycode, t_vars *vars)
 	if (keycode == KEY_RIGHT) 
 		rotate_right(&(vars->fov));
 	print_fov(&(vars->fov));
-	generate_image(&temp_img, &(vars->mlx), &(vars->fov));
+	generate_image(vars, &temp_img);
 	mlx_put_image_to_window(vars->mlx, vars->win, temp_img.img, 0, 0);
 	return (0);
 }

@@ -59,7 +59,26 @@ int	close_window(int keycode, t_vars *vars)
 	return (0);
 }
 
-t_data	generate_image(t_data *img, void **mlx_ptr, t_fov *fov)
+
+t_data	generate_image(t_vars *vars, t_data *img)
+{
+	int 	i;
+	t_ray	ray;
+
+	i = 0;
+	img->img = mlx_new_image(vars->mlx, screenWidth, screenHeight);
+	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
+	while (i < screenWidth)
+	{
+		ray = initialize_ray(&ray);
+		get_ray_info(i, &vars->fov, &ray);
+		put_column(img, i, &ray);
+		i++;
+	}
+	return (*img);
+}
+
+/*t_data	generate_image(t_data *img, void **mlx_ptr, t_fov *fov)
 {
 	int 	i;
 	t_ray	ray;
@@ -75,7 +94,7 @@ t_data	generate_image(t_data *img, void **mlx_ptr, t_fov *fov)
 		i++;
 	}
 	return (*img);
-}
+}*/
 
 int	main(int ac, char **av)
 {
@@ -92,18 +111,8 @@ int	main(int ac, char **av)
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, screenWidth, screenHeight, "test");
 	vars.fov = initialize_fov(&vars.fov, ft_atoi(av[1]), ft_atoi(av[2]));
-	generate_image(&(vars.img), &vars.mlx, &vars.fov);
-/*	img.img = mlx_new_image(mlx_ptr, screenWidth, screenHeight);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-	i = 0;
-	while (i < screenWidth)
-	{
-		ray = initialize_ray(&ray);
-		get_ray_info(i, &fov, &ray);
-		put_column(&img, i, &ray);
-		i++;
-	}*/
-    	mlx_put_image_to_window(vars.mlx, vars.win, vars.img.img, 0, 0);
+	generate_image(&vars, &(vars.img));
+    mlx_put_image_to_window(vars.mlx, vars.win, vars.img.img, 0, 0);
 	mlx_hook(vars.win, 2, 1L<<0, get_command, &vars);
 //	mlx_key_hook(vars.win, close_window, &vars);
 	mlx_loop(vars.mlx);

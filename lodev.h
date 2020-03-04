@@ -72,6 +72,6 @@ void	rotate_right(t_fov *fov);
 t_fov	initialize_fov(t_fov *fov, double posX, double posY);
 t_ray	initialize_ray(t_ray *ray);
 t_ray	*get_ray_info(int x, t_fov *fov, t_ray *ray); 
-t_data	generate_image(t_data *img, void **mlx_ptr, t_fov *fov);
+t_data	generate_image(t_vars *vars, t_data *img);
 
 #endif
