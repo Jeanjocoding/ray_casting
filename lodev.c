@@ -56,6 +56,7 @@ int worldMap[24][24]=
 
 t_ray	initialize_ray(t_ray *ray)
 {
+	ray->screenX = 0;
 	ray->cameraX = 0;
 	ray->rayDirX = 0;
 	ray->rayDirY = 0;
@@ -70,6 +71,7 @@ t_ray	initialize_ray(t_ray *ray)
 	ray->hit = 0;
 	ray->side = 0;
 	ray->wallDist = 0;
+	ray->wallX = 0;
 	return (*ray);
 }
 
@@ -156,6 +158,7 @@ t_fov	initialize_fov(t_fov *fov, double posX, double posY)
 
 t_ray	*get_ray_info(int x, t_fov *fov, t_ray *ray) 
 {
+	ray->screenX = x;
 	ray->cameraX = 2 * x / (double)screenWidth - 1;
 	ray->rayDirX = fov->dirX + fov->planeX * ray->cameraX;
 	ray->rayDirY = fov->dirY + fov->planeY * ray->cameraX;
@@ -166,6 +169,11 @@ t_ray	*get_ray_info(int x, t_fov *fov, t_ray *ray)
 	get_steps_sides(ray, fov);
 	launch_ray(ray, fov, worldMap);
 	get_wallDist_line(ray, fov);
+	if (ray->side == 0)
+		ray->wallX = fov->posY + ray->wallDist * ray->rayDirY;
+    else
+		ray->wallX = fov->posX + ray->wallDist * ray->rayDirX;
+	ray->wallX -= (int)(ray->wallX);
 	return (ray);
 }
 

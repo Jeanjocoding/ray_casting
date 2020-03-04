@@ -38,6 +38,18 @@ void 	print_fov(t_fov *fov)
 	printf("---------------------------\n");
 }
 
+void 	print_img_info(t_data *img_info)
+{
+	printf("\n\n-------- img_info : --------\n");
+	printf(" img_info->addr: %s\n", img_info->addr);
+	printf(" img_info->bits_per_pixel: %d\n", img_info->bits_per_pixel);
+	printf(" img_info->line_length: %d\n", img_info->line_length);
+	printf(" img_info->img_width: %d\n", img_info->img_width);
+	printf(" img_info->img_height: %d\n", img_info->img_height);
+	printf(" img_info->endian: %d\n", img_info->endian);
+	printf("---------------------------\n");
+}
+
 void	print_map(int map[24][24], int lenx, int leny)
 {
 	int i;

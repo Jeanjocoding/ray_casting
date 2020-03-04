@@ -106,13 +106,17 @@ int	main(int ac, char **av)
 	int		i;
 	t_vars	vars;
 	t_ray	ray;
+	t_data	tex;
 //	t_fov	fov;
 
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, screenWidth, screenHeight, "test");
 	vars.fov = initialize_fov(&vars.fov, ft_atoi(av[1]), ft_atoi(av[2]));
+//	load_img_getinfo(&tex, vars.mlx, "./redbrick.xpm");
 	generate_image(&vars, &(vars.img));
+	put_tex(&(vars.img), "redbrick.xpm", vars.mlx, &ray);
     mlx_put_image_to_window(vars.mlx, vars.win, vars.img.img, 0, 0);
+//    mlx_put_image_to_window(vars.mlx, vars.win, tex.img, 0, 0);
 	mlx_hook(vars.win, 2, 1L<<0, get_command, &vars);
 //	mlx_key_hook(vars.win, close_window, &vars);
 	mlx_loop(vars.mlx);

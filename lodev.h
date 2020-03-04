@@ -5,6 +5,7 @@
 
 typedef	struct	s_ray
 {
+	int screenX;
 	double cameraX;
 //	double cameraY;
 	double rayDirX;
@@ -23,6 +24,8 @@ typedef	struct	s_ray
 	int	linebottom;
 	int	linetop;
 	double wallDist;
+	double wallX;
+//	double texX;
 }		t_ray;
 
 typedef struct  s_data {
@@ -31,6 +34,8 @@ typedef struct  s_data {
     int         bits_per_pixel;
     int         line_length;
     int         endian;
+	int			img_width;
+	int			img_height;
 }               t_data;
 
 typedef	struct	s_fov
@@ -73,5 +78,8 @@ t_fov	initialize_fov(t_fov *fov, double posX, double posY);
 t_ray	initialize_ray(t_ray *ray);
 t_ray	*get_ray_info(int x, t_fov *fov, t_ray *ray); 
 t_data	generate_image(t_vars *vars, t_data *img);
+int		put_tex(t_data *main_img, char *relative_path, void *mlx, t_ray *ray);
+void	*load_img_getinfo(t_data *img_info, void *mlx, char *relative_path);
+void 	print_img_info(t_data *img_info);
 
 #endif
