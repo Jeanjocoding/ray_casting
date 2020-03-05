@@ -11,7 +11,7 @@ int	get_command(int keycode, t_vars *vars)
 {
 	t_data	temp_img;
 
-	print_fov(&(vars->fov));
+//	print_fov(&(vars->fov));
 	if (keycode == KEY_W) // Z chez moi
 		move_forward(&(vars->fov));
 	if (keycode == KEY_S) // S chez moi
@@ -24,7 +24,7 @@ int	get_command(int keycode, t_vars *vars)
 		rotate_left(&(vars->fov));
 	if (keycode == KEY_RIGHT) 
 		rotate_right(&(vars->fov));
-	print_fov(&(vars->fov));
+//	print_fov(&(vars->fov));
 	generate_image(vars, &temp_img);
 	mlx_put_image_to_window(vars->mlx, vars->win, temp_img.img, 0, 0);
 	return (0);
@@ -35,7 +35,7 @@ void	move_forward(t_fov *fov)
 {
 	double	moveSpeed;
 
-	moveSpeed = 0.1;
+	moveSpeed = 0.05;
 	if (worldMap[(int)(fov->posX + fov->dirX * moveSpeed)][(int)(fov->posY)] == 0)
 		fov->posX += fov->dirX * moveSpeed;
 	if (worldMap[(int)(fov->posX)][(int)(fov->posY + fov->dirY *moveSpeed)] == 0)
@@ -46,7 +46,7 @@ void	move_backward(t_fov *fov)
 {
 	double	moveSpeed;
 
-	moveSpeed = 0.1;
+	moveSpeed = 0.5;
 	if (worldMap[(int)(fov->posX - fov->dirX * moveSpeed)][(int)(fov->posY)] == 0)
 		fov->posX -= fov->dirX * moveSpeed;
 	if (worldMap[(int)(fov->posX)][(int)(fov->posY - fov->dirY * moveSpeed)] == 0)

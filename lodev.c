@@ -174,6 +174,7 @@ t_ray	*get_ray_info(int x, t_fov *fov, t_ray *ray)
     else
 		ray->wallX = fov->posX + ray->wallDist * ray->rayDirX;
 	ray->wallX -= (int)(ray->wallX);
+	ray->fov = fov;
 	return (ray);
 }
 

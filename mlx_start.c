@@ -59,8 +59,28 @@ int	close_window(int keycode, t_vars *vars)
 	return (0);
 }
 
-
 t_data	generate_image(t_vars *vars, t_data *img)
+{
+	int 	i;
+	t_ray	ray;
+
+	i = 0;
+	img->img = mlx_new_image(vars->mlx, screenWidth, screenHeight);
+	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
+	put_tex(&(vars->img), "redbrick.xpm", vars->mlx, &vars->fov);
+/*	while (i < screenWidth)
+	{
+		ray = initialize_ray(&ray);
+		get_ray_info(i, &vars->fov, &ray);
+//		print_fov(ray.fov);
+		put_column(img, i, &ray);
+		i++;
+	}*/
+	return (*img);
+}
+
+
+/*t_data	generate_image(t_vars *vars, t_data *img)
 {
 	int 	i;
 	t_ray	ray;
@@ -72,24 +92,7 @@ t_data	generate_image(t_vars *vars, t_data *img)
 	{
 		ray = initialize_ray(&ray);
 		get_ray_info(i, &vars->fov, &ray);
-		put_column(img, i, &ray);
-		i++;
-	}
-	return (*img);
-}
-
-/*t_data	generate_image(t_data *img, void **mlx_ptr, t_fov *fov)
-{
-	int 	i;
-	t_ray	ray;
-
-	i = 0;
-	img->img = mlx_new_image(*mlx_ptr, screenWidth, screenHeight);
-	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
-	while (i < screenWidth)
-	{
-		ray = initialize_ray(&ray);
-		get_ray_info(i, fov, &ray);
+//		print_fov(ray.fov);
 		put_column(img, i, &ray);
 		i++;
 	}
@@ -114,7 +117,7 @@ int	main(int ac, char **av)
 	vars.fov = initialize_fov(&vars.fov, ft_atoi(av[1]), ft_atoi(av[2]));
 //	load_img_getinfo(&tex, vars.mlx, "./redbrick.xpm");
 	generate_image(&vars, &(vars.img));
-	put_tex(&(vars.img), "redbrick.xpm", vars.mlx, &ray);
+//	put_tex(&(vars.img), "redbrick.xpm", vars.mlx, &ray);
     mlx_put_image_to_window(vars.mlx, vars.win, vars.img.img, 0, 0);
 //    mlx_put_image_to_window(vars.mlx, vars.win, tex.img, 0, 0);
 	mlx_hook(vars.win, 2, 1L<<0, get_command, &vars);

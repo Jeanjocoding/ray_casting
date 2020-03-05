@@ -41,7 +41,8 @@ void 	print_fov(t_fov *fov)
 void 	print_img_info(t_data *img_info)
 {
 	printf("\n\n-------- img_info : --------\n");
-	printf(" img_info->addr: %s\n", img_info->addr);
+	printf(" img_info->addr: %p\n", img_info->int_ptr);
+	printf(" img_info->int_ptr: %p\n", img_info->int_ptr);
 	printf(" img_info->bits_per_pixel: %d\n", img_info->bits_per_pixel);
 	printf(" img_info->line_length: %d\n", img_info->line_length);
 	printf(" img_info->img_width: %d\n", img_info->img_width);

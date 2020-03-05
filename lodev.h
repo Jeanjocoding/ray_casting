@@ -2,6 +2,19 @@
 # define LODEV_H
 
 #include <math.h>
+#include <stdio.h>
+
+typedef	struct	s_fov
+{
+	double posX;
+	double posY;
+	double dirX;
+	double dirY;
+	double planeX;
+	double planeY;
+	double time;
+	double oldTime;
+}		t_fov;
 
 typedef	struct	s_ray
 {
@@ -25,30 +38,20 @@ typedef	struct	s_ray
 	int	linetop;
 	double wallDist;
 	double wallX;
+	t_fov	*fov;
 //	double texX;
 }		t_ray;
 
 typedef struct  s_data {
     void        *img;
     char        *addr;
+    int        *int_ptr;
     int         bits_per_pixel;
     int         line_length;
     int         endian;
 	int			img_width;
 	int			img_height;
 }               t_data;
-
-typedef	struct	s_fov
-{
-	double posX;
-	double posY;
-	double dirX;
-	double dirY;
-	double planeX;
-	double planeY;
-	double time;
-	double oldTime;
-}		t_fov;
 
 typedef struct  s_vars {
     void        *mlx;
@@ -78,8 +81,9 @@ t_fov	initialize_fov(t_fov *fov, double posX, double posY);
 t_ray	initialize_ray(t_ray *ray);
 t_ray	*get_ray_info(int x, t_fov *fov, t_ray *ray); 
 t_data	generate_image(t_vars *vars, t_data *img);
-int		put_tex(t_data *main_img, char *relative_path, void *mlx, t_ray *ray);
+int		put_tex(t_data *main_img, char *relative_path, void *mlx, t_fov *fov);
 void	*load_img_getinfo(t_data *img_info, void *mlx, char *relative_path);
 void 	print_img_info(t_data *img_info);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 #endif
