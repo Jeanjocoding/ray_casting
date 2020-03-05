@@ -8,3 +8,8 @@ faire une fonction get_color(img, x, y);
 posX est faux
 
 MALLOC LE FUCKING POINTEUR
+
+ça marche un tout petit peu mieux avec malloc.
+hypotheses:
+	-malloc pas assez grand
+	-problemes quand changement de ligne dans texture, on overflow
