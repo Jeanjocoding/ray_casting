@@ -6,3 +6,5 @@ il faut desormais trouver texy(rrepprendre lodev ray_casting)  et faire un progr
 faire une fonction get_color(img, x, y);
 
 posX est faux
+
+MALLOC LE FUCKING POINTEUR
