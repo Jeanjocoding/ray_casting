@@ -61,30 +61,23 @@ void	put_tex_column(int tex_coor[2], t_data *main_img, t_data *tex_img, t_ray *r
 	printf("linetop : %d\n", ray->linetop);
 	while (y < ray->linetop)
 	{
-		tex_coor[1] = (int)texPos;// & (tex_img->img_height - 1); // mask de lodev sais pas a quoi ça sert
+		tex_coor[1] = (int)texPos & (tex_img->img_height - 1); // mask de lodev sais pas a quoi ça sert
 		texPos += step;
 		printf("wallX : %f\n", ray->wallX);
 		printf("tex x : %d\n", tex_coor[0]);
 		printf("tex y : %d\n", tex_coor[1]);
 		printf("main y : %d\n", y);
 		addr_t = tex_img->int_ptr + (tex_coor[1] * tex_img->line_length + tex_coor[0] * 4);
-		addr_index = tex_coor[1] * tex_img->line_length + tex_coor[0] * 4; // trompeur, on avance pas d'int en int
-		printf("addr_index : %d\n", addr_index);
+//		addr_index = tex_coor[1] * tex_img->line_length + tex_coor[0] * 4; // trompeur, on avance pas d'int en int
+//		printf("addr_index : %d\n", addr_index);
 		printf("addr_t : %d\n", addr_t[0]);
 		print_img_info(tex_img);
-//		color_trgb = create_trgb(tex_img->addr[0], tex_img->addr[1], tex_img->addr[2], tex_img->addr[3]);
-	//	color_trgb = create_trgb(tex_img->addr_t[3], tex_img->addr_t[2], tex_img->addr_t[1], tex_img->addr_t[0]);
-//		color_trgb = create_trgb(addr_t[3], addr_t[2], addr_t[1], addr_t[0]);
-//	color_trgb = create_trgb(addr_t[3], addr_t[0], addr_t[1], addr_t[2]);
-//		color_trgb = create_trgb(addr_t[0], addr_t[1], addr_t[2], addr_t[3]);
-//		printf("addr[0] : %d\n", addr_t[0]);
-//		printf("color: %d\n", color_trgb);
-//		printf("addr: %d\n", addr_t[addr_index]);
-		color = mlx_get_color_value(mlx, (int)*addr_t);
-		printf("color : %d\n", color);
-//		color = (unsigned int)(*addr_t);
+		printf("color : %d\n", (int)(*addr_t));
+		color = (int)(*addr_t);
 //		if (ray->side == 1)
 //			color = (color >> 1) & 8355711;
+		if (color == 0)
+			color = 0x0000FF00;
 		my_mlx_pixel_put(main_img, ray->screenX, y, color);
 		y++;
 	}
@@ -106,9 +99,9 @@ int	put_tex(t_data *main_img, char *relative_path, void *mlx, t_fov *fov)
 	tex_img.img = mlx_xpm_file_to_image(mlx, relative_path, &(tex_img.img_width), &(tex_img.img_height));
 	temp_addr = (int*)mlx_get_data_addr(tex_img.img, &(tex_img.bits_per_pixel), &(tex_img.line_length), &(tex_img.endian));
 	addr_width = tex_img.line_length * tex_img.img_height;
-	if (!(tex_img.int_ptr = (int*)malloc(sizeof(int) * addr_width + 1))) // * 100 rajouté arbitrairement pour le debugging
+	if (!(tex_img.int_ptr = (int*)malloc(sizeof(int) * addr_width + 1))) 
 		return (-1);
-	ft_memset(tex_img.int_ptr, '\0', addr_width + 1); 
+//	ft_memset(tex_img.int_ptr, '\0', addr_width + 1); 
 //	tex_img.int_ptr = (int*)mlx_get_data_addr(mlx, &(tex_img.bits_per_pixel), &(tex_img.line_length), &(tex_img.endian));
 	ft_memcpy(tex_img.int_ptr, temp_addr, addr_width);
 	print_img_info(&tex_img);
