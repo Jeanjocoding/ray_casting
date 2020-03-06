@@ -13,3 +13,12 @@ MALLOC LE FUCKING POINTEUR
 hypotheses:
 	-malloc pas assez grand
 	-problemes quand changement de ligne dans texture, on overflow
+
+ca ne marche pas. hypotheses:
+	-pbs dans la texture c'est pas elle que je manipule
+	-pb dans le saut de ligne, je saute trop ou pas assez
+	-pb dans la taille du malloc (a priori non car memcpy fait bugger)
+	-int_ptr n'est pas au bon endroit
+
+autre pb : vraisemblablement, coordonnees sur main_img pas bien calculees non plus
+

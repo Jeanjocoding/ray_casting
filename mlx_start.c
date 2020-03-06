@@ -67,7 +67,7 @@ t_data	generate_image(t_vars *vars, t_data *img)
 	i = 0;
 	img->img = mlx_new_image(vars->mlx, screenWidth, screenHeight);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
-	put_tex(&(vars->img), "redbrick.xpm", vars->mlx, &vars->fov);
+	put_tex(&(vars->img), "redbrick2.xpm", vars->mlx, &vars->fov);
 /*	while (i < screenWidth)
 	{
 		ray = initialize_ray(&ray);
@@ -120,7 +120,7 @@ int	main(int ac, char **av)
 //	put_tex(&(vars.img), "redbrick.xpm", vars.mlx, &ray);
     mlx_put_image_to_window(vars.mlx, vars.win, vars.img.img, 0, 0);
 //    mlx_put_image_to_window(vars.mlx, vars.win, tex.img, 0, 0);
-	mlx_hook(vars.win, 2, 1L<<0, get_command, &vars);
+//	mlx_hook(vars.win, 2, 1L<<0, get_command, &vars);
 //	mlx_key_hook(vars.win, close_window, &vars);
 	mlx_loop(vars.mlx);
 }
