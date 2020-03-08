@@ -54,31 +54,33 @@ void	put_tex_column(int tex_coor[2], t_data *main_img, t_data *tex_img, t_ray *r
 	int	color_trgb;
 	unsigned int	color;
 
-	step = 1.0 * tex_img->img_height / ray->lineheight;
+	step = 1.0 * tex_img->img_height / ray->lineheight / 4; // /4 arbitraire
 	texPos = (ray->linebottom - (screenHeight / 2) + ray->lineheight / 2) * step;
 	y = ray->linebottom;
-	print_img_info(tex_img);
-	printf("linetop : %d\n", ray->linetop);
+//	print_img_info(tex_img);
+//	printf("linetop : %d\n", ray->linetop);
 	while (y < ray->linetop)
 	{
-		tex_coor[1] = (int)texPos & (tex_img->img_height - 1); // mask de lodev sais pas a quoi ça sert
-		texPos += step;
-		printf("wallX : %f\n", ray->wallX);
+		tex_coor[1] = (int)texPos; // & (tex_img->img_height - 1); // mask de lodev sais pas a quoi ça sert
+//		printf("\n");
+/*		printf("wallX : %f\n", ray->wallX);
 		printf("tex x : %d\n", tex_coor[0]);
+		printf("tex Pos : %f\n", texPos);
 		printf("tex y : %d\n", tex_coor[1]);
-		printf("main y : %d\n", y);
+		printf("main y : %d\n", y);*/
 		addr_t = tex_img->int_ptr + (tex_coor[1] * tex_img->line_length + tex_coor[0] * 4);
 //		addr_index = tex_coor[1] * tex_img->line_length + tex_coor[0] * 4; // trompeur, on avance pas d'int en int
 //		printf("addr_index : %d\n", addr_index);
-		printf("addr_t : %d\n", addr_t[0]);
-		print_img_info(tex_img);
-		printf("color : %d\n", (int)(*addr_t));
+//		printf("addr_t : %d\n", addr_t[0]);
+//		print_img_info(tex_img);
+//		printf("color : %d\n", (int)(*addr_t));
 		color = (int)(*addr_t);
 //		if (ray->side == 1)
 //			color = (color >> 1) & 8355711;
 		if (color == 0)
 			color = 0x0000FF00;
 		my_mlx_pixel_put(main_img, ray->screenX, y, color);
+		texPos += step;
 		y++;
 	}
 }
@@ -114,6 +116,8 @@ int	put_tex(t_data *main_img, char *relative_path, void *mlx, t_fov *fov)
 		put_tex_column(tex_coor, main_img, &tex_img, &ray, mlx);
 		x++;
 	}
+	free(tex_img.int_ptr);
+	tex_img.int_ptr = 0;
 	return (0);
 }
 

@@ -120,7 +120,7 @@ int	main(int ac, char **av)
 //	put_tex(&(vars.img), "redbrick.xpm", vars.mlx, &ray);
     mlx_put_image_to_window(vars.mlx, vars.win, vars.img.img, 0, 0);
 //    mlx_put_image_to_window(vars.mlx, vars.win, tex.img, 0, 0);
-//	mlx_hook(vars.win, 2, 1L<<0, get_command, &vars);
+	mlx_hook(vars.win, 2, 1L<<0, get_command, &vars);
 //	mlx_key_hook(vars.win, close_window, &vars);
 	mlx_loop(vars.mlx);
 }
