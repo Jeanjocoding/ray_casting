@@ -29,6 +29,7 @@ int	get_command(int keycode, t_vars *vars)
 	//print_img_info(&tex_img.img);
 	mlx_put_image_to_window(vars->mlx, vars->win, temp_img.img, 0, 0);
 	print_img_info(&temp_img);
+//	sleep(5);
 	return (0);
 }
 

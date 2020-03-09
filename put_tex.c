@@ -18,7 +18,7 @@ int		get_texX(t_ray *ray, t_data *tex_img)
 // a verifier, pas sur du tout pour le temlpacement de texwidth par line_length
 //pe qu'il faut utiliser les dimensions img_width et height
 
-	texX = (int)(ray->wallX * (double)(tex_img->img_width)); // je compredns pas l'utilié de ce qui suit 
+	texX = (int)(ray->wallX * (double)(tex_img->img_width)); // 4 arbitraire + je compredns pas l'utilié de ce qui suit 
     if(ray->side == 0 && ray->rayDirX > 0)
 		texX = tex_img->img_width - texX - 1;
     if(ray->side == 1 && ray->rayDirY < 0) 
@@ -54,21 +54,21 @@ void	put_tex_column(int tex_coor[2], t_data *main_img, t_data *tex_img, t_ray *r
 	int	color_trgb;
 	unsigned int	color;
 
-	step = 1.0 * tex_img->img_height / ray->lineheight / 4; // /4 arbitraire
-	texPos = (ray->linebottom - (screenHeight / 2) + ray->lineheight / 2) * step;
+	step = 1.0 * tex_img->img_height / ray->lineheight; // /4 arbitraire
+	texPos = (ray->linebottom - screenHeight / 2 + ray->lineheight / 2) * step;
 	y = ray->linebottom;
 //	print_img_info(tex_img);
 //	printf("linetop : %d\n", ray->linetop);
 	while (y < ray->linetop)
 	{
-		tex_coor[1] = (int)texPos; // & (tex_img->img_height - 1); // mask de lodev sais pas a quoi ça sert
+		tex_coor[1] = (int)texPos; //& (tex_img->img_height - 1); // mask de lodev sais pas a quoi ça sert
 //		printf("\n");
 /*		printf("wallX : %f\n", ray->wallX);
 		printf("tex x : %d\n", tex_coor[0]);
 		printf("tex Pos : %f\n", texPos);
 		printf("tex y : %d\n", tex_coor[1]);
 		printf("main y : %d\n", y);*/
-		addr_t = tex_img->int_ptr + (tex_coor[1] * tex_img->line_length + tex_coor[0] * 4);
+		addr_t = tex_img->int_ptr + (tex_coor[1] * tex_img->img_width + tex_coor[0]);// * 4);
 //		addr_index = tex_coor[1] * tex_img->line_length + tex_coor[0] * 4; // trompeur, on avance pas d'int en int
 //		printf("addr_index : %d\n", addr_index);
 //		printf("addr_t : %d\n", addr_t[0]);
@@ -79,6 +79,8 @@ void	put_tex_column(int tex_coor[2], t_data *main_img, t_data *tex_img, t_ray *r
 //			color = (color >> 1) & 8355711;
 		if (color == 0)
 			color = 0x0000FF00;
+//		if (ray->side == 1) 
+//			color = (color >> 1) & 8355711;
 		my_mlx_pixel_put(main_img, ray->screenX, y, color);
 		texPos += step;
 		y++;

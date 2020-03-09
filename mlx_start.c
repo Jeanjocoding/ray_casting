@@ -67,7 +67,7 @@ t_data	generate_image(t_vars *vars, t_data *img)
 	i = 0;
 	img->img = mlx_new_image(vars->mlx, screenWidth, screenHeight);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
-	put_tex(&(vars->img), "redbrick2.xpm", vars->mlx, &vars->fov);
+	put_tex(img, "greystone.xpm", vars->mlx, &vars->fov);
 /*	while (i < screenWidth)
 	{
 		ray = initialize_ray(&ray);

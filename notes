@@ -22,3 +22,5 @@ ca ne marche pas. hypotheses:
 
 autre pb : vraisemblablement, coordonnees sur main_img pas bien calculees non plus
 
+
+images est a l'envers. voire si c'est systematique, trouver la raison. little endian?
