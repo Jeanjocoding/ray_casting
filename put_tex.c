@@ -4,6 +4,8 @@
 
 extern int	screenWidth;
 extern int	screenHeight;
+extern int	**textures;
+extern char	**tex_tab;
 
 int		create_trgb(int t, int r, int g, int b)
 {
@@ -51,7 +53,6 @@ void	put_tex_column(int tex_coor[2], t_data *main_img, t_data *tex_img, t_ray *r
 	int 	*addr_t;
 //	char 	dest*;
 	int	addr_index;
-	int	color_trgb;
 	unsigned int	color;
 
 	step = 1.0 * tex_img->img_height / ray->lineheight; // /4 arbitraire
@@ -61,7 +62,7 @@ void	put_tex_column(int tex_coor[2], t_data *main_img, t_data *tex_img, t_ray *r
 //	printf("linetop : %d\n", ray->linetop);
 	while (y < ray->linetop)
 	{
-		tex_coor[1] = (int)texPos; //& (tex_img->img_height - 1); // mask de lodev sais pas a quoi ça sert
+		tex_coor[1] = (int)texPos; //  & (tex_img->img_height - 1); // mask de lodev sais pas a quoi ça sert
 //		printf("\n");
 /*		printf("wallX : %f\n", ray->wallX);
 		printf("tex x : %d\n", tex_coor[0]);
@@ -77,8 +78,6 @@ void	put_tex_column(int tex_coor[2], t_data *main_img, t_data *tex_img, t_ray *r
 		color = (int)(*addr_t);
 //		if (ray->side == 1)
 //			color = (color >> 1) & 8355711;
-		if (color == 0)
-			color = 0x0000FF00;
 //		if (ray->side == 1) 
 //			color = (color >> 1) & 8355711;
 		my_mlx_pixel_put(main_img, ray->screenX, y, color);
@@ -91,6 +90,8 @@ int	put_tex(t_data *main_img, char *relative_path, void *mlx, t_fov *fov)
 {
 	t_data	tex_img;
 	int	x;
+	int	check;
+	int tex_num;
 //	int	*alloc_addr;
 	int	*temp_addr;
 	int addr_width;
@@ -98,28 +99,33 @@ int	put_tex(t_data *main_img, char *relative_path, void *mlx, t_fov *fov)
 	int	tex_coor[2];
 	t_ray	ray;
 
-//	load_img_getinfo(&tex_img, mlx, relative_path);
-//	tex_img = (t_data*)malloc(sizeof(t_data) * 1);
-	tex_img.img = mlx_xpm_file_to_image(mlx, relative_path, &(tex_img.img_width), &(tex_img.img_height));
+/*	tex_img.img = mlx_xpm_file_to_image(mlx, relative_path, &(tex_img.img_width), &(tex_img.img_height));
 	temp_addr = (int*)mlx_get_data_addr(tex_img.img, &(tex_img.bits_per_pixel), &(tex_img.line_length), &(tex_img.endian));
-	addr_width = tex_img.line_length * tex_img.img_height;
+	addr_width = tex_img.img_width * 4 * tex_img.img_height;
 	if (!(tex_img.int_ptr = (int*)malloc(sizeof(int) * addr_width + 1))) 
 		return (-1);
-//	ft_memset(tex_img.int_ptr, '\0', addr_width + 1); 
-//	tex_img.int_ptr = (int*)mlx_get_data_addr(mlx, &(tex_img.bits_per_pixel), &(tex_img.line_length), &(tex_img.endian));
 	ft_memcpy(tex_img.int_ptr, temp_addr, addr_width);
-	print_img_info(&tex_img);
+	print_img_info(&tex_img);*/
 	x = 0;
+	check = -1;
 	while (x < screenWidth)
 	{
 		ray = initialize_ray(&ray);
 		get_ray_info(x, fov, &ray);
+		if (ray.texnum != check)
+		{
+			if (check != -1)
+				mlx_destroy_image(mlx, tex_img.img);
+			tex_img.img = mlx_xpm_file_to_image(mlx, tex_tab[ray.texnum], &(tex_img.img_width), &(tex_img.img_height));
+			tex_img.int_ptr = textures[ray.texnum];
+		}
 		tex_coor[0] = get_texX(&ray, &tex_img);
 		put_tex_column(tex_coor, main_img, &tex_img, &ray, mlx);
+		check = ray.texnum;
 		x++;
 	}
-	free(tex_img.int_ptr);
-	tex_img.int_ptr = 0;
+//	free(tex_img.int_ptr);
+//	tex_img.int_ptr = 0;
 	return (0);
 }
 

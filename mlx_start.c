@@ -7,6 +7,8 @@ extern int 	mapHeight;
 extern int 	screenWidth;
 extern int 	screenHeight;
 extern int 	worldMap[24][24];
+extern int	**textures;
+extern char	**tex_tab;
 
 /*char	**mapper(char str)
 {
@@ -101,7 +103,7 @@ t_data	generate_image(t_vars *vars, t_data *img)
 
 int	main(int ac, char **av)
 {
-	void	*mlx_ptr;
+//	void	*mlx_ptr;
 	t_data	img;
 	t_data	temp_img;
 	void	*win_ptr;
@@ -110,11 +112,15 @@ int	main(int ac, char **av)
 	t_vars	vars;
 	t_ray	ray;
 	t_data	tex;
+	char	**tab;
 //	t_fov	fov;
 
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, screenWidth, screenHeight, "test");
 	vars.fov = initialize_fov(&vars.fov, ft_atoi(av[1]), ft_atoi(av[2]));
+	get_tex_tab("eagle.xpm", "redbrick.xpm", "greystone.xpm", "tortue.xpm");
+	init_tex(tex_tab, vars.mlx);
+
 //	load_img_getinfo(&tex, vars.mlx, "./redbrick.xpm");
 	generate_image(&vars, &(vars.img));
 //	put_tex(&(vars.img), "redbrick.xpm", vars.mlx, &ray);

@@ -175,6 +175,7 @@ t_ray	*get_ray_info(int x, t_fov *fov, t_ray *ray)
 		ray->wallX = fov->posX + ray->wallDist * ray->rayDirX;
 	ray->wallX -= (int)(ray->wallX);
 	ray->fov = fov;
+	ray->texnum = tex_chooser(ray, fov);
 	return (ray);
 }
 

@@ -39,6 +39,7 @@ typedef	struct	s_ray
 	double wallDist;
 	double wallX;
 	t_fov	*fov;
+	int		texnum;
 //	double texX;
 }		t_ray;
 
@@ -85,5 +86,8 @@ int		put_tex(t_data *main_img, char *relative_path, void *mlx, t_fov *fov);
 void	*load_img_getinfo(t_data *img_info, void *mlx, char *relative_path);
 void 	print_img_info(t_data *img_info);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int		**init_tex(char **tab, void	*mlx);
+char	**get_tex_tab(char *texN, char *texS, char *texO, char *texE);
+int		tex_chooser(t_ray *ray, t_fov *fov);
 
 #endif
