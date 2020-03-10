@@ -52,6 +52,8 @@ typedef struct  s_data {
     int         endian;
 	int			img_width;
 	int			img_height;
+	struct s_data	*next;
+	struct s_data	*first;
 }               t_data;
 
 typedef struct  s_vars {
@@ -82,12 +84,13 @@ t_fov	initialize_fov(t_fov *fov, double posX, double posY);
 t_ray	initialize_ray(t_ray *ray);
 t_ray	*get_ray_info(int x, t_fov *fov, t_ray *ray); 
 t_data	generate_image(t_vars *vars, t_data *img);
-int		put_tex(t_data *main_img, char *relative_path, void *mlx, t_fov *fov);
+int	put_tex(t_vars *vars, t_data *main_img, t_data *tex_list);
 void	*load_img_getinfo(t_data *img_info, void *mlx, char *relative_path);
 void 	print_img_info(t_data *img_info);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-int		**init_tex(char **tab, void	*mlx);
+int		**init_tex(char **tab, void *mlx, t_data *tex_list);
 char	**get_tex_tab(char *texN, char *texS, char *texO, char *texE);
 int		tex_chooser(t_ray *ray, t_fov *fov);
+t_data	*get_right_tex(int tex_num, t_data *tex_list);
 
 #endif

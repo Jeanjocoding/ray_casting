@@ -9,6 +9,7 @@ extern int 	screenHeight;
 extern int 	worldMap[24][24];
 extern int	**textures;
 extern char	**tex_tab;
+extern t_data	tex_list;
 
 /*char	**mapper(char str)
 {
@@ -69,7 +70,7 @@ t_data	generate_image(t_vars *vars, t_data *img)
 	i = 0;
 	img->img = mlx_new_image(vars->mlx, screenWidth, screenHeight);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
-	put_tex(img, "greystone.xpm", vars->mlx, &vars->fov);
+	put_tex(vars, img, &tex_list);
 /*	while (i < screenWidth)
 	{
 		ray = initialize_ray(&ray);
@@ -81,29 +82,8 @@ t_data	generate_image(t_vars *vars, t_data *img)
 	return (*img);
 }
 
-
-/*t_data	generate_image(t_vars *vars, t_data *img)
-{
-	int 	i;
-	t_ray	ray;
-
-	i = 0;
-	img->img = mlx_new_image(vars->mlx, screenWidth, screenHeight);
-	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
-	while (i < screenWidth)
-	{
-		ray = initialize_ray(&ray);
-		get_ray_info(i, &vars->fov, &ray);
-//		print_fov(ray.fov);
-		put_column(img, i, &ray);
-		i++;
-	}
-	return (*img);
-}*/
-
 int	main(int ac, char **av)
 {
-//	void	*mlx_ptr;
 	t_data	img;
 	t_data	temp_img;
 	void	*win_ptr;
@@ -113,13 +93,12 @@ int	main(int ac, char **av)
 	t_ray	ray;
 	t_data	tex;
 	char	**tab;
-//	t_fov	fov;
 
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, screenWidth, screenHeight, "test");
 	vars.fov = initialize_fov(&vars.fov, ft_atoi(av[1]), ft_atoi(av[2]));
-	get_tex_tab("eagle.xpm", "redbrick.xpm", "greystone.xpm", "tortue.xpm");
-	init_tex(tex_tab, vars.mlx);
+	get_tex_tab("wood.xpm", "redbrick.xpm", "greystone.xpm", "eagle.xpm");
+	init_tex(tex_tab, vars.mlx, &tex_list);
 
 //	load_img_getinfo(&tex, vars.mlx, "./redbrick.xpm");
 	generate_image(&vars, &(vars.img));

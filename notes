@@ -1,26 +1,17 @@
-je viens d'ajouter texX das le fichier put
-texWidth corrspond pe a autre chose, ou peut etre dois-je diviser ou multiplier pour obtenir le nombre de pixels
-
-il faut desormais trouver texy(rrepprendre lodev ray_casting)  et faire un programme pour dessiner le buf
-
-faire une fonction get_color(img, x, y);
-
-posX est faux
-
-MALLOC LE FUCKING POINTEUR
-
-ça marche un tout petit peu mieux avec malloc.
-hypotheses:
-	-malloc pas assez grand
-	-problemes quand changement de ligne dans texture, on overflow
-
-ca ne marche pas. hypotheses:
-	-pbs dans la texture c'est pas elle que je manipule
-	-pb dans le saut de ligne, je saute trop ou pas assez
-	-pb dans la taille du malloc (a priori non car memcpy fait bugger)
-	-int_ptr n'est pas au bon endroit
-
 autre pb : vraisemblablement, coordonnees sur main_img pas bien calculees non plus
 
 
 images est a l'envers. voire si c'est systematique, trouver la raison. little endian?
+
+voire si mouvements intempestifs sont dus aux sauts d'int en int. ça semble credibles car sur images avec plus de pixels ça apparait moins
+
+A FAIRE:
+-normer, optimiser, simplifier
+-sol/ciel
+-parser
+-sprites
+
+A free:
+-tex_list
+-texpointer
+-textures
