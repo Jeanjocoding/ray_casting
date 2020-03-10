@@ -38,7 +38,7 @@ void	move_forward(t_fov *fov)
 {
 	double	moveSpeed;
 
-	moveSpeed = 0.1;
+	moveSpeed = 0.3;
 	if (worldMap[(int)(fov->posX + fov->dirX * moveSpeed)][(int)(fov->posY)] == 0)
 		fov->posX += fov->dirX * moveSpeed;
 	if (worldMap[(int)(fov->posX)][(int)(fov->posY + fov->dirY *moveSpeed)] == 0)
@@ -49,7 +49,7 @@ void	move_backward(t_fov *fov)
 {
 	double	moveSpeed;
 
-	moveSpeed = 0.5;
+	moveSpeed = 0.3;
 	if (worldMap[(int)(fov->posX - fov->dirX * moveSpeed)][(int)(fov->posY)] == 0)
 		fov->posX -= fov->dirX * moveSpeed;
 	if (worldMap[(int)(fov->posX)][(int)(fov->posY - fov->dirY * moveSpeed)] == 0)
@@ -61,7 +61,7 @@ void	move_right(t_fov *fov)
 {
 	double	moveSpeed;
 
-	moveSpeed = 0.1;
+	moveSpeed = 0.3;
 	if (worldMap[(int)(fov->posX + fov->planeX * moveSpeed)][(int)(fov->posY)] == 0)
 		fov->posX += fov->planeX * moveSpeed;
 	if (worldMap[(int)(fov->posX)][(int)(fov->posY + fov->planeY * moveSpeed)] == 0)
@@ -72,7 +72,7 @@ void	move_left(t_fov *fov)
 {
 	double	moveSpeed;
 
-	moveSpeed = 0.1;
+	moveSpeed = 0.3;
 	if (worldMap[(int)(fov->posX - fov->planeX * moveSpeed)][(int)(fov->posY)] == 0)
 		fov->posX -= fov->planeX * moveSpeed;
 	if (worldMap[(int)(fov->posX)][(int)(fov->posY - fov->planeY * moveSpeed)] == 0)
