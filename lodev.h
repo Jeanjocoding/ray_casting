@@ -92,5 +92,6 @@ int		**init_tex(char **tab, void *mlx, t_data *tex_list);
 char	**get_tex_tab(char *texN, char *texS, char *texO, char *texE);
 int		tex_chooser(t_ray *ray, t_fov *fov);
 t_data	*get_right_tex(int tex_num, t_data *tex_list);
+void	put_floor_ceiling(t_data *data, int x, t_ray *ray);
 
 #endif

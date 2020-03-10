@@ -10,6 +10,9 @@ extern int 	worldMap[24][24];
 extern int	**textures;
 extern char	**tex_tab;
 extern t_data	tex_list;
+int		ground;
+int		ceiling;
+
 
 /*char	**mapper(char str)
 {
@@ -27,30 +30,22 @@ void            my_mlx_pixel_put(t_data *data, int x, int y, int color)
     *(unsigned int*)dst = color;
 }
 
-void			put_column(t_data *data, int x, t_ray *ray)
+void			put_floor_ceiling(t_data *data, int x, t_ray *ray)
 {
-	int green;
-	int blue;
 	int y;
 
-	green = 0x0000FF00;
-	blue = 0x000000FF;
+	ceiling = 0xBAA331;
+	ground = 0x1544FF;
 	y = 0;
-	if (ray->side == 1)
-		blue = blue / 2;
 	while (y < ray->linebottom)
 	{
-		my_mlx_pixel_put(data, x, y, green);
+		my_mlx_pixel_put(data, x, y, ground);
 		y++;
 	}
-	while (y < ray->linetop)
-	{
-		my_mlx_pixel_put(data, x, y, blue);
-		y++;
-	}
+	y = ray->linetop;
 	while (y < screenHeight)
 	{
-		my_mlx_pixel_put(data, x, y, green);
+		my_mlx_pixel_put(data, x, y, ceiling);
 		y++;
 	}
 }
@@ -97,7 +92,7 @@ int	main(int ac, char **av)
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, screenWidth, screenHeight, "test");
 	vars.fov = initialize_fov(&vars.fov, ft_atoi(av[1]), ft_atoi(av[2]));
-	get_tex_tab("wood.xpm", "redbrick.xpm", "greystone.xpm", "eagle.xpm");
+	get_tex_tab("Karl_Marx.xpm", "redbrick.xpm", "greystone.xpm", "eagle.xpm");
 	init_tex(tex_tab, vars.mlx, &tex_list);
 
 //	load_img_getinfo(&tex, vars.mlx, "./redbrick.xpm");
