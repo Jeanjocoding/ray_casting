@@ -3,6 +3,8 @@
 
 #include <math.h>
 #include <stdio.h>
+#include "minilibx_opengl_20191021/mlx.h"
+#include "libft.h"
 
 typedef	struct	s_fov
 {
@@ -43,7 +45,18 @@ typedef	struct	s_ray
 //	double texX;
 }		t_ray;
 
-typedef struct  s_data {
+typedef struct	s_sprites
+{
+	int		x;
+	int		y;
+	double	distance;
+	struct s_sprites	*next;
+	struct s_sprites	*prev;
+	struct s_sprites	*first;
+}				t_sprites;
+
+typedef struct  s_data 
+{
     void        *img;
     char        *addr;
     int        *int_ptr;
