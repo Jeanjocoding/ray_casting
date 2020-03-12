@@ -7,11 +7,15 @@ extern int 	mapHeight;
 extern int 	screenWidth;
 extern int 	screenHeight;
 extern int 	worldMap[24][24];
+extern int	map_lenX;
+extern int	map_lenY;
 extern int	**textures;
+extern int	*Zbuffer;
 extern char	**tex_tab;
 extern t_data	tex_list;
 int		ground;
 int		ceiling;
+//extern t_sprites	sprite_list;
 
 
 /*char	**mapper(char str)
@@ -65,6 +69,8 @@ t_data	generate_image(t_vars *vars, t_data *img)
 	i = 0;
 	img->img = mlx_new_image(vars->mlx, screenWidth, screenHeight);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
+	get_sprite_distance(vars->sprite_list, &vars->fov);
+	print_sprlist(vars->sprite_list);
 	put_tex(vars, img, &tex_list);
 /*	while (i < screenWidth)
 	{
@@ -87,14 +93,21 @@ int	main(int ac, char **av)
 	t_vars	vars;
 	t_ray	ray;
 	t_data	tex;
+	t_sprites *sprlist;
 	char	**tab;
+
 
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, screenWidth, screenHeight, "test");
 	vars.fov = initialize_fov(&vars.fov, ft_atoi(av[1]), ft_atoi(av[2]));
 	get_tex_tab("Karl_Marx.xpm", "redbrick.xpm", "greystone.xpm", "eagle.xpm");
 	init_tex(tex_tab, vars.mlx, &tex_list);
-
+	print_map(worldMap, map_lenX, map_lenY);
+	if (!(vars.sprite_list = get_sprite_list(sprlist)))
+		return (-1);
+	print_sprlist(vars.sprite_list);
+	if (!(Zbuffer = (int*)malloc(sizeof(int) * screenWidth + 1)))
+		return (-1);
 //	load_img_getinfo(&tex, vars.mlx, "./redbrick.xpm");
 	generate_image(&vars, &(vars.img));
 //	put_tex(&(vars.img), "redbrick.xpm", vars.mlx, &ray);

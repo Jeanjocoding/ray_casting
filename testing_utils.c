@@ -70,3 +70,23 @@ void	print_map(int map[24][24], int lenx, int leny)
 	}
 	printf("---------------------------\n");
 }
+
+void	print_sprite(t_sprites *sprite)
+{
+	printf("\n\n-------- sprite : --------\n");
+	printf("x : %f\n", sprite->x);
+	printf("y : %f\n", sprite->y);
+	printf("distance : %f\n", sprite->distance);
+	printf("---------------------------\n");
+}
+
+void	print_sprlist(t_sprites *sprite)
+{
+	printf("\n\n-------- sprite_list : --------\n");
+	while (sprite != NULL)
+	{
+		print_sprite(sprite);
+		sprite = sprite->next;
+	}
+	printf("------------- end of list --------------\n");
+}

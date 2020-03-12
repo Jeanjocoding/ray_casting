@@ -47,8 +47,8 @@ typedef	struct	s_ray
 
 typedef struct	s_sprites
 {
-	int		x;
-	int		y;
+	double		x;
+	double		y;
 	double	distance;
 	struct s_sprites	*next;
 	struct s_sprites	*prev;
@@ -74,6 +74,7 @@ typedef struct  s_vars {
     void        *win;
     t_fov	fov;
     t_data	img;
+    t_sprites	*sprite_list;
 }               t_vars;
 
 typedef struct	s_line
@@ -106,5 +107,9 @@ char	**get_tex_tab(char *texN, char *texS, char *texO, char *texE);
 int		tex_chooser(t_ray *ray, t_fov *fov);
 t_data	*get_right_tex(int tex_num, t_data *tex_list);
 void	put_floor_ceiling(t_data *data, int x, t_ray *ray);
+t_sprites	*get_sprite_list(t_sprites *sprite);
+void	print_sprlist(t_sprites *sprite);
+void	print_sprite(t_sprites *sprite);
+t_sprites	*get_sprite_distance(t_sprites *sprite, t_fov *fov);
 
 #endif

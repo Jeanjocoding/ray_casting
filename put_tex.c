@@ -62,6 +62,7 @@ int	put_tex(t_vars *vars, t_data *main_img, t_data *tex_list)
 
 	x = 0;
 	check = -1;
+//	Zindex = 0;
 	while (x < screenWidth)
 	{
 		ray = initialize_ray(&ray);
