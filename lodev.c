@@ -122,7 +122,7 @@ t_ray	*launch_ray(t_ray *ray, t_fov *fov, int	worldMap[24][24])
 //			(*worldMap)[ray->mapX][ray->mapY] = -9;
 			ray->side = 1;
 		}
-		if (worldMap[ray->mapX][ray->mapY] > 0)
+		if (worldMap[ray->mapX][ray->mapY] > 0 && worldMap[ray->mapX][ray->mapY] != 2)
 			ray->hit = 1;
 //		else 
 //			worldMap[ray->mapX][ray->mapY] = -9;

@@ -17,15 +17,6 @@ int		ground;
 int		ceiling;
 //extern t_sprites	sprite_list;
 
-
-/*char	**mapper(char str)
-{
-	char **tab;
-
-	tab = ft_split("1111111111,100000000001,1001111001,1001001001,1001001001, 1001001001,1000000001,1000000001,1000000001,1111111111", ',');
-	return (tab);
-}*/
-
 void            my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
     char    *dst;
@@ -70,8 +61,11 @@ t_data	generate_image(t_vars *vars, t_data *img)
 	img->img = mlx_new_image(vars->mlx, screenWidth, screenHeight);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
 	get_sprite_distance(vars->sprite_list, &vars->fov);
-	print_sprlist(vars->sprite_list);
+//	print_sprlist(vars->sprite_list);
+	vars->sprite_list = sort_sprites(vars->sprite_list);
+//	print_sprlist(vars->sprite_list);
 	put_tex(vars, img, &tex_list);
+	put_sprites(vars, vars->sprite_list, &tex_list, img);
 /*	while (i < screenWidth)
 	{
 		ray = initialize_ray(&ray);
@@ -101,6 +95,7 @@ int	main(int ac, char **av)
 	vars.win = mlx_new_window(vars.mlx, screenWidth, screenHeight, "test");
 	vars.fov = initialize_fov(&vars.fov, ft_atoi(av[1]), ft_atoi(av[2]));
 	get_tex_tab("Karl_Marx.xpm", "redbrick.xpm", "greystone.xpm", "eagle.xpm");
+	add_tex_sprite("jean-luc-mélenchon-png-3.xpm");
 	init_tex(tex_tab, vars.mlx, &tex_list);
 	print_map(worldMap, map_lenX, map_lenY);
 	if (!(vars.sprite_list = get_sprite_list(sprlist)))

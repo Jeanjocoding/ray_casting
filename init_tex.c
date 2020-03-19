@@ -37,11 +37,18 @@ t_data	*get_right_tex(int tex_num, t_data *tex_list)
 	return (tex_list);
 }
 
+char	**add_tex_sprite(char *tex_sprite)
+{
+	if (!(tex_tab[4] = ft_strdup(tex_sprite)))
+		return (NULL);
+	return (tex_tab);
+}
+
 char	**get_tex_tab(char *texN, char *texS, char *texO, char *texE)
 {
 //	char	**tab;
 
-	if (!(tex_tab = ft_stabmaker(4)))
+	if (!(tex_tab = ft_stabmaker(5)))
 		return (NULL);
 	if (!(tex_tab[0] = ft_strdup(texN)))
 		return (NULL);
@@ -63,10 +70,10 @@ int		**init_tex(char **tab, void *mlx, t_data *tex_list)
 	int	*temp_addr;
 
 	i = 0;
-	if (!(textures = (int**)malloc(sizeof(int*) * 5)))
+	if (!(textures = (int**)malloc(sizeof(int*) * 6)))
 		return (NULL);
 	tex_list->first = tex_list;
-	while (i < 4)
+	while (i < 5)
 	{
 		printf("tab : %s\n", tab[i]);
 		tex_list->img = mlx_xpm_file_to_image(mlx, tab[i], &(tex_list->img_width), &(tex_list->img_height));

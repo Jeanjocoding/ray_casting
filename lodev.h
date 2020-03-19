@@ -49,7 +49,19 @@ typedef struct	s_sprites
 {
 	double		x;
 	double		y;
-	double	distance;
+	double		distance;
+	double		spriteX;
+	double		spriteY;
+	double 		invDet;
+	double		transformX;
+	double		transformY;
+	int		screenX;
+	int		drawStartY;
+	int		drawEndY;
+	int		drawStartX;
+	int		drawEndX;
+	int		spriteHeight;
+	int		spriteWidth;
 	struct s_sprites	*next;
 	struct s_sprites	*prev;
 	struct s_sprites	*first;
@@ -111,5 +123,8 @@ t_sprites	*get_sprite_list(t_sprites *sprite);
 void	print_sprlist(t_sprites *sprite);
 void	print_sprite(t_sprites *sprite);
 t_sprites	*get_sprite_distance(t_sprites *sprite, t_fov *fov);
+t_sprites	*sort_sprites(t_sprites *list);
+t_sprites	*put_sprites(t_vars *vars, t_sprites *sprite_list, t_data *tex_list, t_data *main_img);
+char	**add_tex_sprite(char *tex_sprite);
 
 #endif

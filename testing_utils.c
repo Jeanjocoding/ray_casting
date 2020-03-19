@@ -76,6 +76,8 @@ void	print_sprite(t_sprites *sprite)
 	printf("\n\n-------- sprite : --------\n");
 	printf("x : %f\n", sprite->x);
 	printf("y : %f\n", sprite->y);
+	printf("drawStartY : %d\n", sprite->drawStartY);
+	printf("drawEndY : %d\n", sprite->drawEndY);
 	printf("distance : %f\n", sprite->distance);
 	printf("---------------------------\n");
 }
