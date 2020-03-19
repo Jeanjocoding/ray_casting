@@ -1,14 +1,4 @@
-autre pb : vraisemblablement, coordonnees sur main_img pas bien calculees non plus
-
-
 images est a l'envers. voire si c'est systematique, trouver la raison. little endian?
-
-voire si mouvements intempestifs sont dus aux sauts d'int en int. ça semble credibles car sur images avec plus de pixels ça apparait moins
-autre possibilité : il faut destroy images ==> sur que c'est ça;
- je pense que mvts intempestifs sont inévitabels, ils sont aussi dans le jeu original. 
- De plus, quand on augmente la vitesse, ça se voit presque plus
-
-
 
 linetop et linebottom sont ils inversés? je me pose la question du fait de put_floor_ceiling
 
@@ -16,11 +6,11 @@ A FAIRE:
 -normer, optimiser, simplifier
 -sol/ciel
 -parser
--sprites
 
 A free:
 -tex_list
 -texpointer
 -textures
 
-ça va beaucoup trop haut et la forme n'a rien a voir
+Finition sprites:
+-faire en sorte que norme soit ok au moins niveau nombre de variables
