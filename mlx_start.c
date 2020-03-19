@@ -61,19 +61,10 @@ t_data	generate_image(t_vars *vars, t_data *img)
 	img->img = mlx_new_image(vars->mlx, screenWidth, screenHeight);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
 	get_sprite_distance(vars->sprite_list, &vars->fov);
-//	print_sprlist(vars->sprite_list);
 	vars->sprite_list = sort_sprites(vars->sprite_list);
-//	print_sprlist(vars->sprite_list);
+	mlx_clear_window(vars->mlx, vars->win);
 	put_tex(vars, img, &tex_list);
 	put_sprites(vars, vars->sprite_list, &tex_list, img);
-/*	while (i < screenWidth)
-	{
-		ray = initialize_ray(&ray);
-		get_ray_info(i, &vars->fov, &ray);
-//		print_fov(ray.fov);
-		put_column(img, i, &ray);
-		i++;
-	}*/
 	return (*img);
 }
 
