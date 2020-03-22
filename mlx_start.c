@@ -27,18 +27,18 @@ void			put_floor_ceiling(t_data *data, int x, t_ray *ray)
 {
 	int y;
 
-	ceiling = 0xBAA331;
-	ground = 0x1544FF;
+//	ceiling = 0xBAA331;
+//	ground = 0x1544FF;
 	y = 0;
 	while (y < ray->linebottom)
 	{
-		my_mlx_pixel_put(data, x, y, ground);
+		my_mlx_pixel_put(data, x, y, ceiling);
 		y++;
 	}
 	y = ray->linetop;
 	while (y < screenHeight)
 	{
-		my_mlx_pixel_put(data, x, y, ceiling);
+		my_mlx_pixel_put(data, x, y, ground);
 		y++;
 	}
 }

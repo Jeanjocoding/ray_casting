@@ -2,6 +2,8 @@
 extern char **tex_tab;
 extern int  screenHeight;
 extern int  screenWidth;
+//int         north_ok;
+//int         
 
 int     error_quit(char *msg, char ***tab)
 {
@@ -22,46 +24,6 @@ int     check_all_digit(char *str)
     return (1);
 }
 
-int     get_north(char ***tab)
-{
-    if (ft_tablen(*tab) != 2)
-        error_quit("Error: Invalid north texture format", tab);
-    add_tex_num((*tab)[1], 0);
-    return (0);
-}
-
-int     get_south(char ***tab)
-{
-    if (ft_tablen(*tab) != 2)
-        error_quit("Error: Invalid south texture format", tab);
-    add_tex_num((*tab)[1], 1);
-    return (0);
-}
-
-int     get_west(char ***tab)
-{
-    if (ft_tablen(*tab) != 2)
-        error_quit("Error: Invalid west texture format", tab);
-    add_tex_num((*tab)[1], 2);
-    return (0);
-}
-
-int     get_east(char ***tab)
-{
-    if (ft_tablen(*tab) != 2)
-        error_quit("Error: Invalid east texture format", tab);
-    add_tex_num((*tab)[1], 3);
-    return (0);
-}
-
-int     get_sprite(char ***tab)
-{
-    if (ft_tablen(*tab) != 2)
-        error_quit("Error: Invalid sprite texture format", tab);
-    add_tex_num((*tab)[1], 4);
-    return (0);
-}
-
 int     get_res(char ***tab)
 {
     if (check_all_digit((*tab)[1]) == -1
@@ -77,24 +39,27 @@ int     get_right_func(char **line)
     char    **tab;
 
     if (*line == NULL || (*line)[0] == '\0')
-        return (-1);
+        return (0);
     if (!(tab = ft_split(*line, ' ')))
         return (-1);
     ft_strdel(line);
-//    ft_printtab(tab);
     if (ft_strcmp(tab[0], "R") == 0)
-        get_res(&tab);
+        return (get_res(&tab));
     if (ft_strcmp(tab[0], "NO") == 0)
-        get_north(&tab);
+        return (get_north(&tab));
     if (ft_strcmp(tab[0], "SO") == 0)
-        get_south(&tab);
+        return (get_south(&tab));
     if (ft_strcmp(tab[0], "WE") == 0)
-        get_west(&tab);
+        return (get_west(&tab));
     if (ft_strcmp(tab[0], "EA") == 0)
-        get_east(&tab);
+        return (get_east(&tab));
     if (ft_strcmp(tab[0], "S") == 0)
-        get_sprite(&tab);
-    ft_freetab(&tab);
+        return (get_sprite(&tab));
+    if (ft_strcmp(tab[0], "F") == 0)
+        return (get_floor(&tab));
+    if (ft_strcmp(tab[0], "C") == 0)
+        return (get_ceiling(&tab));
+//    ft_freetab(&tab);
     return (0);
 }
 
@@ -102,14 +67,13 @@ int     parse_master(int fd)
 {
     int     ret;
     char    *line;
-    char    id[3];
 
     ret = 1;
-    ft_memset(id, '\0', 3);
     while (ret > 0)
     {
         ret = get_next_line(fd, &line);
-        get_right_func(&line);
+        if (get_right_func(&line) == -1)
+            return (-1);
     }
     return (1);
 }

@@ -130,5 +130,15 @@ t_sprites	*put_sprites(t_vars *vars, t_sprites *sprite_list, t_data *tex_list, t
 char	**add_tex_sprite(char *tex_sprite);
 char	**add_tex_num(char *path, int num);
 int     parse_master(int fd);
+int     error_quit(char *msg, char ***tab);
+int     check_all_digit(char *str);
+int     get_north(char ***tab);
+int     get_south(char ***tab);
+int     get_west(char ***tab);
+int     get_east(char ***tab);
+int     get_sprite(char ***tab);
+int     get_ceiling(char ***tab);
+int     get_floor(char ***tab);
+int	get_rgb(int r, int g, int b);
 
 #endif

@@ -7,12 +7,6 @@ extern int	**textures;
 extern char	**tex_tab;
 extern char	tex_list;
 
-int		create_trgb(int t, int r, int g, int b)
-{
-	return(b << 24 | g << 16 | r << 8 | t);
-}
-
-
 int		get_texX(t_ray *ray, t_data *tex_img)
 {
 	int texX;

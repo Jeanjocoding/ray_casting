@@ -3,5 +3,8 @@ NO ./textures/Karl_Marx.xpm
 SO ./textures/redbrick.xpm
 WE ./textures/eagle.xpm
 
+F 223,189,77
+C 135,206,250
+
 EA ./textures/greystone.xpm
 S   ./textures/jean-luc.xpm 
