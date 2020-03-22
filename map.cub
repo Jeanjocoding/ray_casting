@@ -1,0 +1,7 @@
+R 800 600
+NO ./textures/Karl_Marx.xpm
+SO ./textures/redbrick.xpm
+WE ./textures/eagle.xpm
+
+EA ./textures/greystone.xpm
+S   ./textures/jean-luc.xpm 

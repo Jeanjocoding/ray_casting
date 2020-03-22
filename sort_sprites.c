@@ -26,14 +26,9 @@ t_sprites	*sort_sprites(t_sprites *list)
 	else
 	{
 		list = swap_node(list, list->next);
-
 		if (list->prev != NULL)
 			return (sort_sprites(list->prev));
 		else
-		{
-//			print_sprite(list);
 			return (sort_sprites(list));
-		}
-
 	}
 }

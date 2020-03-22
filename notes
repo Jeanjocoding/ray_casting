@@ -10,7 +10,8 @@ A FAIRE:
 A free:
 -tex_list
 -texpointer
--textures
+-textures : tabs + int ptrs
 
-Finition sprites:
--faire en sorte que norme soit ok au moins niveau nombre de variables
+-gérer plusieurs touches en meme temps
+-makefile
+-calculateur couleurs

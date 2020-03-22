@@ -17,40 +17,33 @@ extern int	*Zbuffer;
 
 t_sprites	*sprite_on_screen(t_sprites *sprite, t_data *tex_list, t_data *main_img)
 {
-	int		stripe;
-	int		texX;
-	int		texY;
-	int		color;
+	int		m_coor[2];
+	int		tex_coor[2];
 	t_data	*tex_img;
-	int		y;
 	int		d;
 	int		*addr_ptr;
-	int		step;
 
-	stripe = sprite->drawStartX;
-	y = sprite->drawStartY;
+	m_coor[0] = sprite->drawStartX;
+	m_coor[1] = sprite->drawStartY;
 	tex_img = get_right_tex(4, tex_list);
-	while (stripe < sprite->drawEndX)
+	while (m_coor[0] < sprite->drawEndX)
 	{
-		texX = (int)(256 * (stripe - (-sprite->spriteWidth / 2 + sprite->screenX)) * tex_img->img_width / sprite->spriteWidth) / 256;
-		if (sprite->transformY > 0 && stripe > 0 && stripe < screenWidth && sprite->transformY < Zbuffer[stripe])
+		tex_coor[0] = (int)(256 * (m_coor[0] - (-sprite->spriteWidth / 2 + sprite->screenX)) * tex_img->img_width / sprite->spriteWidth) / 256;
+		if (sprite->transformY > 0 && m_coor[0] > 0 && m_coor[0] < screenWidth && sprite->transformY < Zbuffer[m_coor[0]])
 		{
-			while (y < sprite->drawEndY)
+			while (m_coor[1] < sprite->drawEndY)
 			{
-				d = (y) * 256 - screenHeight * 128 + sprite->spriteHeight * 128;
-				texY = ((d * tex_img->img_height) / sprite->spriteHeight) / 256;
-				addr_ptr = tex_img->int_ptr + (texY * tex_img->img_width + texX);
-				color = (int)(*addr_ptr);
-				if ((color & 0x00FFFFFF) != 0) 
-					my_mlx_pixel_put(main_img, stripe, y, color);
-				y++;
+				d = (m_coor[1]) * 256 - screenHeight * 128 + sprite->spriteHeight * 128;
+				tex_coor[1] = ((d * tex_img->img_height) / sprite->spriteHeight) / 256;
+				addr_ptr = tex_img->int_ptr + (tex_coor[1] * tex_img->img_width + tex_coor[0]);
+				if (((int)(*addr_ptr) & 0x00FFFFFF) != 0) 
+					my_mlx_pixel_put(main_img, m_coor[0], m_coor[1], (int)(*addr_ptr));
+				m_coor[1]++;
 			}
-			y = sprite->drawStartY;
+			m_coor[1] = sprite->drawStartY;
 			
 		}
-		stripe++;
-
-
+		m_coor[0]++;
 	}
 	return (sprite);
 }
@@ -98,9 +91,5 @@ t_sprites	*put_sprites(t_vars *vars, t_sprites *sprite_list, t_data *tex_list, t
 		sprite_on_screen(sprite_list, tex_list, main_img);
 		sprite_list = sprite_list->next;
 	}
-
-
-
-
 	return (sprite_list);
 }

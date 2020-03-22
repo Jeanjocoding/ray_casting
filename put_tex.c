@@ -1,6 +1,5 @@
 #include "lodev.h"
 #include "minilibx_opengl_20191021/mlx.h"
-#include "libft.h"
 
 extern int	screenWidth;
 extern int	screenHeight;

@@ -24,7 +24,7 @@ all: $(NAME)
 
 $(NAME) : $(OBJ)
 	ar rc $(NAME) $(OBJ) 
-	ranlib $(NAME)
+	ranlib $(NAME) libftprintf.a
 
 clean: 
 	/bin/rm -f $(OBJ)

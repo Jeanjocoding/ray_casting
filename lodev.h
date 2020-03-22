@@ -3,8 +3,9 @@
 
 #include <math.h>
 #include <stdio.h>
+#include <fcntl.h>
 #include "minilibx_opengl_20191021/mlx.h"
-#include "libft.h"
+#include "libft/libft.h"
 
 typedef	struct	s_fov
 {
@@ -106,6 +107,7 @@ void	move_right(t_fov *fov);
 void	move_left(t_fov *fov);
 void	rotate_left(t_fov *fov);
 void	rotate_right(t_fov *fov);
+int	close_window(int keycode, t_vars *vars);
 t_fov	initialize_fov(t_fov *fov, double posX, double posY);
 t_ray	initialize_ray(t_ray *ray);
 t_ray	*get_ray_info(int x, t_fov *fov, t_ray *ray); 
@@ -126,5 +128,7 @@ t_sprites	*get_sprite_distance(t_sprites *sprite, t_fov *fov);
 t_sprites	*sort_sprites(t_sprites *list);
 t_sprites	*put_sprites(t_vars *vars, t_sprites *sprite_list, t_data *tex_list, t_data *main_img);
 char	**add_tex_sprite(char *tex_sprite);
+char	**add_tex_num(char *path, int num);
+int     parse_master(int fd);
 
 #endif

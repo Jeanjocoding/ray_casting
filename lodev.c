@@ -1,4 +1,3 @@
-#include "libft.h"
 #include "lodev.h"
 
 int	mapWidth = 24;

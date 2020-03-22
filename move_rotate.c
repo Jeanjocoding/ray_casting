@@ -1,5 +1,4 @@
 #include "minilibx_opengl_20191021/mlx.h"
-#include "libft.h"
 #include "lodev.h"
 #include "keys.h"
 
@@ -11,7 +10,6 @@ int	get_command(int keycode, t_vars *vars)
 {
 	t_data	temp_img;
 
-//	print_fov(&(vars->fov));
 	if (keycode == KEY_W) // Z chez moi
 		move_forward(&(vars->fov));
 	if (keycode == KEY_S) // S chez moi
@@ -24,11 +22,12 @@ int	get_command(int keycode, t_vars *vars)
 		rotate_left(&(vars->fov));
 	if (keycode == KEY_RIGHT) 
 		rotate_right(&(vars->fov));
+	if (keycode == KEY_ESCAPE) 
+		close_window(keycode, vars);
 	generate_image(vars, &temp_img);
 	mlx_put_image_to_window(vars->mlx, vars->win, temp_img.img, 0, 0);
 	return (0);
 }
-
 
 void	move_forward(t_fov *fov)
 {

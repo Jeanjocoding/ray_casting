@@ -1,5 +1,4 @@
 #include "minilibx_opengl_20191021/mlx.h"
-#include "libft.h"
 #include "lodev.h"
 #include "keys.h"
 
