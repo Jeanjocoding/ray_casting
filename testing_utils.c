@@ -71,6 +71,26 @@ void	print_map(int map[24][24], int lenx, int leny)
 	printf("---------------------------\n");
 }
 
+void	print_map_ptr(int **map, int lenx, int leny)
+{
+	int i;
+
+	i = 0;
+	printf("\n\n-------- map : --------\n");
+	while (--leny >= 0)
+	{
+		printf(" y = %2d ", leny);
+		while (i < lenx)
+		{
+			printf("|%2d", map[i][leny]);
+			i++;
+		}
+		printf("|\n");
+		i = 0;
+	}
+	printf("---------------------------\n");
+}
+
 void	print_sprite(t_sprites *sprite)
 {
 	printf("\n\n-------- sprite : --------\n");

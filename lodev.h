@@ -97,6 +97,14 @@ typedef struct	s_line
 	int	top;
 }		t_line;
 
+typedef struct		s_lmap
+{
+	int		size;
+	char		*content;
+	struct s_lmap	*next;
+	struct s_lmap	*prev;
+}			t_lmap;
+
 void 	print_ray(t_ray *ray);
 void 	print_fov(t_fov *fov);
 void	print_map(int map[24][24], int lenx, int leny);
@@ -129,16 +137,25 @@ t_sprites	*sort_sprites(t_sprites *list);
 t_sprites	*put_sprites(t_vars *vars, t_sprites *sprite_list, t_data *tex_list, t_data *main_img);
 char	**add_tex_sprite(char *tex_sprite);
 char	**add_tex_num(char *path, int num);
-int     parse_master(int fd);
+int     parse_master(int fd, t_fov *fov);
 int     error_quit(char *msg, char ***tab);
 int     check_all_digit(char *str);
-int     get_north(char ***tab);
-int     get_south(char ***tab);
-int     get_west(char ***tab);
-int     get_east(char ***tab);
-int     get_sprite(char ***tab);
-int     get_ceiling(char ***tab);
-int     get_floor(char ***tab);
+int     get_north(char ***tab, char **line);
+int     get_south(char ***tab, char **line);
+int     get_west(char ***tab, char **line);
+int     get_east(char ***tab, char **line);
+int     get_sprite(char ***tab, char **line);
+int     get_ceiling(char ***tab, char **line);
+int     get_floor(char ***tab, char **line);
 int	get_rgb(int r, int g, int b);
+int     check_first_map(char **line);
+char    **get_cub_tab(int fd, t_fov *fov);
+int     set_map(char **tab, int i, t_fov *fov);
+void	print_map_ptr(int **map, int lenx, int leny);
+int     set_fov(char c, t_fov *fov, int x, int y);
+int     get_right_char_first(char c, int x, int y, t_fov *fov);
+int     get_right_char_mid(char c, int x, int y, t_fov *fov);
+int     fill_map(char **tab, t_fov *fov);
+void    free_int_tab(int ***tab, int len);
 
 #endif

@@ -8,7 +8,8 @@ extern int  screenWidth;
 int     error_quit(char *msg, char ***tab)
 {
     ft_printf("%s\n", msg);
-    ft_freetab(tab);
+    if (tab != NULL)
+        ft_freetab(tab);
     exit(1);
     return (1);
 }
@@ -24,17 +25,18 @@ int     check_all_digit(char *str)
     return (1);
 }
 
-int     get_res(char ***tab)
+int     get_res(char ***tab, char **line)
 {
     if (check_all_digit((*tab)[1]) == -1
         || check_all_digit((*tab)[2]) == -1)
         error_quit("error: invalid resolution format", tab);
     screenWidth = ft_atoi((*tab)[1]);
     screenHeight = ft_atoi((*tab)[2]);
+ //   ft_strdel(line);
     return (1);
 }
 
-int     get_right_func(char **line)
+int     get_right_func(char **line, char **full_tab, int i, t_fov *fov)
 {
     char    **tab;
 
@@ -42,38 +44,48 @@ int     get_right_func(char **line)
         return (0);
     if (!(tab = ft_split(*line, ' ')))
         return (-1);
-    ft_strdel(line);
     if (ft_strcmp(tab[0], "R") == 0)
-        return (get_res(&tab));
+        return (get_res(&tab, line));
     if (ft_strcmp(tab[0], "NO") == 0)
-        return (get_north(&tab));
+        return (get_north(&tab, line));
     if (ft_strcmp(tab[0], "SO") == 0)
-        return (get_south(&tab));
+        return (get_south(&tab, line));
     if (ft_strcmp(tab[0], "WE") == 0)
-        return (get_west(&tab));
+        return (get_west(&tab, line));
     if (ft_strcmp(tab[0], "EA") == 0)
-        return (get_east(&tab));
+        return (get_east(&tab, line));
     if (ft_strcmp(tab[0], "S") == 0)
-        return (get_sprite(&tab));
+        return (get_sprite(&tab, line));
     if (ft_strcmp(tab[0], "F") == 0)
-        return (get_floor(&tab));
+        return (get_floor(&tab, line));
     if (ft_strcmp(tab[0], "C") == 0)
-        return (get_ceiling(&tab));
+        return (get_ceiling(&tab, line));
+    if (check_first_map(line) == 1)
+        return (set_map(full_tab, i, fov));
 //    ft_freetab(&tab);
     return (0);
 }
 
-int     parse_master(int fd)
+int     parse_master(int fd, t_fov *fov)
 {
     int     ret;
-    char    *line;
+    int     i;
+    int     tablen;
+    char    **tab;
 
-    ret = 1;
-    while (ret > 0)
+    if (!(tab = get_cub_tab(fd, fov)))
+        return (-1);
+    ft_printtab(tab);
+    tablen = ft_tablen(tab);
+    i = 0;
+    while (i < tablen)
     {
-        ret = get_next_line(fd, &line);
-        if (get_right_func(&line) == -1)
+        ret = get_right_func(&(tab[i]), tab, i, fov);
+        if (ret == -1)
             return (-1);
+        if (ret == 3)
+            return(1);
+        i++;
     }
     return (1);
 }

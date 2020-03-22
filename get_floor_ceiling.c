@@ -12,13 +12,14 @@ int		get_rgb(int r, int g, int b)
     return (rgb);
 }
 
-int     get_floor(char ***tab)
+int     get_floor(char ***tab, char **line)
 {
     int R;
     int G;
     int B;
     char **tab2;
 
+  //  ft_strdel(line);
     if (ft_tablen(*tab) != 2)
         error_quit("Error: invalid floor format", tab);
     if (!(tab2 = ft_split((*tab)[1], ',')))
@@ -36,13 +37,14 @@ int     get_floor(char ***tab)
     return (1);
 }
 
-int     get_ceiling(char ***tab)
+int     get_ceiling(char ***tab, char **line)
 {
     int R;
     int G;
     int B;
     char **tab2;
 
+//    ft_strdel(line);
     if (ft_tablen(*tab) != 2)
         error_quit("Error: invalid ceiling format", tab);
     if (!(tab2 = ft_split((*tab)[1], ',')))

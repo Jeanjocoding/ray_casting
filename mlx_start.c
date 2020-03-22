@@ -86,7 +86,7 @@ int	main(int ac, char **av)
 	fd = open("map.cub", O_RDONLY);
 	if (!(tex_tab = ft_stabmaker(5)))
 		return (-1);
-	parse_master(fd);
+	parse_master(fd, &vars.fov);
 	close(fd);
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, screenWidth, screenHeight, "test");
