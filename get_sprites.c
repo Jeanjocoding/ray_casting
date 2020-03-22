@@ -1,8 +1,8 @@
 #include "lodev.h"
 
-extern int	worldMap[24][24];
-int			map_lenX = 24;
-int			map_lenY = 24;
+extern int	**worldMap;
+extern int	mlen;
+int			mheight;
 
 //t_sprites	sprite_list;
 
@@ -18,9 +18,9 @@ t_sprites	*get_sprite_list(t_sprites *sprite)
 	x = -1;
 	y = -1;
 	check = -1; // sert juste comme condition pr qu'il aille pas tout le temps dans premiere cond
-	while (++x < map_lenX)
+	while (++x < mlen)
 	{
-		while (++y < map_lenY)
+		while (++y < mheight)
 		{
 			if (worldMap[x][y] == 2)
 			{

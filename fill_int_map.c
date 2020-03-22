@@ -1,5 +1,5 @@
 #include "lodev.h"
-extern int **temp_map;
+extern int **worldMap;
 extern int mlen;
 extern int mheight;
 extern int pos_check;
@@ -32,7 +32,7 @@ int     fill_map(char **tab, t_fov *fov)
             xm++;
             yt++;
         }
-        print_map_ptr(temp_map, mlen, mheight);
+        print_map_ptr(worldMap, mlen, mheight);
         xm = 0;
         yt = 0;
         ym++;

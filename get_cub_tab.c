@@ -3,7 +3,7 @@
 int    mlen;
 int    mheight;
 int    pos_check = 0;
-int    **temp_map;
+extern int    **worldMap;
 
 void    int_set(int **dst, int nbr, int len)
 {
@@ -22,13 +22,13 @@ int     set_int_tab(void)
     int i;
 
     i = 0;
-    if (!(temp_map = (int**)malloc(sizeof(int*) * mlen + 1)))
+    if (!(worldMap = (int**)malloc(sizeof(int*) * mlen + 1)))
         return (-1);
     while (i < mlen)
     {
-        if (!(temp_map[i] = (int*)malloc(sizeof(int) * mheight + 1)))
+        if (!(worldMap[i] = (int*)malloc(sizeof(int) * mheight + 1)))
             return (-1);
-        int_set(&(temp_map[i]), -6, mheight);
+        int_set(&(worldMap[i]), -6, mheight);
         ft_printf("i : %d\n", i);
         i++;
     }
@@ -63,9 +63,9 @@ int     set_map(char **tab, int i, t_fov *fov)
 {
     set_mlen_mheight(tab, i);
     set_int_tab();
-    print_map_ptr(temp_map, mlen, mheight);
+    print_map_ptr(worldMap, mlen, mheight);
     fill_map(&(tab[i]), fov);
-    print_map_ptr(temp_map, mlen, mheight);
+    print_map_ptr(worldMap, mlen, mheight);
     ft_printf("mlen : %d\n", mlen);
     ft_printf("mheigt : %d\n", mheight);
     return (3);

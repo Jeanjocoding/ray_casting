@@ -28,7 +28,7 @@ typedef	struct	s_fov
 	double oldTime;
 }		t_fov;
 */
-int worldMap[24][24]=
+/*int worldMap[24][24]=
 {
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
@@ -55,6 +55,8 @@ int worldMap[24][24]=
   {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
+*/
+int		**worldMap;
 
 t_ray	initialize_ray(t_ray *ray)
 {
@@ -103,7 +105,7 @@ void	get_steps_sides(t_ray *ray, t_fov *fov)
 	}
 }
 
-t_ray	*launch_ray(t_ray *ray, t_fov *fov, int	worldMap[24][24])
+t_ray	*launch_ray(t_ray *ray, t_fov *fov, int	**worldMap)
 {
 	while (ray->hit == 0)
 	{
@@ -121,6 +123,7 @@ t_ray	*launch_ray(t_ray *ray, t_fov *fov, int	worldMap[24][24])
 //			(*worldMap)[ray->mapX][ray->mapY] = -9;
 			ray->side = 1;
 		}
+//		ft_printf("")
 		if (worldMap[ray->mapX][ray->mapY] > 0 && worldMap[ray->mapX][ray->mapY] != 2)
 			ray->hit = 1;
 //		else 

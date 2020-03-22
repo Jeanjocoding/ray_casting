@@ -2,7 +2,7 @@
 #include "lodev.h"
 #include "keys.h"
 
-extern int	worldMap[24][24];
+extern int	**worldMap;
 extern int	screenHeight;
 extern int	screenWidth;
 
@@ -10,6 +10,7 @@ int	get_command(int keycode, t_vars *vars)
 {
 	t_data	temp_img;
 
+	print_fov(&vars->fov);
 	if (keycode == KEY_W) // Z chez moi
 		move_forward(&(vars->fov));
 	if (keycode == KEY_S) // S chez moi
