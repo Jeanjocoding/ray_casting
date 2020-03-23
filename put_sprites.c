@@ -13,7 +13,7 @@
 #include "lodev.h"
 extern int	screenWidth;
 extern int	screenHeight;
-extern int	*Zbuffer;
+extern double	*Zbuffer;
 
 t_sprites	*sprite_on_screen(t_sprites *sprite, t_data *tex_list, t_data *main_img)
 {

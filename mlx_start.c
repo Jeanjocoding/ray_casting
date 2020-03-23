@@ -9,7 +9,7 @@ extern int 	worldMap[24][24];
 extern int	map_lenX;
 extern int	map_lenY;
 extern int	**textures;
-extern int	*Zbuffer;
+extern double	*Zbuffer;
 extern char	**tex_tab;
 extern t_data	tex_list;
 int		ground;
@@ -90,11 +90,11 @@ int	main(int ac, char **av)
 	close(fd);
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, screenWidth, screenHeight, "test");
-	vars.fov = initialize_fov(&vars.fov, ft_atoi(av[1]), ft_atoi(av[2]));
+//	vars.fov = initialize_fov(&vars.fov, ft_atoi(av[1]), ft_atoi(av[2]));
 	init_tex(tex_tab, vars.mlx, &tex_list);
 	if (!(vars.sprite_list = get_sprite_list(sprlist)))
 		return (-1);
-	if (!(Zbuffer = (int*)malloc(sizeof(int) * screenWidth + 1)))
+	if (!(Zbuffer = (double*)malloc(sizeof(double) * screenWidth + 1)))
 		return (-1);
 	generate_image(&vars, &(vars.img));
     mlx_put_image_to_window(vars.mlx, vars.win, vars.img.img, 0, 0);

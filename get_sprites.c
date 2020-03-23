@@ -3,6 +3,7 @@
 extern int	**worldMap;
 extern int	mlen;
 int			mheight;
+double		add_to_pos = 0.5;
 
 //t_sprites	sprite_list;
 
@@ -30,16 +31,16 @@ t_sprites	*get_sprite_list(t_sprites *sprite)
 						return (NULL);
 					sprite->first = sprite;
 					sprite->prev = NULL;
-					sprite->x = (double)x;
-					sprite->y = (double)y;
+					sprite->x = (double)x + add_to_pos;
+					sprite->y = (double)y + add_to_pos;
 					++check;
 				}
 				else
 				{
 					if (!(sprite->next = (t_sprites*)malloc(sizeof(t_sprites))))
 						return (NULL);
-					sprite->next->x = (double)x;
-					sprite->next->y = (double)y;
+					sprite->next->x = (double)x + add_to_pos;
+					sprite->next->y = (double)y + add_to_pos;
 					sprite->next->prev = sprite;
 					sprite->next->first = sprite->first;
 					sprite = sprite->next;

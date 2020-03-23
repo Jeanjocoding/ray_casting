@@ -4,40 +4,6 @@ extern int mlen;
 extern int mheight;
 extern int pos_check;
 
-int     set_fov(char c, t_fov *fov, int x, int y)
-{
-    if (pos_check > 0)
-        return (-1);
-	fov->posX = 1.0 * x;
-	fov->posY = 1.0 * y;
-    if (c == 'N')
-    {
-	    fov->dirX = 0;
-	    fov->dirY = 1;
-    }
-    if (c == 'S')
-    {
-	    fov->dirX = 0;
-	    fov->dirY = -1;
-    }
-    if (c == 'E')
-    {
-	    fov->dirX = 1;
-	    fov->dirY = 0;
-    }
-    if (c == 'W')
-    {
-	    fov->dirX = 0;
-	    fov->dirY = -1;
-    }
-	fov->planeX = 0;
-	fov->planeY = 0.66;
-	fov->time = 0;
-	fov->oldTime = 0;
-    worldMap[x][y] = 0;
-	return (0);
-}
-
 int     get_right_char_first(char c, int x, int y, t_fov *fov)
 {
     if (c == '1')
