@@ -54,8 +54,9 @@ void    set_mlen_mheight(char **tab, int i)
            slen = ft_strlen(tab[i]);
            if (slen > mlen)
                 mlen = slen;
-            i++;
+//            i++;
        }
+       i++;
     }
 }
 
@@ -63,9 +64,10 @@ int     set_map(char **tab, int i, t_fov *fov)
 {
     set_mlen_mheight(tab, i);
     set_int_tab();
-    print_map_ptr(worldMap, mlen, mheight);
+  //  print_map_ptr(worldMap, mlen, mheight);
     fill_map(&(tab[i]), fov);
     print_map_ptr(worldMap, mlen, mheight);
+    verify_int_map(&worldMap, mlen, mheight);
     ft_printf("mlen : %d\n", mlen);
     ft_printf("mheigt : %d\n", mheight);
     return (3);
@@ -91,7 +93,8 @@ char    **get_cub_tab(int fd, t_fov *t_fov)
         if (!(str = ft_join_free_left(&str, buf)))
             return (NULL);
     }
-    if (!(tab = ft_split(str, '\n')))
+    if (!(tab = ft_cub_split(str, '\n')))
         return (NULL);
+//    ft_printtab(tab);
     return (tab);
 }

@@ -20,7 +20,7 @@ int     fill_map(char **tab, t_fov *fov)
     {
         while (xm < mlen)
         {
-            ft_printf("tab[%d] : %s\n", xt, tab[xt]);
+//            ft_printf("tab[%d] : %s\n", xt, tab[xt]);
             len_line = ft_strlen(tab[xt]);
             if (yt < len_line)
             {
@@ -32,11 +32,12 @@ int     fill_map(char **tab, t_fov *fov)
             xm++;
             yt++;
         }
-        print_map_ptr(worldMap, mlen, mheight);
+//        print_map_ptr(worldMap, mlen, mheight);
         xm = 0;
         yt = 0;
         ym++;
         xt--;
     }
     return (0);
+    print_map_ptr(worldMap, mlen, mheight);
 }

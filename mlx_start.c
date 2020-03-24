@@ -5,7 +5,7 @@ extern int	mapWidth;
 extern int 	mapHeight;
 extern int 	screenWidth;
 extern int 	screenHeight;
-extern int 	worldMap[24][24];
+extern int 	**worldMap;
 extern int	map_lenX;
 extern int	map_lenY;
 extern int	**textures;

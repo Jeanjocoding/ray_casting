@@ -157,5 +157,7 @@ int     get_right_char_first(char c, int x, int y, t_fov *fov);
 int     get_right_char_mid(char c, int x, int y, t_fov *fov);
 int     fill_map(char **tab, t_fov *fov);
 void    free_int_tab(int ***tab, int len);
+int     verify_int_map(int  ***map, int mlen, int mheight);
+char	**ft_cub_split(char const *s, char c);
 
 #endif

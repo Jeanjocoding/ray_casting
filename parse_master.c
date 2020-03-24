@@ -2,6 +2,9 @@
 extern char **tex_tab;
 extern int  screenHeight;
 extern int  screenWidth;
+extern int 	**worldMap;
+extern int 	mlen;
+extern int 	mheight;
 //int         north_ok;
 //int         
 
@@ -40,7 +43,8 @@ int     get_right_func(char **line, char **full_tab, int i, t_fov *fov)
 {
     char    **tab;
 
-    if (*line == NULL || (*line)[0] == '\0')
+    if (*line == NULL || (*line)[0] == '\0'
+        || (ft_strlen(*line) == 1 && (*line)[0] == ' '))
         return (0);
     if (!(tab = ft_split(*line, ' ')))
         return (-1);
