@@ -5,28 +5,44 @@
 extern int	**worldMap;
 extern int	screenHeight;
 extern int	screenWidth;
+int			keytab[400];
 
-int	get_command(int keycode, t_vars *vars)
+
+int	apply_command(t_vars *vars)
 {
 	t_data	temp_img;
 
 //	print_fov(&vars->fov);
-	if (keycode == KEY_W) // Z chez moi
+	if (keytab[KEY_W] == 1) // Z chez moi
 		move_forward(&(vars->fov));
-	if (keycode == KEY_S) // S chez moi
+	if (keytab[KEY_S] == 1) // Z chez moi
 		move_backward(&(vars->fov));
-	if (keycode == KEY_D) // D chez moi
+	if (keytab[KEY_D] == 1) // Z chez moi
 		move_right(&(vars->fov));
-	if (keycode == KEY_A) // Q chez moi
+	if (keytab[KEY_A] == 1) // Z chez moi
 		move_left(&(vars->fov));
-	if (keycode == KEY_LEFT) 
+	if (keytab[KEY_LEFT] == 1) // Z chez moi
 		rotate_left(&(vars->fov));
-	if (keycode == KEY_RIGHT) 
+	if (keytab[KEY_RIGHT] == 1) // Z chez moi
 		rotate_right(&(vars->fov));
-	if (keycode == KEY_ESCAPE) 
-		close_window(keycode, vars);
+	if (keytab[KEY_ESCAPE] == 1) // Z chez moi
+		close_window(1, vars);
 	generate_image(vars, &temp_img);
 	mlx_put_image_to_window(vars->mlx, vars->win, temp_img.img, 0, 0);
+	return (0);
+}
+
+int	get_command(int keycode, t_vars *vars)
+{
+	keytab[keycode] = 1;
+	apply_command(vars);
+	return (0);
+}
+
+int	release_command(int keycode, t_vars *vars)
+{
+	keytab[keycode] = 0;
+	apply_command(vars);
 	return (0);
 }
 

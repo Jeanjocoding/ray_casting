@@ -14,6 +14,7 @@ extern char	**tex_tab;
 extern t_data	tex_list;
 int		ground;
 int		ceiling;
+extern int	keytab[400];
 
 void            my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -66,6 +67,18 @@ t_data	generate_image(t_vars *vars, t_data *img)
 	return (*img);
 }
 
+void    intarray_set(int dst[400], int nbr, int len)
+{
+    int i;
+
+    i = 0;
+    while (i < len)
+    {
+        dst[i] = nbr;
+        i++;
+    }
+}
+
 int	main(int ac, char **av)
 {
 	t_data	img;
@@ -97,7 +110,10 @@ int	main(int ac, char **av)
 	if (!(Zbuffer = (double*)malloc(sizeof(double) * screenWidth + 1)))
 		return (-1);
 	generate_image(&vars, &(vars.img));
+	intarray_set(keytab, 0, 400);
     mlx_put_image_to_window(vars.mlx, vars.win, vars.img.img, 0, 0);
 	mlx_hook(vars.win, 2, 1L<<0, get_command, &vars);
+	mlx_hook(vars.win, 3, 1L<<1, release_command, &vars);
+	mlx_loop_hook(vars.mlx, apply_command, &vars);
 	mlx_loop(vars.mlx);
 }

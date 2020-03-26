@@ -12,7 +12,7 @@ void	rotate_left(t_fov *fov)
 	double	oldDirX;
       	double	oldPlaneX;
 
-	rot_speed = 0.05;
+	rot_speed = 0.1;
 	oldDirX = fov->dirX;
 	oldPlaneX = fov->planeX;
 	fov->dirX = fov->dirX * cos(-rot_speed) - fov->dirY * sin(-rot_speed);
@@ -27,7 +27,7 @@ void	rotate_right(t_fov *fov)
 	double	oldDirX;
       	double	oldPlaneX;
 
-	rot_speed = 0.05;
+	rot_speed = 0.1;
 	oldDirX = fov->dirX;
 	oldPlaneX = fov->planeX;
 	fov->dirX = fov->dirX * cos(rot_speed) - fov->dirY * sin(rot_speed);

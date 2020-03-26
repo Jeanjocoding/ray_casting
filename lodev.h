@@ -159,5 +159,8 @@ int     fill_map(char **tab, t_fov *fov);
 void    free_int_tab(int ***tab, int len);
 int     verify_int_map(int  ***map, int mlen, int mheight);
 char	**ft_cub_split(char const *s, char c);
+int	release_command(int keycode, t_vars *vars);
+int	apply_command(t_vars *vars);
+void    int_set(int **dst, int nbr, int len);
 
 #endif

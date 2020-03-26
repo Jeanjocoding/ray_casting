@@ -29,7 +29,6 @@ int     set_int_tab(void)
         if (!(worldMap[i] = (int*)malloc(sizeof(int) * mheight + 1)))
             return (-1);
         int_set(&(worldMap[i]), -6, mheight);
-        ft_printf("i : %d\n", i);
         i++;
     }
     return (1);
@@ -64,12 +63,8 @@ int     set_map(char **tab, int i, t_fov *fov)
 {
     set_mlen_mheight(tab, i);
     set_int_tab();
-  //  print_map_ptr(worldMap, mlen, mheight);
     fill_map(&(tab[i]), fov);
-    print_map_ptr(worldMap, mlen, mheight);
     verify_int_map(&worldMap, mlen, mheight);
-    ft_printf("mlen : %d\n", mlen);
-    ft_printf("mheigt : %d\n", mheight);
     return (3);
 }
 

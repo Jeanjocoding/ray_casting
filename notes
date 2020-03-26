@@ -16,7 +16,5 @@ A free:
 -makefile
 
 A FAIRE:
--centrer sprites et pos init;
-	depuis qu'ils sont centrés, ils clignotent. changements dans get_sprites;
 -checkeur map valide --> verif aussi que point de départ est dans la map
--set_fov
+- screenshots
