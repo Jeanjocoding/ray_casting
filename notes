@@ -1,20 +1,14 @@
-images est a l'envers. voire si c'est systematique, trouver la raison. little endian?
-
-linetop et linebottom sont ils inversés? je me pose la question du fait de put_floor_ceiling
-
-A FAIRE:
--normer, optimiser, simplifier
--sol/ciel
--parser
+image a l'envers?
 
 A free:
 -tex_list
 -texpointer
 -textures : tabs + int ptrs
-
--gérer plusieurs touches en meme temps
--makefile
+-WorldMap
+-sprites;
 
 A FAIRE:
 -checkeur map valide --> verif aussi que point de départ est dans la map
 - screenshots
+-makefile
+-normer, optimiser, simplifier
