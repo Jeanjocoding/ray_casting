@@ -1,4 +1,4 @@
-#include "lodev.h"
+#include "cub3d.h"
 extern int **worldMap;
 extern int mlen;
 extern int mheight;

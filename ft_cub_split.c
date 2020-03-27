@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lodev.h"
+#include "cub3d.h"
 
 static unsigned int	word_counter(char const *str, char c)
 {

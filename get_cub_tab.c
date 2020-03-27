@@ -1,4 +1,4 @@
-#include "lodev.h"
+#include "cub3d.h"
 
 int    mlen;
 int    mheight;

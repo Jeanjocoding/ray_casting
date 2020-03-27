@@ -1,5 +1,5 @@
 #include "minilibx_opengl_20191021/mlx.h"
-#include "lodev.h"
+#include "cub3d.h"
 
 extern int	mapWidth;
 extern int 	mapHeight;

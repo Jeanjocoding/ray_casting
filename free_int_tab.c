@@ -1,4 +1,4 @@
-#include "lodev.h"
+#include "cub3d.h"
 
 void    free_int_tab(int ***tab, int len)
 {

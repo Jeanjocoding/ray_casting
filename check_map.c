@@ -1,4 +1,4 @@
-#include "lodev.h"
+#include "cub3d.h"
 
 // a verif:
 //  - 4 caracteres 0, 1, 2, NSEW

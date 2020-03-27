@@ -1,4 +1,4 @@
-#include "lodev.h"
+#include "cub3d.h"
 
 t_sprites	*swap_node(t_sprites *a, t_sprites *b)
 {

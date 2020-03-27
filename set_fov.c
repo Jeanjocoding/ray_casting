@@ -1,4 +1,4 @@
-#include "lodev.h"
+#include "cub3d.h"
 
 extern int  pos_check;
 extern int **worldMap;

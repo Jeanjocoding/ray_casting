@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lodev.h"
+#include "cub3d.h"
 extern int	screenWidth;
 extern int	screenHeight;
 extern double	*Zbuffer;

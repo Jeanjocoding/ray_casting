@@ -1,4 +1,4 @@
-#include "lodev.h"
+#include "cub3d.h"
 #include "minilibx_opengl_20191021/mlx.h"
 
 extern int	screenWidth;

@@ -1,4 +1,4 @@
-#include "lodev.h"
+#include "cub3d.h"
 
 int     check_fov_char(char c)
 {

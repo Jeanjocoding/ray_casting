@@ -1,4 +1,4 @@
-#include "lodev.h"
+#include "cub3d.h"
 extern int  ground;
 extern int  ceiling;
 

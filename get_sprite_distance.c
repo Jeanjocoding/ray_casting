@@ -1,4 +1,4 @@
-#include "lodev.h"
+#include "cub3d.h"
 
 t_sprites	*get_sprite_distance(t_sprites *sprite, t_fov *fov)
 {

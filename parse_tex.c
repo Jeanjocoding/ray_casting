@@ -1,4 +1,4 @@
-#include "lodev.h"
+#include "cub3d.h"
 extern char **tex_tab;
 extern int  screenHeight;
 extern int  screenWidth;
