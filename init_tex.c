@@ -91,6 +91,7 @@ int		**init_tex(char **tab, void *mlx, t_data *tex_list)
 			return ((void*)0);
 		tex_list->int_ptr = textures[i];
 		ft_memcpy(textures[i], temp_addr, addr_width);
+//		free(temp_addr);
 		if (!(tex_list->next = (t_data*)malloc(sizeof(t_data))))
 			return ((int**)0);
 		tex_list->next->first = tex_list->first;

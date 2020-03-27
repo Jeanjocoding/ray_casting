@@ -119,9 +119,9 @@ int	main(int ac, char **av)
 		return (-1);
 	if (!(Zbuffer = (double*)malloc(sizeof(double) * screenWidth + 1)))
 		return (-1);
-	generate_image(&vars, &(vars.img));
+//	generate_image(&vars, &(vars.img));
 	intarray_set(keytab, 0, 400);
-    mlx_put_image_to_window(vars.mlx, vars.win, vars.img.img, 0, 0);
+//    mlx_put_image_to_window(vars.mlx, vars.win, vars.img.img, 0, 0);
 	mlx_hook(vars.win, 2, 1L<<0, get_command, &vars);
 	mlx_hook(vars.win, 3, 1L<<1, release_command, &vars);
 	mlx_loop_hook(vars.mlx, apply_command, &vars);
