@@ -45,7 +45,7 @@ char	**add_tex_sprite(char *tex_sprite)
 
 char	**add_tex_num(char *path, int num)
 { 
-	printf("path: %s\n", path);
+//	printf("path: %s\n", path);
 	if (!(tex_tab[num] = ft_strdup(path)))
 		return (NULL);
 	return (tex_tab);
@@ -75,13 +75,15 @@ int		**init_tex(char **tab, void *mlx, t_data *tex_list)
 	int	*temp_addr;
 
 	i = 0;
-	if (!(textures = (int**)malloc(sizeof(int*) * 6)))
+	if (!(textures = (int**)malloc(sizeof(int*) * 5)))
 		return (NULL);
+//	if (!(tex_list = (t_data*)malloc(sizeof(t_data))))
+//		return ((int**)0);
 	tex_list->first = tex_list;
 	while (i < 5)
 	{
 		// faire check ici
-		ft_printf("tab : %s\n", tab[i]);
+//		ft_printf("tab : %s\n", tab[i]);
 		tex_list->img = mlx_xpm_file_to_image(mlx, tab[i], &(tex_list->img_width), &(tex_list->img_height));
 		temp_addr = (int*)mlx_get_data_addr(tex_list->img, &(tex_list->bits_per_pixel), &(tex_list->line_length), &(tex_list->endian));
 		addr_width = tex_list->img_width * 4 * tex_list->img_height;

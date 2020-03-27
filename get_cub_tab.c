@@ -90,6 +90,7 @@ char    **get_cub_tab(int fd, t_fov *t_fov)
     }
     if (!(tab = ft_cub_split(str, '\n')))
         return (NULL);
+    ft_strdel(&str);
 //    ft_printtab(tab);
     return (tab);
 }

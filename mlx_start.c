@@ -6,8 +6,8 @@ extern int 	mapHeight;
 extern int 	screenWidth;
 extern int 	screenHeight;
 extern int 	**worldMap;
-extern int	map_lenX;
-extern int	map_lenY;
+extern int	mlen;
+//extern int	map_lenY;
 extern int	**textures;
 extern double	*Zbuffer;
 extern char	**tex_tab;
@@ -15,6 +15,7 @@ extern t_data	tex_list;
 int		ground;
 int		ceiling;
 extern int	keytab[400];
+//extern t_data	tex_list;
 
 void            my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -46,7 +47,16 @@ void			put_floor_ceiling(t_data *data, int x, t_ray *ray)
 
 int	close_window(int keycode, t_vars *vars)
 {
+	t_data	*list_ptr;
+
 	mlx_destroy_window(vars->mlx, vars->win);
+	list_ptr = get_right_tex(0, &tex_list);
+	free_tex_list(list_ptr, vars);
+	free_int_tab(&worldMap, mlen);
+	free_int_tab(&textures, 5);
+	ft_freetab(&tex_tab);
+	free_sprites(vars->sprite_list);
+	free(Zbuffer);
 	exit(0);
 	return (0);
 }

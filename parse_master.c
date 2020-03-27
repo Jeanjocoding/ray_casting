@@ -79,7 +79,7 @@ int     parse_master(int fd, t_fov *fov)
 
     if (!(tab = get_cub_tab(fd, fov)))
         return (-1);
-    ft_printtab(tab);
+ //   ft_printtab(tab);
     tablen = ft_tablen(tab);
     i = 0;
     while (i < tablen)
@@ -88,8 +88,12 @@ int     parse_master(int fd, t_fov *fov)
         if (ret == -1)
             return (-1);
         if (ret == 3)
+        {
+            ft_freetab(&tab);
             return(1);
+        }
         i++;
     }
+    ft_freetab(&tab);
     return (1);
 }
