@@ -12,7 +12,7 @@ int		get_rgb(int r, int g, int b)
     return (rgb);
 }
 
-int     get_floor(char ***tab, char **line)
+int     get_floor(char ***tab)
 {
     int R;
     int G;
@@ -37,7 +37,7 @@ int     get_floor(char ***tab, char **line)
     return (1);
 }
 
-int     get_ceiling(char ***tab, char **line)
+int     get_ceiling(char ***tab)
 {
     int R;
     int G;

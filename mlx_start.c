@@ -45,13 +45,13 @@ void			put_floor_ceiling(t_data *data, int x, t_ray *ray)
 	}
 }
 
-int	close_window(int keycode, t_vars *vars)
+int	close_window(t_vars *vars)
 {
-	t_data	*list_ptr;
-
 	mlx_destroy_window(vars->mlx, vars->win);
-	list_ptr = get_right_tex(0, &tex_list);
-	free_tex_list(list_ptr, vars);
+	mlx_destroy_image(vars->mlx, vars->img.img);
+//	list_ptr = get_right_tex(0, &tex_list);
+//	free_tex_list(list_ptr, vars);
+	free_tex_list(&tex_list, vars);
 	free_int_tab(&worldMap, mlen);
 	free_int_tab(&textures, 5);
 	ft_freetab(&tex_tab);
@@ -63,10 +63,11 @@ int	close_window(int keycode, t_vars *vars)
 
 t_data	generate_image(t_vars *vars, t_data *img)
 {
-	int 	i;
-	t_ray	ray;
+//	int 	i;
+//	t_ray	ray;
 
-	i = 0;
+//	i = 0;
+	mlx_destroy_image(vars->mlx, vars->img.img);
 	img->img = mlx_new_image(vars->mlx, screenWidth, screenHeight);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
 	get_sprite_distance(vars->sprite_list, &vars->fov);
@@ -91,34 +92,32 @@ void    intarray_set(int dst[400], int nbr, int len)
 
 int	main(int ac, char **av)
 {
-	t_data	img;
-	t_data	temp_img;
-	void	*win_ptr;
-	int		i;
 	int		fd;
 	t_vars	vars;
-	t_ray	ray;
-	t_data	tex;
 	t_sprites *sprlist;
-	char	**tab;
 
 
-//	get_tex_tab("textures/Karl_Marx.xpm", "textures/redbrick.xpm", "textures/greystone.xpm", "textures/eagle.xpm");
-//	add_tex_sprite("textures/jean-luc.xpm");
-
+	(void)ac;
+	(void)av;
+	sprlist = NULL;
 	fd = open("map.cub", O_RDONLY);
 	if (!(tex_tab = ft_stabmaker(5)))
 		return (-1);
 	parse_master(fd, &vars.fov);
 	close(fd);
+//	sleep(5);
+//	return (0);
+//	sleep(5);
+//	return (0);
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, screenWidth, screenHeight, "test");
-//	vars.fov = initialize_fov(&vars.fov, ft_atoi(av[1]), ft_atoi(av[2]));
+	vars.img.img = mlx_new_image(vars.mlx, screenWidth, screenHeight);
 	init_tex(tex_tab, vars.mlx, &tex_list);
 	if (!(vars.sprite_list = get_sprite_list(sprlist)))
 		return (-1);
 	if (!(Zbuffer = (double*)malloc(sizeof(double) * screenWidth + 1)))
 		return (-1);
+//	close_window(1, &vars);
 //	generate_image(&vars, &(vars.img));
 	intarray_set(keytab, 0, 400);
 //    mlx_put_image_to_window(vars.mlx, vars.win, vars.img.img, 0, 0);

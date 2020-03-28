@@ -105,7 +105,7 @@ void	get_steps_sides(t_ray *ray, t_fov *fov)
 	}
 }
 
-t_ray	*launch_ray(t_ray *ray, t_fov *fov, int	**worldMap)
+t_ray	*launch_ray(t_ray *ray, int **worldMap)
 {
 	while (ray->hit == 0)
 	{
@@ -172,7 +172,7 @@ t_ray	*get_ray_info(int x, t_fov *fov, t_ray *ray)
 	ray->deltaDistX = sqrt(1 + (ray->rayDirY * ray->rayDirY) / (ray->rayDirX * ray->rayDirX));
 	ray->deltaDistY = sqrt(1 + (ray->rayDirX * ray->rayDirX) / (ray->rayDirY * ray->rayDirY));
 	get_steps_sides(ray, fov);
-	launch_ray(ray, fov, worldMap);
+	launch_ray(ray, worldMap);
 	get_wallDist_line(ray, fov);
 	Zbuffer[x] = (double)ray->wallDist + add_to_pos;
 	if (ray->side == 0)
@@ -181,7 +181,7 @@ t_ray	*get_ray_info(int x, t_fov *fov, t_ray *ray)
 		ray->wallX = fov->posX + ray->wallDist * ray->rayDirX;
 	ray->wallX -= (int)(ray->wallX);
 	ray->fov = fov;
-	ray->texnum = tex_chooser(ray, fov);
+	ray->texnum = tex_chooser(ray);
 	return (ray);
 }
 

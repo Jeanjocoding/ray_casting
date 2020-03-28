@@ -6,7 +6,7 @@ t_data	tex_list;
 char	**tex_tab;
 
 
-int		tex_chooser(t_ray *ray, t_fov *fov)
+int		tex_chooser(t_ray *ray)
 {
 	if (ray->side == 0)
 	{
@@ -70,7 +70,6 @@ char	**add_tex_num(char *path, int num)
 int		**init_tex(char **tab, void *mlx, t_data *tex_list)
 {
 	int i;
-	t_data	tex_img;
 	int	addr_width;
 	int	*temp_addr;
 

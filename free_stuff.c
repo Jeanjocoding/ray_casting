@@ -21,6 +21,7 @@ void	free_tex_list(t_data *list, t_vars *vars)
         list = temp;
         i++;
     }
+        free(list);
 }
 
 void    free_sprites(t_sprites *sprites)

@@ -25,7 +25,7 @@ int     fill_map(char **tab, t_fov *fov)
             if (yt < len_line)
             {
                 if (ym == 0 || ym == mheight)
-                    get_right_char_first(tab[xt][yt], xm, ym, fov);
+                    get_right_char_first(tab[xt][yt], xm, ym);
                 else
                     get_right_char_mid(tab[xt][yt], xm, ym, fov);
             }

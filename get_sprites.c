@@ -14,7 +14,6 @@ t_sprites	*get_sprite_list(t_sprites *sprite)
 	int x;
 	int	y;
 	int	check;
-	t_sprites *deb;
 
 	x = -1;
 	y = -1;

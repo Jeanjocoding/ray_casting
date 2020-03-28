@@ -10,7 +10,7 @@ int			keytab[400];
 
 int	apply_command(t_vars *vars)
 {
-	t_data	temp_img;
+//	t_data	temp_img;
 
 //	print_fov(&vars->fov);
 	if (keytab[KEY_W] == 1) // Z chez moi
@@ -26,9 +26,9 @@ int	apply_command(t_vars *vars)
 	if (keytab[KEY_RIGHT] == 1) // Z chez moi
 		rotate_right(&(vars->fov));
 	if (keytab[KEY_ESCAPE] == 1) // Z chez moi
-		close_window(1, vars);
-	generate_image(vars, &temp_img);
-	mlx_put_image_to_window(vars->mlx, vars->win, temp_img.img, 0, 0);
+		close_window(vars);
+	generate_image(vars, &vars->img);
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
 	return (0);
 }
 

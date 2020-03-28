@@ -4,7 +4,7 @@ extern int mlen;
 extern int mheight;
 extern int pos_check;
 
-int     get_right_char_first(char c, int x, int y, t_fov *fov)
+int     get_right_char_first(char c, int x, int y)
 {
     if (c == '1')
         worldMap[x][y] = 1;

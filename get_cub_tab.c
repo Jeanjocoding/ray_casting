@@ -38,7 +38,6 @@ void    set_mlen_mheight(char **tab, int i)
 {
     int len;
     int slen;
-    int count;
 
 //    ft_printtab(tab);
     len = ft_tablen(tab);
@@ -68,7 +67,7 @@ int     set_map(char **tab, int i, t_fov *fov)
     return (3);
 }
 
-char    **get_cub_tab(int fd, t_fov *t_fov)
+char    **get_cub_tab(int fd)
 {
     char    **tab;
     int     ret;

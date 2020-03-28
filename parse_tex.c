@@ -3,7 +3,7 @@ extern char **tex_tab;
 extern int  screenHeight;
 extern int  screenWidth;
 
-int     get_north(char ***tab, char **line)
+int     get_north(char ***tab)
 {
     if (ft_tablen(*tab) != 2)
         error_quit("Error: Invalid north texture format", tab);
@@ -13,7 +13,7 @@ int     get_north(char ***tab, char **line)
     return (0);
 }
 
-int     get_south(char ***tab, char **line)
+int     get_south(char ***tab)
 {
     if (ft_tablen(*tab) != 2)
         error_quit("Error: Invalid south texture format", tab);
@@ -23,7 +23,7 @@ int     get_south(char ***tab, char **line)
     return (0);
 }
 
-int     get_west(char ***tab, char **line)
+int     get_west(char ***tab)
 {
     if (ft_tablen(*tab) != 2)
         error_quit("Error: Invalid west texture format", tab);
@@ -33,7 +33,7 @@ int     get_west(char ***tab, char **line)
     return (0);
 }
 
-int     get_east(char ***tab, char **line)
+int     get_east(char ***tab)
 {
     if (ft_tablen(*tab) != 2)
         error_quit("Error: Invalid east texture format", tab);
@@ -43,7 +43,7 @@ int     get_east(char ***tab, char **line)
     return (0);
 }
 
-int     get_sprite(char ***tab, char **line)
+int     get_sprite(char ***tab)
 {
     if (ft_tablen(*tab) != 2)
         error_quit("Error: Invalid sprite texture format", tab);

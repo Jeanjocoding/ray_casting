@@ -22,7 +22,7 @@ int		get_texX(t_ray *ray, t_data *tex_img)
 	return (texX);
 }
 
-void	put_tex_column(int tex_coor[2], t_data *main_img, t_data *tex_img, t_ray *ray, void *mlx)
+void	put_tex_column(int tex_coor[2], t_data *main_img, t_data *tex_img, t_ray *ray)
 {
 	double	step;
 	double	texPos;
@@ -64,7 +64,7 @@ int	put_tex(t_vars *vars, t_data *main_img, t_data *tex_list)
 		if (ray.texnum != check)
 			tex_list = get_right_tex(ray.texnum, tex_list);
 		tex_coor[0] = get_texX(&ray, tex_list);
-		put_tex_column(tex_coor, main_img, tex_list, &ray, vars->mlx);
+		put_tex_column(tex_coor, main_img, tex_list, &ray);
 		check = ray.texnum;
 		x++;
 	}

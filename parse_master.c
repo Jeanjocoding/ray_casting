@@ -28,13 +28,14 @@ int     check_all_digit(char *str)
     return (1);
 }
 
-int     get_res(char ***tab, char **line)
+int     get_res(char ***tab)
 {
     if (check_all_digit((*tab)[1]) == -1
         || check_all_digit((*tab)[2]) == -1)
         error_quit("error: invalid resolution format", tab);
     screenWidth = ft_atoi((*tab)[1]);
     screenHeight = ft_atoi((*tab)[2]);
+    ft_freetab(tab);
  //   ft_strdel(line);
     return (1);
 }
@@ -49,23 +50,26 @@ int     get_right_func(char **line, char **full_tab, int i, t_fov *fov)
     if (!(tab = ft_split(*line, ' ')))
         return (-1);
     if (ft_strcmp(tab[0], "R") == 0)
-        return (get_res(&tab, line));
+        return (get_res(&tab));
     if (ft_strcmp(tab[0], "NO") == 0)
-        return (get_north(&tab, line));
+        return (get_north(&tab));
     if (ft_strcmp(tab[0], "SO") == 0)
-        return (get_south(&tab, line));
+        return (get_south(&tab));
     if (ft_strcmp(tab[0], "WE") == 0)
-        return (get_west(&tab, line));
+        return (get_west(&tab));
     if (ft_strcmp(tab[0], "EA") == 0)
-        return (get_east(&tab, line));
+        return (get_east(&tab));
     if (ft_strcmp(tab[0], "S") == 0)
-        return (get_sprite(&tab, line));
+        return (get_sprite(&tab));
     if (ft_strcmp(tab[0], "F") == 0)
-        return (get_floor(&tab, line));
+        return (get_floor(&tab));
     if (ft_strcmp(tab[0], "C") == 0)
-        return (get_ceiling(&tab, line));
+        return (get_ceiling(&tab));
     if (check_first_map(line) == 1)
+    {
+        ft_freetab(&tab);
         return (set_map(full_tab, i, fov));
+    }
 //    ft_freetab(&tab);
     return (0);
 }
@@ -77,7 +81,7 @@ int     parse_master(int fd, t_fov *fov)
     int     tablen;
     char    **tab;
 
-    if (!(tab = get_cub_tab(fd, fov)))
+    if (!(tab = get_cub_tab(fd)))
         return (-1);
  //   ft_printtab(tab);
     tablen = ft_tablen(tab);

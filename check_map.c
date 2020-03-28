@@ -11,6 +11,7 @@ int     check_first_map(char **line)
     int len;
 
     i = 0;
+    count = 0;
     len = ft_strlen(*line);
     while ((*line)[i])
     {
