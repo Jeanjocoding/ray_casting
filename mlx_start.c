@@ -111,7 +111,7 @@ int	main(int ac, char **av)
 //	return (0);
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, screenWidth, screenHeight, "test");
-	vars.img.img = mlx_new_image(vars.mlx, screenWidth, screenHeight);
+//	vars.img.img = mlx_new_image(vars.mlx, screenWidth, screenHeight);
 	init_tex(tex_tab, vars.mlx, &tex_list);
 	if (!(vars.sprite_list = get_sprite_list(sprlist)))
 		return (-1);
@@ -120,6 +120,8 @@ int	main(int ac, char **av)
 //	close_window(1, &vars);
 //	generate_image(&vars, &(vars.img));
 	intarray_set(keytab, 0, 400);
+	if ((generate_bmp(&vars, &vars.img)) == -1)
+		return (-1);
 //    mlx_put_image_to_window(vars.mlx, vars.win, vars.img.img, 0, 0);
 	mlx_hook(vars.win, 2, 1L<<0, get_command, &vars);
 	mlx_hook(vars.win, 3, 1L<<1, release_command, &vars);

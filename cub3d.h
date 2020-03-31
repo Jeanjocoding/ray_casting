@@ -6,6 +6,7 @@
 #include <fcntl.h>
 #include "minilibx_opengl_20191021/mlx.h"
 #include "libft/libft.h"
+#include "bmp.h"
 
 typedef	struct	s_fov
 {
@@ -164,5 +165,8 @@ int	apply_command(t_vars *vars);
 void    int_set(int **dst, int nbr, int len);
 void	free_tex_list(t_data *list, t_vars *vars);
 void    free_sprites(t_sprites *sprites);
+int     set_bmp(t_bmpHeader *head, t_data *img_file);
+int	generate_bmp(t_vars *vars, t_data *img);
+int     write_bmp(int fd, t_bmpHeader *head, t_data *img_file, int img_size);
 
 #endif

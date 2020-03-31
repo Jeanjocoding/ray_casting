@@ -8,10 +8,15 @@ A free:
 -sprites;
 
 A FAIRE:
--checkeur map valide --> verif aussi que point de départ est dans la map
+-checkeur map valide --> verif aussi que point de départ est dans la map --> ok je pense
 - screenshots
 -makefile
 -normer, optimiser, simplifier
+-free en cas d'erro quit et de fail malloc
+-fonctions d'erreur
+-PTN DE BMP
+-vérifier que textures coorespondent bien a leur pt cardinal
 
 POSSIBILITÉ OPTI:
 -ne pas recréer une image a chaque fois
+
