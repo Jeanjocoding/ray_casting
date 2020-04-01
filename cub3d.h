@@ -168,5 +168,12 @@ void    free_sprites(t_sprites *sprites);
 int     set_bmp(t_bmpHeader *head, t_data *img_file);
 int	generate_bmp(t_vars *vars, t_data *img);
 int     write_bmp(int fd, t_bmpHeader *head, t_data *img_file, int img_size);
+int		free_all_parse_fail(char ***tab);
+int		free_all_sprite_fail(t_vars *vars);
+int		free_all_zbuf_fail(t_vars *vars);
+int		free_all_bmp_fail(t_vars *vars);
+int     free_tab_ret(char ***tab);
+int	    custom_freetab(char ***tab);
+int	    new_freetab(char ***tab);
 
 #endif

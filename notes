@@ -8,17 +8,14 @@ A free:
 -sprites;
 
 A FAIRE:
--checkeur map valide --> verif aussi que point de départ est dans la map --> ok je pense
-- screenshots
 -makefile
 -normer, optimiser, simplifier
 -free en cas d'erro quit et de fail malloc
 -fonctions d'erreur
 -vérifier que textures coorespondent bien a leur pt cardinal
--bmp ok mais faut faire arg_parser
--croix rouge
 -resize res
--check.cub
+-continuer a free a partir de set_map (reste map + init_tex)
+
 
 POSSIBILITÉ OPTI:
 -ne pas recréer une image a chaque fois

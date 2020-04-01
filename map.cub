@@ -1,6 +1,6 @@
 R 800 600
 NO ./textures/Karl_Marx.xpm
-SO ./textures/redbrick.xpm
+SO ./textures/redbrick.xpm  ferge
 WE ./textures/eagle.xpm
 
 F 223,189,77

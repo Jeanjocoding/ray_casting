@@ -45,7 +45,7 @@ void			put_floor_ceiling(t_data *data, int x, t_ray *ray)
 	}
 }
 
-void	free_all(t_vars *vars)
+int		free_all(t_vars *vars)
 {
 	free_tex_list(&tex_list, vars);
 	free_int_tab(&worldMap, mlen);
@@ -53,6 +53,7 @@ void	free_all(t_vars *vars)
 	ft_freetab(&tex_tab);
 	free_sprites(vars->sprite_list);
 	free(Zbuffer);
+	return (-1);
 }
 
 int		check_cub(char *path)
@@ -126,21 +127,22 @@ int	main(int ac, char **av)
 	if ((fd = open(av[1], O_RDONLY)) == -1)
 		error_quit("Error : unable to open map file", NULL);
 	if (!(tex_tab = ft_stabmaker(5)))
-		return (-1);
-	parse_master(fd, &vars.fov);
+		error_quit("Error: malloc error", NULL);
+	if ((parse_master(fd, &vars.fov)) == -1)
+		free_all_parse_fail(&tex_tab);
 	close(fd);
 	vars.mlx = mlx_init();
 	vars.img.img = mlx_new_image(vars.mlx, screenWidth, screenHeight);
 	init_tex(tex_tab, vars.mlx, &tex_list);
 	if (!(vars.sprite_list = get_sprite_list(sprlist)))
-		return (-1);
+		free_all_sprite_fail(&vars);
 	if (!(Zbuffer = (double*)malloc(sizeof(double) * screenWidth + 1)))
-		return (-1);
+		free_all_zbuf_fail(&vars);
 	intarray_set(keytab, 0, 400);
 	if (ac > 2 && ft_strcmp(av[2], "--save") == 0)
 	{
 		if ((generate_bmp(&vars, &vars.img)) == -1)
-			return (-1);
+			free_all_bmp_fail(&vars);
 		free_all(&vars);
 		return (0);
 	}
