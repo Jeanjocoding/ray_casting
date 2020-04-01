@@ -25,7 +25,6 @@ int     check_first_map(char **line)
         else
         {
             ft_strdel(line);
-            ft_printf("in check_map.c\n");
             error_quit("Error: wrong map formatting", NULL);
         }
     }

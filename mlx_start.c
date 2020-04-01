@@ -45,6 +45,28 @@ void			put_floor_ceiling(t_data *data, int x, t_ray *ray)
 	}
 }
 
+void	free_all(t_vars *vars)
+{
+	free_tex_list(&tex_list, vars);
+	free_int_tab(&worldMap, mlen);
+	free_int_tab(&textures, 5);
+	ft_freetab(&tex_tab);
+	free_sprites(vars->sprite_list);
+	free(Zbuffer);
+}
+
+int		check_cub(char *path)
+{
+	int	len;
+
+	len = ft_strlen(path);
+	len--;
+	if (path[len] != 'b' || path[len - 1] != 'u' || path[len - 2] != 'c'
+		|| path[len - 3] != '.')
+	error_quit("Error: invalid configuration file", NULL);
+	return (-1);
+}
+
 int	close_window(t_vars *vars)
 {
 	mlx_destroy_window(vars->mlx, vars->win);
@@ -97,34 +119,35 @@ int	main(int ac, char **av)
 	t_sprites *sprlist;
 
 
-	(void)ac;
-	(void)av;
 	sprlist = NULL;
-	fd = open("map.cub", O_RDONLY);
+	if (ac < 2  || ac > 3)
+		error_quit("USAGE: PRGRM_NAME MAP_FILE [--save]", NULL);
+	check_cub(av[1]);
+	if ((fd = open(av[1], O_RDONLY)) == -1)
+		error_quit("Error : unable to open map file", NULL);
 	if (!(tex_tab = ft_stabmaker(5)))
 		return (-1);
 	parse_master(fd, &vars.fov);
 	close(fd);
-//	sleep(5);
-//	return (0);
-//	sleep(5);
-//	return (0);
 	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, screenWidth, screenHeight, "test");
-//	vars.img.img = mlx_new_image(vars.mlx, screenWidth, screenHeight);
+	vars.img.img = mlx_new_image(vars.mlx, screenWidth, screenHeight);
 	init_tex(tex_tab, vars.mlx, &tex_list);
 	if (!(vars.sprite_list = get_sprite_list(sprlist)))
 		return (-1);
 	if (!(Zbuffer = (double*)malloc(sizeof(double) * screenWidth + 1)))
 		return (-1);
-//	close_window(1, &vars);
-//	generate_image(&vars, &(vars.img));
 	intarray_set(keytab, 0, 400);
-	if ((generate_bmp(&vars, &vars.img)) == -1)
-		return (-1);
-//    mlx_put_image_to_window(vars.mlx, vars.win, vars.img.img, 0, 0);
+	if (ac > 2 && ft_strcmp(av[2], "--save") == 0)
+	{
+		if ((generate_bmp(&vars, &vars.img)) == -1)
+			return (-1);
+		free_all(&vars);
+		return (0);
+	}
+	vars.win = mlx_new_window(vars.mlx, screenWidth, screenHeight, "test");
 	mlx_hook(vars.win, 2, 1L<<0, get_command, &vars);
 	mlx_hook(vars.win, 3, 1L<<1, release_command, &vars);
+	mlx_hook(vars.win, 17, 0, close_window, &vars);
 	mlx_loop_hook(vars.mlx, apply_command, &vars);
 	mlx_loop(vars.mlx);
 }

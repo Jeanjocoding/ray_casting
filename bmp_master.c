@@ -14,7 +14,7 @@ int	    generate_bmp(t_vars *vars, t_data *img)
     int img_size;
     int fd;
 //	i = 0;
-    if ((fd = open("save.bmp", O_CREAT | O_WRONLY | O_APPEND, 0777)) == -1)
+    if ((fd = open("save.bmp", O_CREAT | O_TRUNC | O_WRONLY | O_APPEND, 0777)) == -1)
     {
         ft_printf("error fd");
         return (-1);
@@ -26,7 +26,7 @@ int	    generate_bmp(t_vars *vars, t_data *img)
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
 	get_sprite_distance(vars->sprite_list, &vars->fov);
 	vars->sprite_list = sort_sprites(vars->sprite_list);
-	mlx_clear_window(vars->mlx, vars->win);
+//	mlx_clear_window(vars->mlx, vars->win);
 	put_tex(vars, img, &tex_list);
 	put_sprites(vars, vars->sprite_list, &tex_list, img);
 //    temp_ptr = (int*)img->addr;
