@@ -133,7 +133,8 @@ int	main(int ac, char **av)
 	close(fd);
 	vars.mlx = mlx_init();
 	vars.img.img = mlx_new_image(vars.mlx, screenWidth, screenHeight);
-	init_tex(tex_tab, vars.mlx, &tex_list);
+	if ((init_tex(tex_tab, vars.mlx, &tex_list, &vars)) == -1)
+		free_all_tex_fail();
 	if (!(vars.sprite_list = get_sprite_list(sprlist)))
 		free_all_sprite_fail(&vars);
 	if (!(Zbuffer = (double*)malloc(sizeof(double) * screenWidth + 1)))

@@ -125,7 +125,7 @@ int	put_tex(t_vars *vars, t_data *main_img, t_data *tex_list);
 void	*load_img_getinfo(t_data *img_info, void *mlx, char *relative_path);
 void 	print_img_info(t_data *img_info);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-int		**init_tex(char **tab, void *mlx, t_data *tex_list);
+int		init_tex(char **tab, void *mlx, t_data *tex_list, t_vars *vars);
 char	**get_tex_tab(char *texN, char *texS, char *texO, char *texE);
 int		tex_chooser(t_ray *ray);
 t_data	*get_right_tex(int tex_num, t_data *tex_list);
@@ -174,6 +174,9 @@ int		free_all_zbuf_fail(t_vars *vars);
 int		free_all_bmp_fail(t_vars *vars);
 int     free_tab_ret(char ***tab);
 int	    custom_freetab(char ***tab);
-int	    new_freetab(char ***tab);
+int	    free_int_ret(int ***tab, int len);
+void	classic_freetab(char ***tab);
+int		free_all_tex_fail(void);
+int	    free_int_tex(int ***tab, int len, t_data *tex_list, t_vars *vars);
 
 #endif

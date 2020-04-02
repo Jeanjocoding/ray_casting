@@ -10,11 +10,9 @@ A free:
 A FAIRE:
 -makefile
 -normer, optimiser, simplifier
--free en cas d'erro quit et de fail malloc
--fonctions d'erreur
 -vérifier que textures coorespondent bien a leur pt cardinal
 -resize res
--continuer a free a partir de set_map (reste map + init_tex)
+(fonctions erreur?)
 
 
 POSSIBILITÉ OPTI:

@@ -1,5 +1,20 @@
 #include "cub3d.h"
 
+extern char **tex_tab;
+
+int		free_all_invalid_map(int ***map, int mlen)
+{
+//	free_tex_list(&tex_list, vars);
+	free_int_tab(map, mlen);
+//	free_int_tab(&textures, 5);
+	ft_freetab(&tex_tab);
+//	free_sprites(vars->sprite_list);
+//	free(Zbuffer);
+    error_quit("Error: invalid map", NULL);
+	return (-1);
+}
+
+
 int     check_fov_char(char c)
 {
     if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
@@ -25,8 +40,9 @@ int     verify_int_map(int  ***map, int mlen, int mheight)
                     || (*map)[x + 1][y] == -6 || y == 0 || y >= mheight - 1
                     || (*map)[x][y + 1] == -6 || (*map)[x][y - 1] == -6)
                 {
-                    free_int_tab(map, mlen);
-                    error_quit("Error : invalid map", NULL);
+                    free_all_invalid_map(map, mlen);
+//                    free_int_tab(map, mlen);
+  //                  error_quit("Error : invalid map", NULL);
                 }
             }
             x++;

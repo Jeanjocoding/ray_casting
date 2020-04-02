@@ -67,7 +67,7 @@ char	**add_tex_num(char *path, int num)
 }*/
 
 
-int		**init_tex(char **tab, void *mlx, t_data *tex_list)
+int		init_tex(char **tab, void *mlx, t_data *tex_list, t_vars *vars)
 {
 	int i;
 	int	addr_width;
@@ -75,28 +75,30 @@ int		**init_tex(char **tab, void *mlx, t_data *tex_list)
 
 	i = 0;
 	if (!(textures = (int**)malloc(sizeof(int*) * 5)))
-		return (NULL);
+		return (-1);
 //	if (!(tex_list = (t_data*)malloc(sizeof(t_data))))
 //		return ((int**)0);
 	tex_list->first = tex_list;
+	tex_list->img = NULL;
 	while (i < 5)
 	{
 		// faire check ici
 //		ft_printf("tab : %s\n", tab[i]);
-		tex_list->img = mlx_xpm_file_to_image(mlx, tab[i], &(tex_list->img_width), &(tex_list->img_height));
+		if (!(tex_list->img = mlx_xpm_file_to_image(mlx, tab[i], &(tex_list->img_width), &(tex_list->img_height))))
+			return (free_int_tex(&textures, i - 1, tex_list, vars));
 		temp_addr = (int*)mlx_get_data_addr(tex_list->img, &(tex_list->bits_per_pixel), &(tex_list->line_length), &(tex_list->endian));
 		addr_width = tex_list->img_width * 4 * tex_list->img_height;
 		if (!(textures[i] = (int*)malloc(sizeof(int) * addr_width + 1)))
-			return ((void*)0);
+			return (free_int_tex(&textures, i - 1, tex_list, vars));
 		tex_list->int_ptr = textures[i];
 		ft_memcpy(textures[i], temp_addr, addr_width);
 //		free(temp_addr);
 		if (!(tex_list->next = (t_data*)malloc(sizeof(t_data))))
-			return ((int**)0);
+			return (free_int_tex(&textures, i, tex_list, vars));
 		tex_list->next->first = tex_list->first;
 		i++;
 		tex_list = tex_list->next;
 	}
 	textures[4] = 0;
-	return (textures);
+	return (1);
 }

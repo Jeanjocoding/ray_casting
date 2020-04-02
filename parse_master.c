@@ -36,7 +36,6 @@ int     get_res(char ***tab)
         || ft_tablen(*tab) != 3)
     {
         custom_freetab(&tex_tab);
-        new_freetab(tab);
         error_quit("error: invalid resolution format", tab);
     }
     screenWidth = ft_atoi((*tab)[1]);
@@ -46,9 +45,10 @@ int     get_res(char ***tab)
     return (1);
 }
 
-int     get_right_func(char **line, char **full_tab, int i, t_fov *fov)
+int     get_right_func(char **line, char ***full_tab, int i, t_fov *fov)
 {
     char    **tab;
+    int     ret;
 
     if (*line == NULL || (*line)[0] == '\0'
         || (ft_strlen(*line) == 1 && (*line)[0] == ' '))
@@ -71,12 +71,18 @@ int     get_right_func(char **line, char **full_tab, int i, t_fov *fov)
         return (get_floor(&tab));
     if (ft_strcmp(tab[0], "C") == 0)
         return (get_ceiling(&tab));
-    if (check_first_map(line) == 1)
+    if ((ret = check_first_map(line)) == 1)
     {
         ft_freetab(&tab);
-        return (set_map(full_tab, i, fov));
+        return (set_map(*full_tab, i, fov));
     }
-//    ft_freetab(&tab);
+    if (ret == -1)
+    {
+        ft_freetab(&tab);
+        ft_freetab(full_tab);
+        error_quit("Error: wrong map formatting", NULL);
+    }
+    ft_freetab(&tab);
     return (0);
 }
 
@@ -107,7 +113,7 @@ int     parse_master(int fd, t_fov *fov)
     i = 0;
     while (i < tablen)
     {
-        ret = get_right_func(&(tab[i]), tab, i, fov);
+        ret = get_right_func(&(tab[i]), &tab, i, fov);
         if (ret == -1)
             free_tab_ret(&tab);
         if (ret == 3)

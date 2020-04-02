@@ -41,17 +41,23 @@ int	    custom_freetab(char ***tab)
     return (-1);
 }
 
-int	    new_freetab(char ***tab)
+void	classic_freetab(char ***tab)
 {
 	int i;
 
 	i = ft_tablen(*tab);
+	ft_printf("tablen : %d\n", i);
 	while (--i >= 0)
-    {
-//        ft_printf("tab\n");
+	{
+		ft_printf("tab[%d] : %s\n", i, (*tab)[i]);
 		ft_strdel(&((*tab)[i]));
-    }
-//	free(*tab);
+	}
+	free(*tab);
 	tab = NULL;
-    return (-1);
+}
+
+int	    free_int_ret(int ***tab, int len)
+{
+	free_int_tab(tab, len);
+	return (-1);
 }

@@ -3,6 +3,9 @@
 // a verif:
 //  - 4 caracteres 0, 1, 2, NSEW
 //  -entouré de 1
+extern char **tex_tab;
+extern int  alloc_check[5];
+
 
 int     check_first_map(char **line)
 {
@@ -25,14 +28,12 @@ int     check_first_map(char **line)
         else
         {
             ft_strdel(line);
-            error_quit("Error: wrong map formatting", NULL);
+            custom_freetab(&tex_tab);
+            return (-1);
         }
     }
     if (count > 0)
-    {
-        ft_printf("first line map: %s\n", *line);
         return (1);
-    }
     else
         return (0); 
 }
