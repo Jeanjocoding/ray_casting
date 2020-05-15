@@ -6,7 +6,7 @@
 /*   By: tlucille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 14:47:30 by tlucille          #+#    #+#             */
-/*   Updated: 2020/02/26 17:57:02 by tlucille         ###   ########.fr       */
+/*   Updated: 2019/05/22 15:22:29 by tlucille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ typedef struct	s_gnl
 	int				complet;
 }				t_gnl;
 
-char			**ft_split(char const *s, char c);
-int			ft_printf(const char *format, ...);
 void			ft_putchar(char c);
 void			ft_putstr(char const *str);
 size_t			ft_strlen(const char *str);
@@ -102,6 +100,6 @@ void			ft_freetab(char ***tab);
 char			*ft_strextract(char const *s, char c, unsigned int index);
 void			ft_putnbrnl(int nb);
 int				get_next_line(const int fd, char **line);
-char			*ft_join_free_left(char **s1, char *s2);
+int                             ft_printf(const char *format, ...);
 
 #endif

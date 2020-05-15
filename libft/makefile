@@ -16,19 +16,24 @@ SRC = ft_strlen.c ft_memdel.c ft_strclr.c ft_striteri.c ft_bzero.c ft_memmove.c 
 
 INCLUDES = includes/libft.h
 
-OBJ = $(SRC:.c=.o)
+OBJS = $(patsubst %.c, %.o,$(SRC))
+
+%.o: %.c
+	$(CC) $(FLAGS) -c $< -o $@
 
 FLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME) : $(OBJ)
-	ar rc $(NAME) $(OBJ) 
-	ar rc $(NAME) libftprintf.a
+$(NAME) : $(OBJS)
+	Make -C ft_printf
+	cp ft_printf/libftprintf.a $(NAME)
+	ar rc $(NAME) $(OBJS) 
 	ranlib $(NAME)
 
 clean: 
-	/bin/rm -f $(OBJ)
+	Make -C ft_printf clean
+	/bin/rm -f $(OBJS)
 
 fclean: clean
 	/bin/rm -f $(NAME)

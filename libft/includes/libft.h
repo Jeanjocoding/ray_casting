@@ -100,5 +100,6 @@ void			ft_freetab(char ***tab);
 char			*ft_strextract(char const *s, char c, unsigned int index);
 void			ft_putnbrnl(int nb);
 int				get_next_line(const int fd, char **line);
+int                             ft_printf(const char *format, ...);
 
 #endif
