@@ -2,8 +2,8 @@
 #include "keys.h"
 
 //extern int	worldMap[24][24];
-extern int	screenHeight;
-extern int	screenWidth;
+extern int	g_screenheight;
+extern int	g_screenwidth;
 
 void	rotate_left(t_fov *fov)
 {

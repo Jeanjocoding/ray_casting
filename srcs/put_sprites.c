@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-extern int	screenWidth;
-extern int	screenHeight;
+extern int	g_screenwidth;
+extern int	g_screenheight;
 extern double	*Zbuffer;
 
 t_sprites	*sprite_on_screen(t_sprites *sprite, t_data *tex_list, t_data *main_img)
@@ -29,11 +29,11 @@ t_sprites	*sprite_on_screen(t_sprites *sprite, t_data *tex_list, t_data *main_im
 	while (m_coor[0] < sprite->drawEndX)
 	{
 		tex_coor[0] = (int)(256 * (m_coor[0] - (-sprite->spriteWidth / 2 + sprite->screenX)) * tex_img->img_width / sprite->spriteWidth) / 256;
-		if (sprite->transformY > 0 && m_coor[0] > 0 && m_coor[0] < screenWidth && sprite->transformY < Zbuffer[m_coor[0]])
+		if (sprite->transformY > 0 && m_coor[0] > 0 && m_coor[0] < g_screenwidth && sprite->transformY < Zbuffer[m_coor[0]])
 		{
 			while (m_coor[1] < sprite->drawEndY)
 			{
-				d = (m_coor[1]) * 256 - screenHeight * 128 + sprite->spriteHeight * 128;
+				d = (m_coor[1]) * 256 - g_screenheight * 128 + sprite->spriteHeight * 128;
 				tex_coor[1] = ((d * tex_img->img_height) / sprite->spriteHeight) / 256;
 				addr_ptr = tex_img->int_ptr + (tex_coor[1] * tex_img->img_width + tex_coor[0]);
 				if (((int)(*addr_ptr) & 0x00FFFFFF) != 0) 
@@ -50,19 +50,19 @@ t_sprites	*sprite_on_screen(t_sprites *sprite, t_data *tex_list, t_data *main_im
 
 t_sprites	*sprite_height_width(t_sprites *sprite_list)
 {
-		sprite_list->screenX = (int)((screenWidth / 2) *
+		sprite_list->screenX = (int)((g_screenwidth / 2) *
 			(1 + sprite_list->transformX / sprite_list->transformY));
-		sprite_list->spriteHeight = abs((int)(screenHeight /
+		sprite_list->spriteHeight = abs((int)(g_screenheight /
 			(sprite_list->transformY)));
 		sprite_list->drawStartY = -sprite_list->spriteHeight 
-			/ 2 + screenHeight / 2;
+			/ 2 + g_screenheight / 2;
 		if (sprite_list->drawStartY < 0)
 			sprite_list->drawStartY = 0;
 		sprite_list->drawEndY = sprite_list->spriteHeight /
-			2 + screenHeight / 2;
-		if (sprite_list->drawEndY >= screenHeight)
-			sprite_list->drawEndY = screenHeight - 1;
-		sprite_list->spriteWidth = abs((int)(screenHeight / 
+			2 + g_screenheight / 2;
+		if (sprite_list->drawEndY >= g_screenheight)
+			sprite_list->drawEndY = g_screenheight - 1;
+		sprite_list->spriteWidth = abs((int)(g_screenheight / 
 			(sprite_list->transformY)));
 		sprite_list->drawStartX = -sprite_list->spriteWidth /
 			2 + sprite_list->screenX;
@@ -70,8 +70,8 @@ t_sprites	*sprite_height_width(t_sprites *sprite_list)
 			sprite_list->drawStartX = 0;
 		sprite_list->drawEndX = sprite_list->spriteWidth / 
 			2 + sprite_list->screenX;
-		if (sprite_list->drawEndX >= screenWidth)
-			sprite_list->drawEndX = screenWidth - 1;
+		if (sprite_list->drawEndX >= g_screenwidth)
+			sprite_list->drawEndX = g_screenwidth - 1;
 		return (sprite_list);
 }
 

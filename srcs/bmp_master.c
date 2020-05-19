@@ -1,7 +1,7 @@
 #include "bmp.h"
 #include "cub3d.h"
-extern int screenWidth;
-extern int screenHeight;
+extern int g_screenwidth;
+extern int g_screenheight;
 extern t_data tex_list;
 
 
@@ -17,9 +17,9 @@ int		generate_bmp(t_vars *vars, t_data *img)
 		return (-1);
 	}
 	ft_printf("fd : %d\n", fd);
-	img->img = mlx_new_image(vars->mlx, screenWidth, screenHeight);
-	img->img_width = screenWidth;
-	img->img_height = screenHeight;
+	img->img = mlx_new_image(vars->mlx, g_screenwidth, g_screenheight);
+	img->img_width = g_screenwidth;
+	img->img_height = g_screenheight;
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
 	get_sprite_distance(vars->sprite_list, &vars->fov);
 	vars->sprite_list = sort_sprites(vars->sprite_list);

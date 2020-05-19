@@ -2,8 +2,8 @@
 
 extern int	mapWidth;
 extern int 	mapHeight;
-extern int 	screenWidth;
-extern int 	screenHeight;
+extern int 	g_screenwidth;
+extern int 	g_screenheight;
 extern int 	**worldMap;
 extern int	mlen;
 //extern int	map_lenY;
@@ -37,7 +37,7 @@ void			put_floor_ceiling(t_data *data, int x, t_ray *ray)
 		y++;
 	}
 	y = ray->linetop;
-	while (y < screenHeight)
+	while (y < g_screenheight)
 	{
 		my_mlx_pixel_put(data, x, y, ground);
 		y++;
@@ -90,7 +90,7 @@ t_data	generate_image(t_vars *vars, t_data *img)
 
 //	i = 0;
 	mlx_destroy_image(vars->mlx, vars->img.img);
-	img->img = mlx_new_image(vars->mlx, screenWidth, screenHeight);
+	img->img = mlx_new_image(vars->mlx, g_screenwidth, g_screenheight);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
 	get_sprite_distance(vars->sprite_list, &vars->fov);
 	vars->sprite_list = sort_sprites(vars->sprite_list);
@@ -131,12 +131,12 @@ int	main(int ac, char **av)
 		free_all_parse_fail(&tex_tab);
 	close(fd);
 	vars.mlx = mlx_init();
-	vars.img.img = mlx_new_image(vars.mlx, screenWidth, screenHeight);
+	vars.img.img = mlx_new_image(vars.mlx, g_screenwidth, g_screenheight);
 	if ((init_tex(tex_tab, vars.mlx, &tex_list, &vars)) == -1)
 		free_all_tex_fail();
 	if (!(vars.sprite_list = get_sprite_list(sprlist)))
 		free_all_sprite_fail(&vars);
-	if (!(Zbuffer = (double*)malloc(sizeof(double) * screenWidth + 1)))
+	if (!(Zbuffer = (double*)malloc(sizeof(double) * g_screenwidth + 1)))
 		free_all_zbuf_fail(&vars);
 	intarray_set(keytab, 0, 400);
 	if (ac > 2 && ft_strcmp(av[2], "--save") == 0)
@@ -146,7 +146,7 @@ int	main(int ac, char **av)
 		free_all(&vars);
 		return (0);
 	}
-	vars.win = mlx_new_window(vars.mlx, screenWidth, screenHeight, "test");
+	vars.win = mlx_new_window(vars.mlx, g_screenwidth, g_screenheight, "test");
 	mlx_hook(vars.win, 2, 1L<<0, get_command, &vars);
 	mlx_hook(vars.win, 3, 1L<<1, release_command, &vars);
 	mlx_hook(vars.win, 17, 0, close_window, &vars);

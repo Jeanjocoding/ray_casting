@@ -1,7 +1,7 @@
 #include "cub3d.h"
 
-extern int	screenWidth;
-extern int	screenHeight;
+extern int	g_screenwidth;
+extern int	g_screenheight;
 extern int	**textures;
 extern char	**tex_tab;
 extern char	tex_list;
@@ -30,7 +30,7 @@ void	put_tex_column(int tex_coor[2], t_data *main_img, t_data *tex_img, t_ray *r
 	unsigned int	color;
 
 	step = 1.0 * tex_img->img_height / ray->lineheight; // /4 arbitraire
-	texPos = (ray->linebottom - screenHeight / 2 + ray->lineheight / 2) * step;
+	texPos = (ray->linebottom - g_screenheight / 2 + ray->lineheight / 2) * step;
 	y = ray->linebottom;
 	while (y < ray->linetop)
 	{
@@ -55,7 +55,7 @@ int	put_tex(t_vars *vars, t_data *main_img, t_data *tex_list)
 	x = 0;
 	check = -1;
 //	Zindex = 0;
-	while (x < screenWidth)
+	while (x < g_screenwidth)
 	{
 		ray = initialize_ray(&ray);
 		get_ray_info(x, &vars->fov, &ray);

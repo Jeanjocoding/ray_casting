@@ -1,7 +1,7 @@
 #include "cub3d.h"
 extern char **tex_tab;
-extern int  screenHeight;
-extern int  screenWidth;
+extern int  g_screenheight;
+extern int  g_screenwidth;
 extern int  alloc_check[5];
 
 int     get_north(char ***tab)

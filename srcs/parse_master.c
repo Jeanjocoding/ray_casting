@@ -1,7 +1,7 @@
 #include "cub3d.h"
 extern char **tex_tab;
-extern int  screenHeight;
-extern int  screenWidth;
+extern int  g_screenheight;
+extern int  g_screenwidth;
 extern int 	**worldMap;
 extern int 	mlen;
 extern int 	mheight;
@@ -38,8 +38,8 @@ int     get_res(char ***tab)
         custom_freetab(&tex_tab);
         error_quit("error: invalid resolution format", tab);
     }
-    screenWidth = ft_atoi((*tab)[1]);
-    screenHeight = ft_atoi((*tab)[2]);
+    g_screenwidth = ft_atoi((*tab)[1]);
+    g_screenheight = ft_atoi((*tab)[2]);
     ft_freetab(tab);
  //   ft_strdel(line);
     return (1);

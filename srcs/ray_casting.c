@@ -2,8 +2,8 @@
 
 int	mapWidth = 24;
 int 	mapHeight = 24;
-int 	screenWidth = 640;
-int 	screenHeight = 480;
+int 	g_screenwidth = 640;
+int 	g_screenheight = 480;
 double		*Zbuffer;
 extern double add_to_pos;
 
@@ -138,13 +138,13 @@ t_ray	*get_wallDist_line(t_ray *ray, t_fov *fov)
 		ray->wallDist = (ray->mapX - fov->posX + ((1 - ray->stepX) / 2)) / ray->rayDirX;
 	else
 		ray->wallDist = (ray->mapY - fov->posY + ((1 - ray->stepY) / 2)) / ray->rayDirY;
-	ray->lineheight = (int)(screenHeight / ray->wallDist);
-	ray->linebottom = (screenHeight / 2 ) - (ray->lineheight / 2);
+	ray->lineheight = (int)(g_screenheight / ray->wallDist);
+	ray->linebottom = (g_screenheight / 2 ) - (ray->lineheight / 2);
 	if (ray->linebottom < 0)
 		ray->linebottom = 0;
 	ray->linetop = ray->linebottom + ray->lineheight;
-	if (ray->linetop > screenHeight)
-		ray->linetop = screenHeight - 1;
+	if (ray->linetop > g_screenheight)
+		ray->linetop = g_screenheight - 1;
 	return (ray);
 }
 
@@ -164,7 +164,7 @@ t_fov	initialize_fov(t_fov *fov, double posX, double posY)
 t_ray	*get_ray_info(int x, t_fov *fov, t_ray *ray) 
 {
 	ray->screenX = x;
-	ray->cameraX = 2 * x / (double)screenWidth - 1;
+	ray->cameraX = 2 * x / (double)g_screenwidth - 1;
 	ray->rayDirX = fov->dirX + fov->planeX * ray->cameraX;
 	ray->rayDirY = fov->dirY + fov->planeY * ray->cameraX;
 	ray->mapX = (int)fov->posX;

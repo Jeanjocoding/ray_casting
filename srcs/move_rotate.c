@@ -2,8 +2,8 @@
 #include "keys.h"
 
 extern int	**worldMap;
-extern int	screenHeight;
-extern int	screenWidth;
+extern int	g_screenheight;
+extern int	g_screenwidth;
 int			keytab[400];
 
 
