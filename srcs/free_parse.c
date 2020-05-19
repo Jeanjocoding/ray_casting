@@ -16,29 +16,29 @@ int		free_all_bmp_fail(t_vars *vars)
 	ft_freetab(&tex_tab);
 	free_sprites(vars->sprite_list);
 	free(Zbuffer);
-    error_quit("Error: malloc error", NULL);
+	error_quit("Error: malloc error", NULL);
 	return (-1);
 }
 
-int     free_tab_ret(char ***tab)
+int	 free_tab_ret(char ***tab)
 {
-    ft_freetab(tab);
-    return (-1);
+	ft_freetab(tab);
+	return (-1);
 }
 
-int	    custom_freetab(char ***tab)
+int		custom_freetab(char ***tab)
 {
 	int i;
 
 	i = ft_tablen(*tab);
 	while (--i >= 0)
-    {
-        if (alloc_check[i] == 1)
-		    ft_strdel(&((*tab)[i]));
-    }
+	{
+		if (alloc_check[i] == 1)
+			ft_strdel(&((*tab)[i]));
+	}
 	free(*tab);
 	tab = NULL;
-    return (-1);
+	return (-1);
 }
 
 void	classic_freetab(char ***tab)
@@ -56,7 +56,7 @@ void	classic_freetab(char ***tab)
 	tab = NULL;
 }
 
-int	    free_int_ret(int ***tab, int len)
+int		free_int_ret(int ***tab, int len)
 {
 	free_int_tab(tab, len);
 	return (-1);
