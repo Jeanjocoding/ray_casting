@@ -3,9 +3,9 @@ extern int 	**worldMap;
 extern int	mlen;
 extern int	**textures;
 extern double	*Zbuffer;
-extern char	**tex_tab;
+extern char	**g_tex_tab;
 extern t_data	g_tex_list;
-extern int  alloc_check[5];
+extern int  g_alloc_check[5];
 
 
 int		free_all_bmp_fail(t_vars *vars)
@@ -13,7 +13,7 @@ int		free_all_bmp_fail(t_vars *vars)
 	free_tex_list(&g_tex_list, vars);
 	free_int_tab(&worldMap, mlen);
 	free_int_tab(&textures, 5);
-	ft_freetab(&tex_tab);
+	ft_freetab(&g_tex_tab);
 	free_sprites(vars->sprite_list);
 	free(Zbuffer);
 	error_quit("Error: malloc error", NULL);
@@ -33,7 +33,7 @@ int		custom_freetab(char ***tab)
 	i = ft_tablen(*tab);
 	while (--i >= 0)
 	{
-		if (alloc_check[i] == 1)
+		if (g_alloc_check[i] == 1)
 			ft_strdel(&((*tab)[i]));
 	}
 	free(*tab);

@@ -1,11 +1,11 @@
 #include "cub3d.h"
-extern char **tex_tab;
+extern char **g_tex_tab;
 extern int  g_screenheight;
 extern int  g_screenwidth;
 extern int 	**worldMap;
 extern int 	mlen;
 extern int 	mheight;
-int         alloc_check[5];
+int         g_alloc_check[5];
 //int         north_ok;
 //int         
 
@@ -35,7 +35,7 @@ int     get_res(char ***tab)
         || check_all_digit((*tab)[2]) == -1
         || ft_tablen(*tab) != 3)
     {
-        custom_freetab(&tex_tab);
+        custom_freetab(&g_tex_tab);
         error_quit("error: invalid resolution format", tab);
     }
     g_screenwidth = ft_atoi((*tab)[1]);
@@ -108,7 +108,7 @@ int     parse_master(int fd, t_fov *fov)
     if (!(tab = get_cub_tab(fd)))
         return (-1);
  //   ft_printtab(tab);()
-    allocarray_set(alloc_check, 0, 5);
+    allocarray_set(g_alloc_check, 0, 5);
     tablen = ft_tablen(tab);
     i = 0;
     while (i < tablen)

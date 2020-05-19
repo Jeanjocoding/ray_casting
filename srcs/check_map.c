@@ -1,11 +1,15 @@
 #include "cub3d.h"
 
-// a verif:
-//  - 4 caracteres 0, 1, 2, NSEW
-//  -entouré de 1
-extern char **tex_tab;
-extern int  alloc_check[5];
+extern char	**g_tex_tab;
+extern int	g_alloc_check[5];
 
+int	return_check(int count)
+{
+	if (count > 0)
+		return (1);
+	else
+		return (0);
+}
 
 int	 check_first_map(char **line)
 {
@@ -28,12 +32,9 @@ int	 check_first_map(char **line)
 		else
 		{
 			ft_strdel(line);
-			custom_freetab(&tex_tab);
+			custom_freetab(&g_tex_tab);
 			return (-1);
 		}
 	}
-	if (count > 0)
-		return (1);
-	else
-		return (0); 
+	return (return_check(count)); 
 }
