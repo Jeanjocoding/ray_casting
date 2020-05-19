@@ -10,11 +10,11 @@ extern int	mlen;
 extern int	**textures;
 extern double	*Zbuffer;
 extern char	**tex_tab;
-extern t_data	tex_list;
+extern t_data	g_tex_list;
 int		ground;
 int		ceiling;
 extern int	keytab[400];
-//extern t_data	tex_list;
+//extern t_data	g_tex_list;
 
 void            my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -46,7 +46,7 @@ void			put_floor_ceiling(t_data *data, int x, t_ray *ray)
 
 int		free_all(t_vars *vars)
 {
-	free_tex_list(&tex_list, vars);
+	free_tex_list(&g_tex_list, vars);
 	free_int_tab(&worldMap, mlen);
 	free_int_tab(&textures, 5);
 	ft_freetab(&tex_tab);
@@ -71,9 +71,9 @@ int	close_window(t_vars *vars)
 {
 	mlx_destroy_window(vars->mlx, vars->win);
 	mlx_destroy_image(vars->mlx, vars->img.img);
-//	list_ptr = get_right_tex(0, &tex_list);
+//	list_ptr = get_right_tex(0, &g_tex_list);
 //	free_tex_list(list_ptr, vars);
-	free_tex_list(&tex_list, vars);
+	free_tex_list(&g_tex_list, vars);
 	free_int_tab(&worldMap, mlen);
 	free_int_tab(&textures, 5);
 	ft_freetab(&tex_tab);
@@ -95,8 +95,8 @@ t_data	generate_image(t_vars *vars, t_data *img)
 	get_sprite_distance(vars->sprite_list, &vars->fov);
 	vars->sprite_list = sort_sprites(vars->sprite_list);
 	mlx_clear_window(vars->mlx, vars->win);
-	put_tex(vars, img, &tex_list);
-	put_sprites(vars, vars->sprite_list, &tex_list, img);
+	put_tex(vars, img, &g_tex_list);
+	put_sprites(vars, vars->sprite_list, &g_tex_list, img);
 	return (*img);
 }
 
@@ -132,7 +132,7 @@ int	main(int ac, char **av)
 	close(fd);
 	vars.mlx = mlx_init();
 	vars.img.img = mlx_new_image(vars.mlx, g_screenwidth, g_screenheight);
-	if ((init_tex(tex_tab, vars.mlx, &tex_list, &vars)) == -1)
+	if ((init_tex(tex_tab, vars.mlx, &g_tex_list, &vars)) == -1)
 		free_all_tex_fail();
 	if (!(vars.sprite_list = get_sprite_list(sprlist)))
 		free_all_sprite_fail(&vars);

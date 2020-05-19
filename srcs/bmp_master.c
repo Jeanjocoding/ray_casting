@@ -2,7 +2,7 @@
 #include "cub3d.h"
 extern int g_screenwidth;
 extern int g_screenheight;
-extern t_data tex_list;
+extern t_data g_tex_list;
 
 
 int		generate_bmp(t_vars *vars, t_data *img)
@@ -23,8 +23,8 @@ int		generate_bmp(t_vars *vars, t_data *img)
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
 	get_sprite_distance(vars->sprite_list, &vars->fov);
 	vars->sprite_list = sort_sprites(vars->sprite_list);
-	put_tex(vars, img, &tex_list);
-	put_sprites(vars, vars->sprite_list, &tex_list, img);
+	put_tex(vars, img, &g_tex_list);
+	put_sprites(vars, vars->sprite_list, &g_tex_list, img);
 	temp_ptr = (int*)mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
 	img_size = img->img_width * 4 * img->img_height;
 	if (!(img->int_ptr = (int*)malloc(sizeof(int) * img_size)))

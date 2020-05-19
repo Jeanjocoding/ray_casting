@@ -4,7 +4,7 @@ extern int	g_screenwidth;
 extern int	g_screenheight;
 extern int	**textures;
 extern char	**tex_tab;
-extern char	tex_list;
+extern char	g_tex_list;
 
 int		get_texX(t_ray *ray, t_data *tex_img)
 {
@@ -45,7 +45,7 @@ void	put_tex_column(int tex_coor[2], t_data *main_img, t_data *tex_img, t_ray *r
 	}
 }
 
-int	put_tex(t_vars *vars, t_data *main_img, t_data *tex_list)
+int	put_tex(t_vars *vars, t_data *main_img, t_data *g_tex_list)
 {
 	int	x;
 	int	check;
@@ -61,9 +61,9 @@ int	put_tex(t_vars *vars, t_data *main_img, t_data *tex_list)
 		get_ray_info(x, &vars->fov, &ray);
 		put_floor_ceiling(main_img, x, &ray);
 		if (ray.texnum != check)
-			tex_list = get_right_tex(ray.texnum, tex_list);
-		tex_coor[0] = get_texX(&ray, tex_list);
-		put_tex_column(tex_coor, main_img, tex_list, &ray);
+			g_tex_list = get_right_tex(ray.texnum, g_tex_list);
+		tex_coor[0] = get_texX(&ray, g_tex_list);
+		put_tex_column(tex_coor, main_img, g_tex_list, &ray);
 		check = ray.texnum;
 		x++;
 	}

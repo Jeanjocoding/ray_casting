@@ -4,7 +4,7 @@ extern char **tex_tab;
 
 int		free_all_invalid_map(int ***map, int mlen)
 {
-//	free_tex_list(&tex_list, vars);
+//	free_tex_list(&g_tex_list, vars);
 	free_int_tab(map, mlen);
 //	free_int_tab(&textures, 5);
 	ft_freetab(&tex_tab);

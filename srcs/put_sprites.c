@@ -15,7 +15,7 @@ extern int	g_screenwidth;
 extern int	g_screenheight;
 extern double	*Zbuffer;
 
-t_sprites	*sprite_on_screen(t_sprites *sprite, t_data *tex_list, t_data *main_img)
+t_sprites	*sprite_on_screen(t_sprites *sprite, t_data *g_tex_list, t_data *main_img)
 {
 	int		m_coor[2];
 	int		tex_coor[2];
@@ -25,7 +25,7 @@ t_sprites	*sprite_on_screen(t_sprites *sprite, t_data *tex_list, t_data *main_im
 
 	m_coor[0] = sprite->drawStartX;
 	m_coor[1] = sprite->drawStartY;
-	tex_img = get_right_tex(4, tex_list);
+	tex_img = get_right_tex(4, g_tex_list);
 	while (m_coor[0] < sprite->drawEndX)
 	{
 		tex_coor[0] = (int)(256 * (m_coor[0] - (-sprite->spriteWidth / 2 + sprite->screenX)) * tex_img->img_width / sprite->spriteWidth) / 256;
@@ -75,7 +75,7 @@ t_sprites	*sprite_height_width(t_sprites *sprite_list)
 		return (sprite_list);
 }
 
-t_sprites	*put_sprites(t_vars *vars, t_sprites *sprite_list, t_data *tex_list, t_data *main_img)
+t_sprites	*put_sprites(t_vars *vars, t_sprites *sprite_list, t_data *g_tex_list, t_data *main_img)
 {
 	t_fov	fov;
 
@@ -88,7 +88,7 @@ t_sprites	*put_sprites(t_vars *vars, t_sprites *sprite_list, t_data *tex_list, t
 		sprite_list->transformX = sprite_list->invDet * (fov.dirY * sprite_list->spriteX - fov.dirX * sprite_list->spriteY);
 		sprite_list->transformY = sprite_list->invDet * (-fov.planeY * sprite_list->spriteX + fov.planeX * sprite_list->spriteY);
 		sprite_height_width(sprite_list);
-		sprite_on_screen(sprite_list, tex_list, main_img);
+		sprite_on_screen(sprite_list, g_tex_list, main_img);
 		sprite_list = sprite_list->next;
 	}
 	return (sprite_list);

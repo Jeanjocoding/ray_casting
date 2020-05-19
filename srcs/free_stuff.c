@@ -5,7 +5,7 @@ extern int	**textures;
 extern double	*Zbuffer;
 extern char	**tex_tab;
 extern int  mlen;
-extern t_data	tex_list;
+extern t_data	g_tex_list;
 
 void	free_tex_list(t_data *list, t_vars *vars)
 {
@@ -52,7 +52,7 @@ void	free_sprites(t_sprites *sprites)
 
 int		free_all_parse_fail(char ***tab)
 {
-//	free_tex_list(&tex_list, vars);
+//	free_tex_list(&g_tex_list, vars);
 //	free_int_tab(&worldMap, mlen);
 //	free_int_tab(&textures, 5);
 	ft_freetab(tab);
@@ -64,7 +64,7 @@ int		free_all_parse_fail(char ***tab)
 
 int		free_all_tex_fail(void)
 {
-//	free_tex_list(&tex_list, vars);
+//	free_tex_list(&g_tex_list, vars);
 	free_int_tab(&worldMap, mlen);
 //	free_int_tab(&textures, 5);
 	ft_freetab(&tex_tab);
@@ -76,7 +76,7 @@ int		free_all_tex_fail(void)
 
 int		free_all_sprite_fail(t_vars *vars)
 {
-	free_tex_list(&tex_list, vars);
+	free_tex_list(&g_tex_list, vars);
 	free_int_tab(&worldMap, mlen);
 	free_int_tab(&textures, 5);
 	ft_freetab(&tex_tab);
@@ -88,7 +88,7 @@ int		free_all_sprite_fail(t_vars *vars)
 
 int		free_all_zbuf_fail(t_vars *vars)
 {
-	free_tex_list(&tex_list, vars);
+	free_tex_list(&g_tex_list, vars);
 	free_int_tab(&worldMap, mlen);
 	free_int_tab(&textures, 5);
 	ft_freetab(&tex_tab);

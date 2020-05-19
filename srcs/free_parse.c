@@ -4,13 +4,13 @@ extern int	mlen;
 extern int	**textures;
 extern double	*Zbuffer;
 extern char	**tex_tab;
-extern t_data	tex_list;
+extern t_data	g_tex_list;
 extern int  alloc_check[5];
 
 
 int		free_all_bmp_fail(t_vars *vars)
 {
-	free_tex_list(&tex_list, vars);
+	free_tex_list(&g_tex_list, vars);
 	free_int_tab(&worldMap, mlen);
 	free_int_tab(&textures, 5);
 	ft_freetab(&tex_tab);
