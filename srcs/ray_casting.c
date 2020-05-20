@@ -5,7 +5,7 @@ int 	mapHeight = 24;
 int 	g_screenwidth = 640;
 int 	g_screenheight = 480;
 double		*g_zbuffer;
-extern double add_to_pos;
+extern double g_add_to_pos;
 
 
 /*typedef	struct	s_ray
@@ -174,7 +174,7 @@ t_ray	*get_ray_info(int x, t_fov *fov, t_ray *ray)
 	get_steps_sides(ray, fov);
 	launch_ray(ray, g_worldmap);
 	get_wallDist_line(ray, fov);
-	g_zbuffer[x] = (double)ray->wallDist + add_to_pos;
+	g_zbuffer[x] = (double)ray->wallDist + g_add_to_pos;
 	if (ray->side == 0)
 		ray->wallX = fov->posY + ray->wallDist * ray->rayDirY;
     	else
