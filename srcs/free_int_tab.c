@@ -12,5 +12,4 @@ void	free_int_tab(int ***tab, int len)
 		i++;
 	}
 	free(*tab);
-//	(*tab) = (*int)0;
 }
