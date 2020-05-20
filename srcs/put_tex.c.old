@@ -59,7 +59,7 @@ int	put_tex(t_vars *vars, t_data *main_img, t_data *g_tex_list)
 	{
 		ray = initialize_ray(&ray);
 		get_ray_info(x, &vars->fov, &ray);
-		put_floor_g_ceiling(main_img, x, &ray);
+		put_floor_ceiling(main_img, x, &ray);
 		if (ray.texnum != check)
 			g_tex_list = get_right_tex(ray.texnum, g_tex_list);
 		tex_coor[0] = get_texX(&ray, g_tex_list);

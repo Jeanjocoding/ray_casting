@@ -70,7 +70,7 @@ int     get_right_func(char **line, char ***full_tab, int i, t_fov *fov)
     if (ft_strcmp(tab[0], "F") == 0)
         return (get_floor(&tab));
     if (ft_strcmp(tab[0], "C") == 0)
-        return (get_g_ceiling(&tab));
+        return (get_ceiling(&tab));
     if ((ret = check_first_map(line)) == 1)
     {
         ft_freetab(&tab);

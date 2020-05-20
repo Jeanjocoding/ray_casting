@@ -12,7 +12,7 @@ extern double	*g_zbuffer;
 extern char	**g_tex_tab;
 extern t_data	g_tex_list;
 int		ground;
-int		g_ceiling;
+int		ceiling;
 extern int	keytab[400];
 //extern t_data	g_tex_list;
 
@@ -24,16 +24,16 @@ void            my_mlx_pixel_put(t_data *data, int x, int y, int color)
     *(unsigned int*)dst = color;
 }
 
-void			put_floor_g_ceiling(t_data *data, int x, t_ray *ray)
+void			put_floor_ceiling(t_data *data, int x, t_ray *ray)
 {
 	int y;
 
-//	g_ceiling = 0xBAA331;
+//	ceiling = 0xBAA331;
 //	ground = 0x1544FF;
 	y = 0;
 	while (y < ray->linebottom)
 	{
-		my_mlx_pixel_put(data, x, y, g_ceiling);
+		my_mlx_pixel_put(data, x, y, ceiling);
 		y++;
 	}
 	y = ray->linetop;
