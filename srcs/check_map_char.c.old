@@ -1,7 +1,7 @@
 #include "cub3d.h"
 extern int **g_worldmap;
 extern int g_mlen;
-extern int mheight;
+extern int g_mheight;
 extern int pos_check;
 
 int	 get_right_char_first(char c, int x, int y)

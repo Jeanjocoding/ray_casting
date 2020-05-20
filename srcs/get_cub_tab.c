@@ -2,7 +2,7 @@
 
 int    g_mlen;
 int    g_mheight;
-int    pos_check = 0;
+int    g_pos_check = 0;
 extern char   **g_tex_tab;
 extern int    **g_worldmap;
 

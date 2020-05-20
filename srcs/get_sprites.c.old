@@ -2,7 +2,7 @@
 
 extern int	**g_worldmap;
 extern int	g_mlen;
-int			mheight;
+int			g_mheight;
 double		add_to_pos = 0.5;
 
 //t_sprites	sprite_list;
@@ -20,7 +20,7 @@ t_sprites	*get_sprite_list(t_sprites *sprite)
 	check = -1; // sert juste comme condition pr qu'il aille pas tout le temps dans premiere cond
 	while (++x < g_mlen)
 	{
-		while (++y < mheight)
+		while (++y < g_mheight)
 		{
 			if (g_worldmap[x][y] == 2)
 			{

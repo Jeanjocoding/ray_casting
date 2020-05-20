@@ -22,14 +22,14 @@ int     check_fov_char(char c)
     return (0);
 }
 
-int     verify_int_map(int  ***map, int g_mlen, int mheight)
+int     verify_int_map(int  ***map, int g_mlen, int g_mheight)
 {
     int x;
     int y;
 
     x = 0;
     y = 0;
-    while (y < mheight)
+    while (y < g_mheight)
     {
         while (x < g_mlen)
         {
@@ -37,7 +37,7 @@ int     verify_int_map(int  ***map, int g_mlen, int mheight)
                 || (*map)[x][y] == 2)
             {
                 if (x == 0 || x >= g_mlen -1 || (*map)[x - 1][y] == -6 
-                    || (*map)[x + 1][y] == -6 || y == 0 || y >= mheight - 1
+                    || (*map)[x + 1][y] == -6 || y == 0 || y >= g_mheight - 1
                     || (*map)[x][y + 1] == -6 || (*map)[x][y - 1] == -6)
                 {
                     free_all_invalid_map(map, g_mlen);

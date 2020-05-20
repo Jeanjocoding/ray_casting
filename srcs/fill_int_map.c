@@ -2,7 +2,7 @@
 extern int **g_worldmap;
 extern int g_mlen;
 extern int g_mheight;
-extern int pos_check;
+extern int g_pos_check;
 
 int	 fill_map(char **tab, t_fov *fov)
 {
