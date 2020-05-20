@@ -1,12 +1,12 @@
 #include "cub3d.h"
-extern int 	**g_worldmap;
-extern int	g_mlen;
-extern int	**g_textures;
-extern double	*g_zbuffer;
-extern char	**g_tex_tab;
-extern t_data	g_tex_list;
-extern int  g_alloc_check[5];
 
+extern int		**g_worldmap;
+extern int		g_mlen;
+extern int		**g_textures;
+extern double	*g_zbuffer;
+extern char		**g_tex_tab;
+extern t_data	g_tex_list;
+extern int		g_alloc_check[5];
 
 int		free_all_bmp_fail(t_vars *vars)
 {
@@ -20,7 +20,7 @@ int		free_all_bmp_fail(t_vars *vars)
 	return (-1);
 }
 
-int	 free_tab_ret(char ***tab)
+int		free_tab_ret(char ***tab)
 {
 	ft_freetab(tab);
 	return (-1);
