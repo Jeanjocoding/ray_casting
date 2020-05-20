@@ -30,6 +30,7 @@ SRC = $(FILE_DIR)/bmp_maker.c	\
 	$(FILE_DIR)/free_int_tab.c		\
 	$(FILE_DIR)/free_parse.c		\
 	$(FILE_DIR)/free_stuff.c		\
+	$(FILE_DIR)/free_stuff_2.c		\
 	$(FILE_DIR)/free_tex.c		\
 	$(FILE_DIR)/ft_cub_split.c		\
 	$(FILE_DIR)/get_cub_tab.c		\

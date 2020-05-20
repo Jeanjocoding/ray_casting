@@ -58,18 +58,11 @@ static char			*s_extractor(char const *s, char c, unsigned int index)
 	unsigned int	start;
 
 	i = 0;
-//	if (s[index] == c)
-//		index++;
-//	ft_printf("\n\n-------------- new_turn --------------\n");
-//	ft_printf("\n*s in extract : %s\n", &(s[index]));
-//	index++;
 	start = index;
 	if (s[index] == c)
 		return (ft_strdup(" "));
 	while (s[index] && s[index] != c)
 		index++;
-//	if (s[index] == c)
-//		index++;
 	if (!(mlc = ft_strnew(index - start + 2)))
 		return (NULL);
 	while (s[start] && s[start] != c)
@@ -81,8 +74,6 @@ static char			*s_extractor(char const *s, char c, unsigned int index)
 	if (s[start] == c)
 		mlc[i++] = ' ';
 	mlc[i] = '\0';
-//	ft_printf("mlc end extract %s\n", mlc);
-//	ft_printf("-------------- end of turn --------------\n");
 	return (mlc);
 }
 
@@ -108,8 +99,6 @@ char				**ft_cub_split(char const *s, char c)
 		return (NULL);
 	while (s[i])
 	{
-//		while (s[i] == c)
-//			i++;
 		if (i < ft_strlen(s))
 		{
 			if (!(tab[k] = s_extractor(s, c, i)))

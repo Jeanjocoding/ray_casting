@@ -43,7 +43,6 @@ void    set_g_mlen_g_mheight(char **tab, int i)
     len = ft_tablen(tab);
     g_mlen = 0;
     g_mheight = 0;
-    ft_printf("tablen : %d\n", len);
     while (i < len)
     {
        if (ft_strchr(tab[i], '1') != NULL)
