@@ -2,7 +2,7 @@
 
 extern int	g_screenwidth;
 extern int	g_screenheight;
-extern int	**textures;
+extern int	**g_textures;
 extern char	**g_tex_tab;
 extern char	g_tex_list;
 

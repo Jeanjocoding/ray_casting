@@ -7,8 +7,8 @@ extern int 	g_screenheight;
 extern int 	**g_worldmap;
 extern int	g_mlen;
 //extern int	map_lenY;
-extern int	**textures;
-extern double	*Zbuffer;
+extern int	**g_textures;
+extern double	*g_zbuffer;
 extern char	**g_tex_tab;
 extern t_data	g_tex_list;
 int		ground;
@@ -48,10 +48,10 @@ int		free_all(t_vars *vars)
 {
 	free_tex_list(&g_tex_list, vars);
 	free_int_tab(&g_worldmap, g_mlen);
-	free_int_tab(&textures, 5);
+	free_int_tab(&g_textures, 5);
 	ft_freetab(&g_tex_tab);
 	free_sprites(vars->sprite_list);
-	free(Zbuffer);
+	free(g_zbuffer);
 	return (-1);
 }
 
@@ -75,10 +75,10 @@ int	close_window(t_vars *vars)
 //	free_tex_list(list_ptr, vars);
 	free_tex_list(&g_tex_list, vars);
 	free_int_tab(&g_worldmap, g_mlen);
-	free_int_tab(&textures, 5);
+	free_int_tab(&g_textures, 5);
 	ft_freetab(&g_tex_tab);
 	free_sprites(vars->sprite_list);
-	free(Zbuffer);
+	free(g_zbuffer);
 	exit(0);
 	return (0);
 }
@@ -136,7 +136,7 @@ int	main(int ac, char **av)
 		free_all_tex_fail();
 	if (!(vars.sprite_list = get_sprite_list(sprlist)))
 		free_all_sprite_fail(&vars);
-	if (!(Zbuffer = (double*)malloc(sizeof(double) * g_screenwidth + 1)))
+	if (!(g_zbuffer = (double*)malloc(sizeof(double) * g_screenwidth + 1)))
 		free_all_zbuf_fail(&vars);
 	intarray_set(keytab, 0, 400);
 	if (ac > 2 && ft_strcmp(av[2], "--save") == 0)

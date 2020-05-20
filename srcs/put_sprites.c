@@ -13,7 +13,7 @@
 #include "cub3d.h"
 extern int	g_screenwidth;
 extern int	g_screenheight;
-extern double	*Zbuffer;
+extern double	*g_zbuffer;
 
 t_sprites	*sprite_on_screen(t_sprites *sprite, t_data *g_tex_list, t_data *main_img)
 {
@@ -29,7 +29,7 @@ t_sprites	*sprite_on_screen(t_sprites *sprite, t_data *g_tex_list, t_data *main_
 	while (m_coor[0] < sprite->drawEndX)
 	{
 		tex_coor[0] = (int)(256 * (m_coor[0] - (-sprite->spriteWidth / 2 + sprite->screenX)) * tex_img->img_width / sprite->spriteWidth) / 256;
-		if (sprite->transformY > 0 && m_coor[0] > 0 && m_coor[0] < g_screenwidth && sprite->transformY < Zbuffer[m_coor[0]])
+		if (sprite->transformY > 0 && m_coor[0] > 0 && m_coor[0] < g_screenwidth && sprite->transformY < g_zbuffer[m_coor[0]])
 		{
 			while (m_coor[1] < sprite->drawEndY)
 			{

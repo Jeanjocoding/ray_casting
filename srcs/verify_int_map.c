@@ -6,10 +6,10 @@ int		free_all_invalid_map(int ***map, int g_mlen)
 {
 //	free_tex_list(&g_tex_list, vars);
 	free_int_tab(map, g_mlen);
-//	free_int_tab(&textures, 5);
+//	free_int_tab(&g_textures, 5);
 	ft_freetab(&g_tex_tab);
 //	free_sprites(vars->sprite_list);
-//	free(Zbuffer);
+//	free(g_zbuffer);
     error_quit("Error: invalid map", NULL);
 	return (-1);
 }

@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-int		**textures;
+int		**g_textures;
 t_data	g_tex_list;
 char	**g_tex_tab;
 
@@ -73,7 +73,7 @@ int		init_tex(char **tab, void *mlx, t_data *g_tex_list, t_vars *vars)
 	int	*temp_addr;
 
 	i = 0;
-	if (!(textures = (int**)malloc(sizeof(int*) * 5)))
+	if (!(g_textures = (int**)malloc(sizeof(int*) * 5)))
 		return (-1);
 //	if (!(g_tex_list = (t_data*)malloc(sizeof(t_data))))
 //		return ((int**)0);
@@ -84,20 +84,20 @@ int		init_tex(char **tab, void *mlx, t_data *g_tex_list, t_vars *vars)
 		// faire check ici
 //		ft_printf("tab : %s\n", tab[i]);
 		if (!(g_tex_list->img = mlx_xpm_file_to_image(mlx, tab[i], &(g_tex_list->img_width), &(g_tex_list->img_height))))
-			return (free_int_tex(&textures, i - 1, g_tex_list, vars));
+			return (free_int_tex(&g_textures, i - 1, g_tex_list, vars));
 		temp_addr = (int*)mlx_get_data_addr(g_tex_list->img, &(g_tex_list->bits_per_pixel), &(g_tex_list->line_length), &(g_tex_list->endian));
 		addr_width = g_tex_list->img_width * 4 * g_tex_list->img_height;
-		if (!(textures[i] = (int*)malloc(sizeof(int) * addr_width + 1)))
-			return (free_int_tex(&textures, i - 1, g_tex_list, vars));
-		g_tex_list->int_ptr = textures[i];
-		ft_memcpy(textures[i], temp_addr, addr_width);
+		if (!(g_textures[i] = (int*)malloc(sizeof(int) * addr_width + 1)))
+			return (free_int_tex(&g_textures, i - 1, g_tex_list, vars));
+		g_tex_list->int_ptr = g_textures[i];
+		ft_memcpy(g_textures[i], temp_addr, addr_width);
 //		free(temp_addr);
 		if (!(g_tex_list->next = (t_data*)malloc(sizeof(t_data))))
-			return (free_int_tex(&textures, i, g_tex_list, vars));
+			return (free_int_tex(&g_textures, i, g_tex_list, vars));
 		g_tex_list->next->first = g_tex_list->first;
 		i++;
 		g_tex_list = g_tex_list->next;
 	}
-	textures[4] = 0;
+	g_textures[4] = 0;
 	return (1);
 }

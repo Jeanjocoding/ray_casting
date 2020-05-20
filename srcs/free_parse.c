@@ -1,8 +1,8 @@
 #include "cub3d.h"
 extern int 	**g_worldmap;
 extern int	g_mlen;
-extern int	**textures;
-extern double	*Zbuffer;
+extern int	**g_textures;
+extern double	*g_zbuffer;
 extern char	**g_tex_tab;
 extern t_data	g_tex_list;
 extern int  g_alloc_check[5];
@@ -12,10 +12,10 @@ int		free_all_bmp_fail(t_vars *vars)
 {
 	free_tex_list(&g_tex_list, vars);
 	free_int_tab(&g_worldmap, g_mlen);
-	free_int_tab(&textures, 5);
+	free_int_tab(&g_textures, 5);
 	ft_freetab(&g_tex_tab);
 	free_sprites(vars->sprite_list);
-	free(Zbuffer);
+	free(g_zbuffer);
 	error_quit("Error: malloc error", NULL);
 	return (-1);
 }
