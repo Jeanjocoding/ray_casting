@@ -1,8 +1,8 @@
 #include "cub3d.h"
 
-extern int	**worldMap;
-extern int	mlen;
-int			mheight;
+extern int	**g_worldmap;
+extern int	g_mlen;
+int			g_mheight;
 double		add_to_pos = 0.5;
 
 //t_sprites	sprite_list;
@@ -18,11 +18,11 @@ t_sprites	*get_sprite_list(t_sprites *sprite)
 	x = -1;
 	y = -1;
 	check = -1; // sert juste comme condition pr qu'il aille pas tout le temps dans premiere cond
-	while (++x < mlen)
+	while (++x < g_mlen)
 	{
-		while (++y < mheight)
+		while (++y < g_mheight)
 		{
-			if (worldMap[x][y] == 2)
+			if (g_worldmap[x][y] == 2)
 			{
 				if (check == -1)
 				{

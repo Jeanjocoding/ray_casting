@@ -1,7 +1,7 @@
 #include "cub3d.h"
 #include "keys.h"
 
-//extern int	worldMap[24][24];
+//extern int	g_worldmap[24][24];
 extern int	g_screenheight;
 extern int	g_screenwidth;
 

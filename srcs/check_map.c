@@ -11,7 +11,7 @@ int	return_check(int count)
 		return (0);
 }
 
-int	 check_first_map(char **line)
+int	check_first_map(char **line)
 {
 	int count;
 	int i;
@@ -36,5 +36,5 @@ int	 check_first_map(char **line)
 			return (-1);
 		}
 	}
-	return (return_check(count)); 
+	return (return_check(count));
 }

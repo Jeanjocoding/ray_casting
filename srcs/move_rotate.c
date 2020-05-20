@@ -1,7 +1,7 @@
 #include "cub3d.h"
 #include "keys.h"
 
-extern int	**worldMap;
+extern int	**g_worldmap;
 extern int	g_screenheight;
 extern int	g_screenwidth;
 int			keytab[400];
@@ -50,9 +50,9 @@ void	move_forward(t_fov *fov)
 	double	moveSpeed;
 
 	moveSpeed = 0.3;
-	if (worldMap[(int)(fov->posX + fov->dirX * moveSpeed)][(int)(fov->posY)] == 0)
+	if (g_worldmap[(int)(fov->posX + fov->dirX * moveSpeed)][(int)(fov->posY)] == 0)
 		fov->posX += fov->dirX * moveSpeed;
-	if (worldMap[(int)(fov->posX)][(int)(fov->posY + fov->dirY *moveSpeed)] == 0)
+	if (g_worldmap[(int)(fov->posX)][(int)(fov->posY + fov->dirY *moveSpeed)] == 0)
 		fov->posY += fov->dirY * moveSpeed;
 }
 
@@ -61,9 +61,9 @@ void	move_backward(t_fov *fov)
 	double	moveSpeed;
 
 	moveSpeed = 0.3;
-	if (worldMap[(int)(fov->posX - fov->dirX * moveSpeed)][(int)(fov->posY)] == 0)
+	if (g_worldmap[(int)(fov->posX - fov->dirX * moveSpeed)][(int)(fov->posY)] == 0)
 		fov->posX -= fov->dirX * moveSpeed;
-	if (worldMap[(int)(fov->posX)][(int)(fov->posY - fov->dirY * moveSpeed)] == 0)
+	if (g_worldmap[(int)(fov->posX)][(int)(fov->posY - fov->dirY * moveSpeed)] == 0)
 		fov->posY -= fov->dirY * moveSpeed;
 }
 
@@ -73,9 +73,9 @@ void	move_right(t_fov *fov)
 	double	moveSpeed;
 
 	moveSpeed = 0.3;
-	if (worldMap[(int)(fov->posX + fov->planeX * moveSpeed)][(int)(fov->posY)] == 0)
+	if (g_worldmap[(int)(fov->posX + fov->planeX * moveSpeed)][(int)(fov->posY)] == 0)
 		fov->posX += fov->planeX * moveSpeed;
-	if (worldMap[(int)(fov->posX)][(int)(fov->posY + fov->planeY * moveSpeed)] == 0)
+	if (g_worldmap[(int)(fov->posX)][(int)(fov->posY + fov->planeY * moveSpeed)] == 0)
 		fov->posY += fov->planeY * moveSpeed;
 }
 
@@ -84,9 +84,9 @@ void	move_left(t_fov *fov)
 	double	moveSpeed;
 
 	moveSpeed = 0.3;
-	if (worldMap[(int)(fov->posX - fov->planeX * moveSpeed)][(int)(fov->posY)] == 0)
+	if (g_worldmap[(int)(fov->posX - fov->planeX * moveSpeed)][(int)(fov->posY)] == 0)
 		fov->posX -= fov->planeX * moveSpeed;
-	if (worldMap[(int)(fov->posX)][(int)(fov->posY - fov->planeY * moveSpeed)] == 0)
+	if (g_worldmap[(int)(fov->posX)][(int)(fov->posY - fov->planeY * moveSpeed)] == 0)
 		fov->posY -= fov->planeY * moveSpeed;
 }
 

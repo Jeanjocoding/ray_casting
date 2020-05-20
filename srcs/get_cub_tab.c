@@ -1,10 +1,10 @@
 #include "cub3d.h"
 
-int    mlen;
-int    mheight;
+int    g_mlen;
+int    g_mheight;
 int    pos_check = 0;
 extern char   **g_tex_tab;
-extern int    **worldMap;
+extern int    **g_worldmap;
 
 void    int_set(int **dst, int nbr, int len)
 {
@@ -23,35 +23,35 @@ int     set_int_tab(void)
     int i;
 
     i = 0;
-    if (!(worldMap = (int**)malloc(sizeof(int*) * mlen + 1)))
+    if (!(g_worldmap = (int**)malloc(sizeof(int*) * g_mlen + 1)))
         return (-1);
-    while (i < mlen)
+    while (i < g_mlen)
     {
-        if (!(worldMap[i] = (int*)malloc(sizeof(int) * mheight + 1)))
-            return (free_int_ret(&worldMap, i - 1));
-        int_set(&(worldMap[i]), -6, mheight);
+        if (!(g_worldmap[i] = (int*)malloc(sizeof(int) * g_mheight + 1)))
+            return (free_int_ret(&g_worldmap, i - 1));
+        int_set(&(g_worldmap[i]), -6, g_mheight);
         i++;
     }
     return (1);
 }
 
-void    set_mlen_mheight(char **tab, int i)
+void    set_g_mlen_g_mheight(char **tab, int i)
 {
     int len;
     int slen;
 
     len = ft_tablen(tab);
-    mlen = 0;
-    mheight = 0;
+    g_mlen = 0;
+    g_mheight = 0;
     ft_printf("tablen : %d\n", len);
     while (i < len)
     {
        if (ft_strchr(tab[i], '1') != NULL)
        {
-           mheight++;
+           g_mheight++;
            slen = ft_strlen(tab[i]);
-           if (slen > mlen)
-                mlen = slen;
+           if (slen > g_mlen)
+                g_mlen = slen;
        }
        i++;
     }
@@ -59,11 +59,11 @@ void    set_mlen_mheight(char **tab, int i)
 
 int     set_map(char **tab, int i, t_fov *fov)
 {
-    set_mlen_mheight(tab, i);
+    set_g_mlen_g_mheight(tab, i);
     if ((set_int_tab()) == -1)
         return (-1);
     fill_map(&(tab[i]), fov);
-    verify_int_map(&worldMap, mlen, mheight);
+    verify_int_map(&g_worldmap, g_mlen, g_mheight);
     return (3);
 }
 

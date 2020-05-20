@@ -28,7 +28,7 @@ typedef	struct	s_fov
 	double oldTime;
 }		t_fov;
 */
-/*int worldMap[24][24]=
+/*int g_worldmap[24][24]=
 {
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
@@ -56,7 +56,7 @@ typedef	struct	s_fov
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 */
-int		**worldMap;
+int		**g_worldmap;
 
 t_ray	initialize_ray(t_ray *ray)
 {
@@ -105,7 +105,7 @@ void	get_steps_sides(t_ray *ray, t_fov *fov)
 	}
 }
 
-t_ray	*launch_ray(t_ray *ray, int **worldMap)
+t_ray	*launch_ray(t_ray *ray, int **g_worldmap)
 {
 	while (ray->hit == 0)
 	{
@@ -120,14 +120,14 @@ t_ray	*launch_ray(t_ray *ray, int **worldMap)
 		{
 			ray->sideDistY += ray->deltaDistY;
 			ray->mapY += ray->stepY;
-//			(*worldMap)[ray->mapX][ray->mapY] = -9;
+//			(*g_worldmap)[ray->mapX][ray->mapY] = -9;
 			ray->side = 1;
 		}
 //		ft_printf("")
-		if (worldMap[ray->mapX][ray->mapY] > 0 && worldMap[ray->mapX][ray->mapY] != 2)
+		if (g_worldmap[ray->mapX][ray->mapY] > 0 && g_worldmap[ray->mapX][ray->mapY] != 2)
 			ray->hit = 1;
 //		else 
-//			worldMap[ray->mapX][ray->mapY] = -9;
+//			g_worldmap[ray->mapX][ray->mapY] = -9;
 	}
 	return (ray);
 }
@@ -172,7 +172,7 @@ t_ray	*get_ray_info(int x, t_fov *fov, t_ray *ray)
 	ray->deltaDistX = sqrt(1 + (ray->rayDirY * ray->rayDirY) / (ray->rayDirX * ray->rayDirX));
 	ray->deltaDistY = sqrt(1 + (ray->rayDirX * ray->rayDirX) / (ray->rayDirY * ray->rayDirY));
 	get_steps_sides(ray, fov);
-	launch_ray(ray, worldMap);
+	launch_ray(ray, g_worldmap);
 	get_wallDist_line(ray, fov);
 	Zbuffer[x] = (double)ray->wallDist + add_to_pos;
 	if (ray->side == 0)
@@ -202,9 +202,9 @@ t_ray	*get_ray_info(int x, t_fov *fov, t_ray *ray)
 	ray = initialize_ray(&ray);
 	print_ray(&ray);
 	print_fov(&fov);
-	print_map(worldMap, 24, 24);
+	print_map(g_worldmap, 24, 24);
 	get_ray_info(0, &fov, &ray);
 	print_ray(&ray);
-	print_map(worldMap, 24, 24);
+	print_map(g_worldmap, 24, 24);
 	return (0);
 }*/

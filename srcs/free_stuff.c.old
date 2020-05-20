@@ -1,10 +1,10 @@
 #include "cub3d.h"
 
-extern int 	**worldMap;
+extern int 	**g_worldmap;
 extern int	**textures;
 extern double	*Zbuffer;
 extern char	**g_tex_tab;
-extern int  mlen;
+extern int  g_mlen;
 extern t_data	g_tex_list;
 
 void	free_tex_list(t_data *list, t_vars *vars)
@@ -53,7 +53,7 @@ void	free_sprites(t_sprites *sprites)
 int		free_all_parse_fail(char ***tab)
 {
 //	free_tex_list(&g_tex_list, vars);
-//	free_int_tab(&worldMap, mlen);
+//	free_int_tab(&g_worldmap, g_mlen);
 //	free_int_tab(&textures, 5);
 	ft_freetab(tab);
 //	free_sprites(vars->sprite_list);
@@ -65,7 +65,7 @@ int		free_all_parse_fail(char ***tab)
 int		free_all_tex_fail(void)
 {
 //	free_tex_list(&g_tex_list, vars);
-	free_int_tab(&worldMap, mlen);
+	free_int_tab(&g_worldmap, g_mlen);
 //	free_int_tab(&textures, 5);
 	ft_freetab(&g_tex_tab);
 //	free_sprites(vars->sprite_list);
@@ -77,7 +77,7 @@ int		free_all_tex_fail(void)
 int		free_all_sprite_fail(t_vars *vars)
 {
 	free_tex_list(&g_tex_list, vars);
-	free_int_tab(&worldMap, mlen);
+	free_int_tab(&g_worldmap, g_mlen);
 	free_int_tab(&textures, 5);
 	ft_freetab(&g_tex_tab);
 //	free_sprites(vars->sprite_list);
@@ -89,7 +89,7 @@ int		free_all_sprite_fail(t_vars *vars)
 int		free_all_zbuf_fail(t_vars *vars)
 {
 	free_tex_list(&g_tex_list, vars);
-	free_int_tab(&worldMap, mlen);
+	free_int_tab(&g_worldmap, g_mlen);
 	free_int_tab(&textures, 5);
 	ft_freetab(&g_tex_tab);
 	free_sprites(vars->sprite_list);

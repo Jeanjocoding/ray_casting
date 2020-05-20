@@ -2,9 +2,9 @@
 extern char **g_tex_tab;
 extern int  g_screenheight;
 extern int  g_screenwidth;
-extern int 	**worldMap;
-extern int 	mlen;
-extern int 	mheight;
+extern int 	**g_worldmap;
+extern int 	g_mlen;
+extern int 	g_mheight;
 int         g_alloc_check[5];
 //int         north_ok;
 //int         

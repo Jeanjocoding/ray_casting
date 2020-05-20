@@ -4,8 +4,8 @@ extern int	mapWidth;
 extern int 	mapHeight;
 extern int 	g_screenwidth;
 extern int 	g_screenheight;
-extern int 	**worldMap;
-extern int	mlen;
+extern int 	**g_worldmap;
+extern int	g_mlen;
 //extern int	map_lenY;
 extern int	**textures;
 extern double	*Zbuffer;
@@ -47,7 +47,7 @@ void			put_floor_ceiling(t_data *data, int x, t_ray *ray)
 int		free_all(t_vars *vars)
 {
 	free_tex_list(&g_tex_list, vars);
-	free_int_tab(&worldMap, mlen);
+	free_int_tab(&g_worldmap, g_mlen);
 	free_int_tab(&textures, 5);
 	ft_freetab(&g_tex_tab);
 	free_sprites(vars->sprite_list);
@@ -74,7 +74,7 @@ int	close_window(t_vars *vars)
 //	list_ptr = get_right_tex(0, &g_tex_list);
 //	free_tex_list(list_ptr, vars);
 	free_tex_list(&g_tex_list, vars);
-	free_int_tab(&worldMap, mlen);
+	free_int_tab(&g_worldmap, g_mlen);
 	free_int_tab(&textures, 5);
 	ft_freetab(&g_tex_tab);
 	free_sprites(vars->sprite_list);

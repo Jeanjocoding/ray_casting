@@ -1,7 +1,7 @@
 #include "cub3d.h"
 
 extern int  pos_check;
-extern int **worldMap;
+extern int **g_worldmap;
 
 int     set_fov_north(t_fov *fov)
 {
@@ -61,6 +61,6 @@ int     set_fov(char c, t_fov *fov, int x, int y)
         set_fov_west(fov);
     fov->posX = (double)x * 1.0 + 0.5;
     fov->posY = (double)y * 1.0 + 0.5;
-    worldMap[x][y] = 0;
+    g_worldmap[x][y] = 0;
 	return (0);
 }
