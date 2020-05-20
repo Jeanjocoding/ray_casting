@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-extern int	ground;
+extern int	g_ground;
 extern int	g_ceiling;
 
 int		get_rgb(int r, int g, int b)
@@ -15,12 +15,11 @@ int		get_rgb(int r, int g, int b)
 
 int		get_floor(char ***tab)
 {
-	int r;
-	int g;
-	int b;
-	char **tab2;
+	int		r;
+	int		g;
+	int		b;
+	char	**tab2;
 
-  //  ft_strdel(line);
 	if (ft_tablen(*tab) != 2)
 		error_quit("Error: invalid floor format", tab);
 	if (!(tab2 = ft_split((*tab)[1], ',')))
@@ -33,17 +32,17 @@ int		get_floor(char ***tab)
 	r = ft_atoi(tab2[0]);
 	g = ft_atoi(tab2[1]);
 	b = ft_atoi(tab2[2]);
-	ground = get_rgb(r, g, b);
+	g_ground = get_rgb(r, g, b);
 	ft_freetab(&tab2);
 	return (1);
 }
 
 int		get_g_ceiling(char ***tab)
 {
-	int r;
-	int g;
-	int b;
-	char **tab2;
+	int		r;
+	int		g;
+	int		b;
+	char	**tab2;
 
 	if (ft_tablen(*tab) != 2)
 		error_quit("Error: invalid g_ceiling format", tab);

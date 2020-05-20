@@ -11,7 +11,7 @@ extern int	**g_textures;
 extern double	*g_zbuffer;
 extern char	**g_tex_tab;
 extern t_data	g_tex_list;
-int		ground;
+int		g_ground;
 int		g_ceiling;
 extern int	keytab[400];
 //extern t_data	g_tex_list;
@@ -29,7 +29,7 @@ void			put_floor_g_ceiling(t_data *data, int x, t_ray *ray)
 	int y;
 
 //	g_ceiling = 0xBAA331;
-//	ground = 0x1544FF;
+//	g_ground = 0x1544FF;
 	y = 0;
 	while (y < ray->linebottom)
 	{
@@ -39,7 +39,7 @@ void			put_floor_g_ceiling(t_data *data, int x, t_ray *ray)
 	y = ray->linetop;
 	while (y < g_screenheight)
 	{
-		my_mlx_pixel_put(data, x, y, ground);
+		my_mlx_pixel_put(data, x, y, g_ground);
 		y++;
 	}
 }
