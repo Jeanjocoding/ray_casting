@@ -37,7 +37,7 @@ t_sprites	*sprite_on_screen(t_sprites *sprite, t_data *g_tex_list, t_data *main_
 				tex_coor[1] = ((d * tex_img->img_height) / sprite->spriteHeight) / 256;
 				addr_ptr = tex_img->int_ptr + (tex_coor[1] * tex_img->img_width + tex_coor[0]);
 				if (((int)(*addr_ptr) & 0x00FFFFFF) != 0) 
-					put_my_pixel(main_img, m_coor[0], m_coor[1], (int)(*addr_ptr));
+					my_mlx_pixel_put(main_img, m_coor[0], m_coor[1], (int)(*addr_ptr));
 				m_coor[1]++;
 			}
 			m_coor[1] = sprite->drawStartY;

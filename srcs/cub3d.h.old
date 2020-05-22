@@ -124,7 +124,7 @@ t_data	generate_image(t_vars *vars, t_data *img);
 int	put_tex(t_vars *vars, t_data *main_img, t_data *tex_list);
 void	*load_img_getinfo(t_data *img_info, void *mlx, char *relative_path);
 void 	print_img_info(t_data *img_info);
-void	put_my_pixel(t_data *data, int x, int y, int color);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		init_tex(char **tab, void *mlx, t_data *tex_list, t_vars *vars);
 char	**get_tex_tab(char *texN, char *texS, char *texO, char *texE);
 int		tex_chooser(t_ray *ray);

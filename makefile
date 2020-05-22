@@ -61,13 +61,14 @@ OBJS = $(patsubst %.c, %.o,$(SRC))
 %.o: %.c
 	$(CC) $(FLAGS) -c $< -o $@
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror 
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(LIB_MAKER) $(LIB_DIR)
-	gcc -L minilibx_opengl_20191021 -I minilibx_opengl_20191021 -lmlx -framework OpenGL -framework appkit -Llibft -lft $(OBJS) -o $(NAME)
+	$(LIB_MAKER) minilibx_opengl_20191021
+	gcc -Lminilibx_opengl_20191021 -lmlx -I minilibx_opengl_20191021 -framework OpenGL -framework appkit -Llibft -lft $(OBJS) -o $(NAME)
 
 clean: 
 	$(LIB_MAKER) $(LIB_DIR) clean

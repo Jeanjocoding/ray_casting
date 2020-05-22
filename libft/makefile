@@ -18,6 +18,8 @@ INCLUDES = includes/libft.h
 
 OBJS = $(patsubst %.c, %.o,$(SRC))
 
+CC = gcc
+
 %.o: %.c
 	$(CC) $(FLAGS) -c $< -o $@
 

@@ -39,7 +39,7 @@ void	put_tex_column(int tex_coor[2], t_data *main_img, t_data *tex_img, t_ray *r
 		color = (int)(*addr_t);
 //		if (ray->side == 1) 
 //			color = (color >> 1) & 8355711;
-		put_my_pixel(main_img, ray->screenX, y, color);
+		my_mlx_pixel_put(main_img, ray->screenX, y, color);
 		texPos += step;
 		y++;
 	}

@@ -12,7 +12,7 @@ int				g_ground;
 int				g_ceiling;
 extern int		g_keytab[400];
 
-void		put_my_pixel(t_data *data, int x, int y, int color)
+void		my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
@@ -28,13 +28,13 @@ void		put_floor_g_ceiling(t_data *data, int x, t_ray *ray)
 	y = 0;
 	while (y < ray->linebottom)
 	{
-		put_my_pixel(data, x, y, g_ceiling);
+		my_mlx_pixel_put(data, x, y, g_ceiling);
 		y++;
 	}
 	y = ray->linetop;
 	while (y < g_screenheight)
 	{
-		put_my_pixel(data, x, y, g_ground);
+		my_mlx_pixel_put(data, x, y, g_ground);
 		y++;
 	}
 }
