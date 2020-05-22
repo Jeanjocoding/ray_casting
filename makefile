@@ -44,6 +44,7 @@ SRC = $(FILE_DIR)/bmp_maker.c	\
 	$(FILE_DIR)/move_rotate.c		\
 	$(FILE_DIR)/move.c		\
 	$(FILE_DIR)/parse_master.c		\
+	$(FILE_DIR)/error_get_res.c		\
 	$(FILE_DIR)/parse_tex.c		\
 	$(FILE_DIR)/put_sprites.c		\
 	$(FILE_DIR)/put_tex.c		\

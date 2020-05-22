@@ -146,6 +146,7 @@ int     get_south(char ***tab);
 int     get_west(char ***tab);
 int     get_east(char ***tab);
 int     get_sprite(char ***tab);
+int		get_res(char ***tab);
 int     get_g_ceiling(char ***tab);
 int     get_floor(char ***tab);
 int	get_rgb(int r, int g, int b);
