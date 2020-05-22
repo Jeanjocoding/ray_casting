@@ -178,5 +178,9 @@ int	    free_int_ret(int ***tab, int len);
 void	classic_freetab(char ***tab);
 int		free_all_tex_fail(void);
 int	    free_int_tex(int ***tab, int len, t_data *tex_list, t_vars *vars);
+void	*free_int_tex_nl(int ***tab, int len, t_data *tex_list, t_vars *vars);
+int		tex_chooser(t_ray *ray);
+t_data	*get_right_tex(int tex_num, t_data *g_tex_list);
+
 
 #endif
