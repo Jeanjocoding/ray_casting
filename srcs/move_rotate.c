@@ -6,25 +6,21 @@ extern int	g_screenheight;
 extern int	g_screenwidth;
 int			g_keytab[400];
 
-
 int	apply_command(t_vars *vars)
 {
-//	t_data	temp_img;
-
-//	print_fov(&vars->fov);
-	if (g_keytab[KEY_W] == 1) // Z chez moi
+	if (g_keytab[KEY_W] == 1)
 		move_forward(&(vars->fov));
-	if (g_keytab[KEY_S] == 1) // Z chez moi
+	if (g_keytab[KEY_S] == 1)
 		move_backward(&(vars->fov));
-	if (g_keytab[KEY_D] == 1) // Z chez moi
+	if (g_keytab[KEY_D] == 1)
 		move_right(&(vars->fov));
-	if (g_keytab[KEY_A] == 1) // Z chez moi
+	if (g_keytab[KEY_A] == 1)
 		move_left(&(vars->fov));
-	if (g_keytab[KEY_LEFT] == 1) // Z chez moi
+	if (g_keytab[KEY_LEFT] == 1)
 		rotate_left(&(vars->fov));
-	if (g_keytab[KEY_RIGHT] == 1) // Z chez moi
+	if (g_keytab[KEY_RIGHT] == 1)
 		rotate_right(&(vars->fov));
-	if (g_keytab[KEY_ESCAPE] == 1) // Z chez moi
+	if (g_keytab[KEY_ESCAPE] == 1)
 		close_window(vars);
 	generate_image(vars, &vars->img);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
@@ -44,49 +40,3 @@ int	release_command(int keycode, t_vars *vars)
 	apply_command(vars);
 	return (0);
 }
-
-void	move_forward(t_fov *fov)
-{
-	double	moveSpeed;
-
-	moveSpeed = 0.3;
-	if (g_worldmap[(int)(fov->posX + fov->dirX * moveSpeed)][(int)(fov->posY)] == 0)
-		fov->posX += fov->dirX * moveSpeed;
-	if (g_worldmap[(int)(fov->posX)][(int)(fov->posY + fov->dirY *moveSpeed)] == 0)
-		fov->posY += fov->dirY * moveSpeed;
-}
-
-void	move_backward(t_fov *fov)
-{
-	double	moveSpeed;
-
-	moveSpeed = 0.3;
-	if (g_worldmap[(int)(fov->posX - fov->dirX * moveSpeed)][(int)(fov->posY)] == 0)
-		fov->posX -= fov->dirX * moveSpeed;
-	if (g_worldmap[(int)(fov->posX)][(int)(fov->posY - fov->dirY * moveSpeed)] == 0)
-		fov->posY -= fov->dirY * moveSpeed;
-}
-
-
-void	move_right(t_fov *fov)
-{
-	double	moveSpeed;
-
-	moveSpeed = 0.3;
-	if (g_worldmap[(int)(fov->posX + fov->planeX * moveSpeed)][(int)(fov->posY)] == 0)
-		fov->posX += fov->planeX * moveSpeed;
-	if (g_worldmap[(int)(fov->posX)][(int)(fov->posY + fov->planeY * moveSpeed)] == 0)
-		fov->posY += fov->planeY * moveSpeed;
-}
-
-void	move_left(t_fov *fov)
-{
-	double	moveSpeed;
-
-	moveSpeed = 0.3;
-	if (g_worldmap[(int)(fov->posX - fov->planeX * moveSpeed)][(int)(fov->posY)] == 0)
-		fov->posX -= fov->planeX * moveSpeed;
-	if (g_worldmap[(int)(fov->posX)][(int)(fov->posY - fov->planeY * moveSpeed)] == 0)
-		fov->posY -= fov->planeY * moveSpeed;
-}
-

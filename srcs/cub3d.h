@@ -181,6 +181,7 @@ int	    free_int_tex(int ***tab, int len, t_data *tex_list, t_vars *vars);
 void	*free_int_tex_nl(int ***tab, int len, t_data *tex_list, t_vars *vars);
 int		tex_chooser(t_ray *ray);
 t_data	*get_right_tex(int tex_num, t_data *g_tex_list);
-
+void	intarray_set(int dst[400], int nbr, int len);
+int			check_cub(char *path);
 
 #endif

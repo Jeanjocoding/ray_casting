@@ -12,33 +12,6 @@ int				g_ground;
 int				g_ceiling;
 extern int		g_keytab[400];
 
-void		put_my_pixel(t_data *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x
-			* (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
-
-void		put_floor_g_ceiling(t_data *data, int x, t_ray *ray)
-{
-	int y;
-
-	y = 0;
-	while (y < ray->linebottom)
-	{
-		put_my_pixel(data, x, y, g_ceiling);
-		y++;
-	}
-	y = ray->linetop;
-	while (y < g_screenheight)
-	{
-		put_my_pixel(data, x, y, g_ground);
-		y++;
-	}
-}
-
 int			free_all(t_vars *vars)
 {
 	free_tex_list(&g_tex_list, vars);
@@ -47,18 +20,6 @@ int			free_all(t_vars *vars)
 	ft_freetab(&g_tex_tab);
 	free_sprites(vars->sprite_list);
 	free(g_zbuffer);
-	return (-1);
-}
-
-int			check_cub(char *path)
-{
-	int	len;
-
-	len = ft_strlen(path);
-	len--;
-	if (path[len] != 'b' || path[len - 1] != 'u' || path[len - 2] != 'c'
-		|| path[len - 3] != '.')
-		error_quit("Error: invalid configuration file", NULL);
 	return (-1);
 }
 
@@ -88,18 +49,6 @@ t_data		generate_image(t_vars *vars, t_data *img)
 	put_tex(vars, img, &g_tex_list);
 	put_sprites(vars, vars->sprite_list, &g_tex_list, img);
 	return (*img);
-}
-
-void		intarray_set(int dst[400], int nbr, int len)
-{
-	int i;
-
-	i = 0;
-	while (i < len)
-	{
-		dst[i] = nbr;
-		i++;
-	}
 }
 
 int			parse_map_init(t_vars *vars, char *map_file)

@@ -40,7 +40,9 @@ SRC = $(FILE_DIR)/bmp_maker.c	\
 	$(FILE_DIR)/init_tex.c		\
 	$(FILE_DIR)/tex_utils.c		\
 	$(FILE_DIR)/mlx_start.c		\
+	$(FILE_DIR)/start_utils.c		\
 	$(FILE_DIR)/move_rotate.c		\
+	$(FILE_DIR)/move.c		\
 	$(FILE_DIR)/parse_master.c		\
 	$(FILE_DIR)/parse_tex.c		\
 	$(FILE_DIR)/put_sprites.c		\
