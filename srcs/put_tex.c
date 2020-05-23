@@ -10,14 +10,7 @@ int		get_texX(t_ray *ray, t_data *tex_img)
 {
 	int texX;
 
-// a verifier, pas sur du tout pour le temlpacement de texwidth par line_length
-//pe qu'il faut utiliser les dimensions img_width et height
-
-	texX = (int)(ray->wallX * (double)(tex_img->img_width)); // 4 arbitraire + je compredns pas l'utilié de ce qui suit 
-/*    if(ray->side == 0 && ray->rayDirX > 0)
-		texX = tex_img->img_width - texX - 1;
-    if(ray->side == 1 && ray->rayDirY < 0) 
-	texX = tex_img->img_width - texX - 1;*/
+	texX = (int)(ray->wallX * (double)(tex_img->img_width));
 	return (texX);
 }
 
@@ -29,16 +22,14 @@ void	put_tex_column(int tex_coor[2], t_data *main_img, t_data *tex_img, t_ray *r
 	int 	*addr_t;
 	unsigned int	color;
 
-	step = 1.0 * tex_img->img_height / ray->lineheight; // /4 arbitraire
+	step = 1.0 * tex_img->img_height / ray->lineheight;
 	texPos = (ray->linebottom - g_screenheight / 2 + ray->lineheight / 2) * step;
 	y = ray->linebottom;
 	while (y < ray->linetop)
 	{
-		tex_coor[1] = (int)texPos; //  & (tex_img->img_height - 1); // mask de lodev sais pas a quoi ça sert
+		tex_coor[1] = (int)texPos;
 		addr_t = tex_img->int_ptr + (tex_coor[1] * tex_img->img_width + tex_coor[0]);
 		color = (int)(*addr_t);
-//		if (ray->side == 1) 
-//			color = (color >> 1) & 8355711;
 		put_my_pixel(main_img, ray->screenX, y, color);
 		texPos += step;
 		y++;
@@ -54,7 +45,6 @@ int	put_tex(t_vars *vars, t_data *main_img, t_data *g_tex_list)
 
 	x = 0;
 	check = -1;
-//	Zindex = 0;
 	while (x < g_screenwidth)
 	{
 		ray = initialize_ray(&ray);
