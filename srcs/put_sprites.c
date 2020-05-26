@@ -98,8 +98,8 @@ t_sprites	*put_sprites(t_vars *vars, t_sprites *sprite_list,
 	fov = vars->fov;
 	while (sprite_list != NULL)
 	{
-		sprite_list->spriteX = sprite_list->x - fov.posX;
-		sprite_list->spriteY = sprite_list->y - fov.posY;
+		sprite_list->spriteX = sprite_list->x - fov.posx;
+		sprite_list->spriteY = sprite_list->y - fov.posy;
 		sprite_list->invDet = 1.0
 			/ (fov.planeX * fov.dirY - fov.dirX * fov.planeY);
 		sprite_list->transformX = sprite_list->invDet * (fov.dirY

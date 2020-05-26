@@ -27,8 +27,8 @@ void 	print_ray(t_ray *ray)
 void 	print_fov(t_fov *fov)
 {
 	printf("\n\n-------- fov : --------\n");
-	printf(" fov->posX: %f\n", fov->posX);
-	printf(" fov->posY: %f\n", fov->posY);
+	printf(" fov->posx: %f\n", fov->posx);
+	printf(" fov->posy: %f\n", fov->posy);
 	printf(" fov->dirX: %f\n", fov->dirX);
 	printf(" fov->dirY: %f\n", fov->dirY);
 	printf(" fov->planeX: %f\n", fov->planeX);

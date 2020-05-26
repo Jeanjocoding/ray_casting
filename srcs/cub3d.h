@@ -10,8 +10,8 @@
 
 typedef	struct	s_fov
 {
-	double posX;
-	double posY;
+	double posx;
+	double posy;
 	double dirX;
 	double dirY;
 	double planeX;
@@ -117,7 +117,7 @@ void	move_left(t_fov *fov);
 void	rotate_left(t_fov *fov);
 void	rotate_right(t_fov *fov);
 int	close_window(t_vars *vars);
-t_fov	initialize_fov(t_fov *fov, double posX, double posY);
+t_fov	initialize_fov(t_fov *fov, double posx, double posy);
 t_ray	initialize_ray(t_ray *ray);
 t_ray	*get_ray_info(int x, t_fov *fov, t_ray *ray); 
 t_data	generate_image(t_vars *vars, t_data *img);

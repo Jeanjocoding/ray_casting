@@ -6,9 +6,9 @@ t_sprites	*get_sprite_distance(t_sprites *sprite, t_fov *fov)
 	first = sprite->first;
 	while (sprite != NULL)
 	{
-		sprite->distance = (fov->posX - sprite->x) * 
-			(fov->posX - sprite->x) + (fov->posY - sprite->y) * 
-			(fov->posY - sprite->y);
+		sprite->distance = (fov->posx - sprite->x) * 
+			(fov->posx - sprite->x) + (fov->posy - sprite->y) * 
+			(fov->posy - sprite->y);
 		sprite = sprite->next;
 	}
 	return (first);

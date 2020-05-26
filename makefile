@@ -49,6 +49,7 @@ SRC = $(FILE_DIR)/bmp_maker.c	\
 	$(FILE_DIR)/put_sprites.c		\
 	$(FILE_DIR)/put_tex.c		\
 	$(FILE_DIR)/ray_casting.c		\
+	$(FILE_DIR)/initialize_fov.c		\
 	$(FILE_DIR)/rotate.c		\
 	$(FILE_DIR)/set_fov.c		\
 	$(FILE_DIR)/sort_sprites.c		\
