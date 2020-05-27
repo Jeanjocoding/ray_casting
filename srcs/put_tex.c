@@ -10,7 +10,7 @@ int		get_texx(t_ray *ray, t_data *tex_img)
 {
 	int texx;
 
-	texx = (int)(ray->wallX * (double)(tex_img->img_width));
+	texx = (int)(ray->wallx * (double)(tex_img->img_width));
 	return (texx);
 }
 
