@@ -1,7 +1,7 @@
 #include "bmp.h"
 #include "cub3d.h"
 
-int	initialize_bmp(t_bmpHeader *head)
+int	initialize_bmp(t_bmpheader *head)
 {
 	head->type = 0x4d42;
 	head->size = 0;
@@ -22,7 +22,7 @@ int	initialize_bmp(t_bmpHeader *head)
 	return (0);
 }
 
-int	set_bmp(t_bmpHeader *head, t_data *img_file)
+int	set_bmp(t_bmpheader *head, t_data *img_file)
 {
 	head->type = 0x4d42;
 	head->size = 54 + img_file->img_width * img_file->img_height;
@@ -43,13 +43,13 @@ int	set_bmp(t_bmpHeader *head, t_data *img_file)
 	return (0);
 }
 
-int	write_bmp(int fd, t_bmpHeader *head, t_data *img_file, int img_size)
+int	write_bmp(int fd, t_bmpheader *head, t_data *img_file, int img_size)
 {
 	int		i;
 	int		line;
 
 	i = 0;
-	write(fd, head, sizeof(t_bmpHeader));
+	write(fd, head, sizeof(t_bmpheader));
 	img_size = img_size / 4;
 	line = img_size / img_file->img_height;
 	img_size -= line;

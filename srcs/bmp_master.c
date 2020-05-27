@@ -18,7 +18,7 @@ void	set_img(t_data *img, t_vars *vars)
 
 int		generate_bmp(t_vars *vars, t_data *img)
 {
-	t_bmpHeader		head;
+	t_bmpheader		head;
 	int				*temp_ptr;
 	int				img_size;
 	int				fd;

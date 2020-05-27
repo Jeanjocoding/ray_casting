@@ -30,7 +30,7 @@ typedef struct	s_gnl
 }				t_gnl;
 
 char			**ft_split(char const *s, char c);
-int			ft_printf(const char *format, ...);
+int				ft_printf(const char *format, ...);
 void			ft_putchar(char c);
 void			ft_putstr(char const *str);
 size_t			ft_strlen(const char *str);
