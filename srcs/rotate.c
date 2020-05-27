@@ -4,7 +4,7 @@
 extern int	g_screenheight;
 extern int	g_screenwidth;
 
-void	rotate_left(t_fov *fov)
+void	rotate_right(t_fov *fov)
 {
 	double	rot_speed;
 	double	olddirx;
@@ -19,7 +19,7 @@ void	rotate_left(t_fov *fov)
 	fov->planeY = oldplanex * sin(-rot_speed) + fov->planeY * cos(-rot_speed);
 }
 
-void	rotate_right(t_fov *fov)
+void	rotate_left(t_fov *fov)
 {
 	double	rot_speed;
 	double	olddirx;

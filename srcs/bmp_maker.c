@@ -45,22 +45,16 @@ int	set_bmp(t_bmpHeader *head, t_data *img_file)
 
 int	write_bmp(int fd, t_bmpHeader *head, t_data *img_file, int img_size)
 {
-	char	*test;
 	int		i;
 	int		line;
 
 	i = 0;
-	test = ft_strdup("hello");
-	ft_printf("head type : %x\n", head->type);
-	ft_printf("size header : %d\n", sizeof(*head));
-	ft_printf("size int_ptr : %d\n", sizeof(img_file->int_ptr));
 	write(fd, head, sizeof(t_bmpHeader));
 	img_size = img_size / 4;
 	line = img_size / img_file->img_height;
 	img_size -= line;
 	while (img_size >= 0)
 	{
-		ft_printf("tab[%d] = %d\n", img_size, img_file->int_ptr[img_size]);
 		write(fd, &((img_file->int_ptr)[img_size]), line * 4);
 		img_size -= line;
 	}
