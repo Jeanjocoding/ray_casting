@@ -30,7 +30,7 @@ void 	print_fov(t_fov *fov)
 	printf(" fov->posx: %f\n", fov->posx);
 	printf(" fov->posy: %f\n", fov->posy);
 	printf(" fov->dirx: %f\n", fov->dirx);
-	printf(" fov->diry: %f\n", fov->diry);
+	printf(" fov->dirY: %f\n", fov->dirY);
 	printf(" fov->planeX: %f\n", fov->planeX);
 	printf(" fov->planeY: %f\n", fov->planeY);
 	printf(" fov->time: %f\n", fov->time);

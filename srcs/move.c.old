@@ -12,8 +12,8 @@ void	move_forward(t_fov *fov)
 			* movespeed)][(int)(fov->posy)] == 0)
 		fov->posx += fov->dirx * movespeed;
 	if (g_worldmap[(int)(fov->posx)]
-			[(int)(fov->posy + fov->diry * movespeed)] == 0)
-		fov->posy += fov->diry * movespeed;
+			[(int)(fov->posy + fov->dirY * movespeed)] == 0)
+		fov->posy += fov->dirY * movespeed;
 }
 
 void	move_backward(t_fov *fov)
@@ -25,8 +25,8 @@ void	move_backward(t_fov *fov)
 		[(int)(fov->posy)] == 0)
 		fov->posx -= fov->dirx * movespeed;
 	if (g_worldmap[(int)(fov->posx)]
-		[(int)(fov->posy - fov->diry * movespeed)] == 0)
-		fov->posy -= fov->diry * movespeed;
+		[(int)(fov->posy - fov->dirY * movespeed)] == 0)
+		fov->posy -= fov->dirY * movespeed;
 }
 
 void	move_right(t_fov *fov)

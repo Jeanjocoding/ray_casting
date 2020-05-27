@@ -97,7 +97,7 @@ t_ray		*get_ray_info(int x, t_fov *fov, t_ray *ray)
 	ray->screenX = x;
 	ray->cameraX = 2 * x / (double)g_screenwidth - 1;
 	ray->rayDirX = fov->dirx + fov->planeX * ray->cameraX;
-	ray->rayDirY = fov->diry + fov->planeY * ray->cameraX;
+	ray->rayDirY = fov->dirY + fov->planeY * ray->cameraX;
 	ray->mapX = (int)fov->posx;
 	ray->mapY = (int)fov->posy;
 	ray->deltaDistX = sqrt(1 + (ray->rayDirY * ray->rayDirY)
