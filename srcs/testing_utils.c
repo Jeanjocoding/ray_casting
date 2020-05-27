@@ -4,14 +4,14 @@
 void 	print_ray(t_ray *ray)
 {
 	printf("\n\n-------- ray : --------\n");
-	printf("ray->cameraX : %f\n", ray->cameraX);
-	printf("ray->rayDirX : %f\n", ray->rayDirX);
-	printf("ray->rayDirY : %f\n", ray->rayDirY);
-	printf("ray->sideDistX : %f\n", ray->sideDistX);
-	printf("ray->sideDistY : %f\n", ray->sideDistY);
+	printf("ray->camerax : %f\n", ray->camerax);
+	printf("ray->raydirx : %f\n", ray->raydirx);
+	printf("ray->raydiry : %f\n", ray->raydiry);
+	printf("ray->sidedistx : %f\n", ray->sidedistx);
+	printf("ray->sidedisty : %f\n", ray->sidedisty);
 	printf("ray->deltaDistX : %f\n", ray->deltaDistX);
-	printf("ray->deltaDistY : %f\n", ray->deltaDistY);
-	printf("ray->stepX : %f\n", ray->stepX);
+	printf("ray->deltadisty : %f\n", ray->deltadisty);
+	printf("ray->stepx : %f\n", ray->stepx);
 	printf("ray->stepY : %f\n", ray->stepY);
 	printf("ray->mapX : %d\n", ray->mapX);
 	printf("ray->mapY : %d\n", ray->mapY);
@@ -31,8 +31,8 @@ void 	print_fov(t_fov *fov)
 	printf(" fov->posy: %f\n", fov->posy);
 	printf(" fov->dirx: %f\n", fov->dirx);
 	printf(" fov->diry: %f\n", fov->diry);
-	printf(" fov->planeX: %f\n", fov->planeX);
-	printf(" fov->planeY: %f\n", fov->planeY);
+	printf(" fov->planex: %f\n", fov->planex);
+	printf(" fov->planey: %f\n", fov->planey);
 	printf(" fov->time: %f\n", fov->time);
 	printf(" fov->oldTime: %f\n", fov->oldTime);
 	printf("---------------------------\n");

@@ -53,7 +53,7 @@ t_sprites	*sprite_on_screen(t_sprites *sprite,
 	while (m_coor[0] < sprite->drawEndX)
 	{
 		tex_coor[0] = (int)(256 * (m_coor[0] - (-sprite->spriteWidth / 2 +
-			sprite->screenX)) * tex_img->img_width / sprite->spriteWidth) / 256;
+			sprite->screenx)) * tex_img->img_width / sprite->spriteWidth) / 256;
 		m_coor[2] = tex_coor[0];
 		if (sprite->transformY > 0 && m_coor[0] > 0 && m_coor[0] < g_screenwidth
 			&& sprite->transformY < g_zbuffer[m_coor[0]])
@@ -65,7 +65,7 @@ t_sprites	*sprite_on_screen(t_sprites *sprite,
 
 t_sprites	*sprite_height_width(t_sprites *sprite_list)
 {
-	sprite_list->screenX = (int)((g_screenwidth / 2)
+	sprite_list->screenx = (int)((g_screenwidth / 2)
 			* (1 + sprite_list->transformX / sprite_list->transformY));
 	sprite_list->spriteHeight = abs((int)(g_screenheight /
 		(sprite_list->transformY)));
@@ -80,11 +80,11 @@ t_sprites	*sprite_height_width(t_sprites *sprite_list)
 	sprite_list->spriteWidth = abs((int)(g_screenheight /
 		(sprite_list->transformY)));
 	sprite_list->drawStartX = -sprite_list->spriteWidth /
-		2 + sprite_list->screenX;
+		2 + sprite_list->screenx;
 	if (sprite_list->drawStartX < 0)
 		sprite_list->drawStartX = 0;
 	sprite_list->drawEndX = sprite_list->spriteWidth /
-		2 + sprite_list->screenX;
+		2 + sprite_list->screenx;
 	if (sprite_list->drawEndX >= g_screenwidth)
 		sprite_list->drawEndX = g_screenwidth - 1;
 	return (sprite_list);
@@ -101,11 +101,11 @@ t_sprites	*put_sprites(t_vars *vars, t_sprites *sprite_list,
 		sprite_list->spriteX = sprite_list->x - fov.posx;
 		sprite_list->spriteY = sprite_list->y - fov.posy;
 		sprite_list->invDet = 1.0
-			/ (fov.planeX * fov.dirY - fov.dirx * fov.planeY);
-		sprite_list->transformX = sprite_list->invDet * (fov.dirY
+			/ (fov.planex * fov.diry - fov.dirx * fov.planey);
+		sprite_list->transformX = sprite_list->invDet * (fov.diry
 			* sprite_list->spriteX - fov.dirx * sprite_list->spriteY);
-		sprite_list->transformY = sprite_list->invDet * (-fov.planeY
-			* sprite_list->spriteX + fov.planeX * sprite_list->spriteY);
+		sprite_list->transformY = sprite_list->invDet * (-fov.planey
+			* sprite_list->spriteX + fov.planex * sprite_list->spriteY);
 		sprite_height_width(sprite_list);
 		sprite_on_screen(sprite_list, g_tex_list, main_img);
 		sprite_list = sprite_list->next;

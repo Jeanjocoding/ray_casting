@@ -4,14 +4,14 @@ int		tex_chooser(t_ray *ray)
 {
 	if (ray->side == 0)
 	{
-		if (ray->rayDirX < 0)
+		if (ray->raydirx < 0)
 			return (3);
 		else
 			return (2);
 	}
 	else
 	{
-		if (ray->rayDirY < 0)
+		if (ray->raydiry < 0)
 			return (1);
 		else
 			return (0);

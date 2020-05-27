@@ -7,8 +7,8 @@ int		set_fov_north(t_fov *fov)
 {
 	fov->dirx = 0;
 	fov->diry = 1;
-	fov->planeX = 0.66;
-	fov->planeY = 0;
+	fov->planex = 0.66;
+	fov->planey = 0;
 	fov->time = 0;
 	fov->oldTime = 0;
 	return (0);
@@ -18,8 +18,8 @@ int		set_fov_south(t_fov *fov)
 {
 	fov->dirx = 0;
 	fov->diry = -1;
-	fov->planeX = -0.66;
-	fov->planeY = 0;
+	fov->planex = -0.66;
+	fov->planey = 0;
 	fov->time = 0;
 	fov->oldTime = 0;
 	return (0);
@@ -29,8 +29,8 @@ int		set_fov_east(t_fov *fov)
 {
 	fov->dirx = 1;
 	fov->diry = 0;
-	fov->planeX = 0;
-	fov->planeY = -0.66;
+	fov->planex = 0;
+	fov->planey = -0.66;
 	fov->time = 0;
 	fov->oldTime = 0;
 	return (0);
@@ -40,8 +40,8 @@ int		set_fov_west(t_fov *fov)
 {
 	fov->dirx = -1;
 	fov->diry = 0;
-	fov->planeX = 0;
-	fov->planeY = 0.66;
+	fov->planex = 0;
+	fov->planey = 0.66;
 	fov->time = 0;
 	fov->oldTime = 0;
 	return (0);

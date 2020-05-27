@@ -14,24 +14,24 @@ typedef	struct	s_fov
 	double posy;
 	double dirx;
 	double diry;
-	double planeX;
-	double planeY;
+	double planex;
+	double planey;
 	double time;
 	double oldTime;
 }		t_fov;
 
 typedef	struct	s_ray
 {
-	int screenX;
-	double cameraX;
+	int screenx;
+	double camerax;
 //	double cameraY;
-	double rayDirX;
-	double rayDirY;
-	double sideDistX;
-	double sideDistY;
+	double raydirx;
+	double raydiry;
+	double sidedistx;
+	double sidedisty;
 	double deltaDistX;
-	double deltaDistY;
-	double stepX;
+	double deltadisty;
+	double stepx;
 	double stepY;
 	int	mapX;
 	int	mapY;
@@ -57,7 +57,7 @@ typedef struct	s_sprites
 	double 		invDet;
 	double		transformX;
 	double		transformY;
-	int		screenX;
+	int		screenx;
 	int		drawStartY;
 	int		drawEndY;
 	int		drawStartX;

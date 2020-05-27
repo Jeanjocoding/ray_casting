@@ -6,8 +6,8 @@ t_fov		initialize_fov(t_fov *fov, double posx, double posy)
 	fov->posy = posy;
 	fov->dirx = 1;
 	fov->diry = 0;
-	fov->planeX = 0;
-	fov->planeY = 0.66;
+	fov->planex = 0;
+	fov->planey = 0.66;
 	fov->time = 0;
 	fov->oldTime = 0;
 	return (*fov);

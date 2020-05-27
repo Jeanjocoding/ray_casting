@@ -12,11 +12,11 @@ void	rotate_right(t_fov *fov)
 
 	rot_speed = 0.1;
 	olddirx = fov->dirx;
-	oldplanex = fov->planeX;
+	oldplanex = fov->planex;
 	fov->dirx = fov->dirx * cos(-rot_speed) - fov->diry * sin(-rot_speed);
 	fov->diry = olddirx * sin(-rot_speed) + fov->diry * cos(-rot_speed);
-	fov->planeX = fov->planeX * cos(-rot_speed) - fov->planeY * sin(-rot_speed);
-	fov->planeY = oldplanex * sin(-rot_speed) + fov->planeY * cos(-rot_speed);
+	fov->planex = fov->planex * cos(-rot_speed) - fov->planey * sin(-rot_speed);
+	fov->planey = oldplanex * sin(-rot_speed) + fov->planey * cos(-rot_speed);
 }
 
 void	rotate_left(t_fov *fov)
@@ -27,9 +27,9 @@ void	rotate_left(t_fov *fov)
 
 	rot_speed = 0.1;
 	olddirx = fov->dirx;
-	oldplanex = fov->planeX;
+	oldplanex = fov->planex;
 	fov->dirx = fov->dirx * cos(rot_speed) - fov->diry * sin(rot_speed);
 	fov->diry = olddirx * sin(rot_speed) + fov->diry * cos(rot_speed);
-	fov->planeX = fov->planeX * cos(rot_speed) - fov->planeY * sin(rot_speed);
-	fov->planeY = oldplanex * sin(rot_speed) + fov->planeY * cos(rot_speed);
+	fov->planex = fov->planex * cos(rot_speed) - fov->planey * sin(rot_speed);
+	fov->planey = oldplanex * sin(rot_speed) + fov->planey * cos(rot_speed);
 }

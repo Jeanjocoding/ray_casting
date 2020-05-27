@@ -33,7 +33,7 @@ void	put_tex_column(int tex_coor[2], t_data *main_img,
 		addr_t = tex_img->int_ptr + (tex_coor[1]
 			* tex_img->img_width + tex_coor[0]);
 		color = (int)(*addr_t);
-		put_my_pixel(main_img, ray->screenX, y, color);
+		put_my_pixel(main_img, ray->screenx, y, color);
 		texpos += step;
 		y++;
 	}
